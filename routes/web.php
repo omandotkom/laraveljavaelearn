@@ -14,8 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('index');
+})->middleware('auth');
+Route::get('/code','CodeController@show')->name('showcode');
 
 Auth::routes();
 
