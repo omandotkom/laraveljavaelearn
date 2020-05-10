@@ -19,5 +19,5 @@ Route::get('/', function () {
 Route::get('/code','CodeController@show')->name('showcode');
 
 Auth::routes();
-
+Route::get('/c','CodeController@comptest');
 Route::get('/home', 'HomeController@index')->name('home');
