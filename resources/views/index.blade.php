@@ -53,6 +53,9 @@
                 @case('startcode')
                 @include('layouts.code')
                 @break
+                @case('viewsoal')
+                @include('layouts.question')
+                @break
                 @endswitch
                 @else
                 @include('layouts.content')

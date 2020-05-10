@@ -17,7 +17,9 @@ Route::get('/', function () {
     return view('index');
 })->middleware('auth');
 Route::get('/code','CodeController@show')->name('showcode');
-
+Route::post('/question/save','QuestionController@store')->name('savequestion');
+Route::get('/question/{id}','QuestionController@show')->name('viewquestion');
+Route::post('/question/id','QuestionController@save')->name('savequestion');
 Auth::routes();
 Route::get('/c','CodeController@comptest');
 Route::get('/home', 'HomeController@index')->name('home');
