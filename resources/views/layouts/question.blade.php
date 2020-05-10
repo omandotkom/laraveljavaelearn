@@ -58,14 +58,14 @@
 
                     <div class="row">
                         <div class="col-sm-12">
-                            <table id="advanced_table" class="table dataTable no-footer w-75 mx-auto dtr-inline collapsed" role="grid" aria-describedby="advanced_table_info" >
+                            <table id="advanced_table" class="table dataTable no-footer mx-auto dtr-inline collapsed" role="grid" style="width: 95%;" aria-describedby="advanced_table_info" >
                                 <thead>
-                                 
-                                        <th class="nosort sorting_disabled" rowspan="1" colspan="1" style="width: 80px;" aria-label="Avatar">Pertanyaan</th>
-                                        <th class="sorting" tabindex="0" aria-controls="advanced_table" rowspan="1" colspan="1" style="width: 158px;" aria-label="Name: activate to sort column ascending">A</th>
-                                        <th class="sorting" tabindex="0" aria-controls="advanced_table" rowspan="1" colspan="1" style="width: 242px;" aria-label="Position: activate to sort column ascending">B</th>
-                                        <th class="sorting" tabindex="0" aria-controls="advanced_table" rowspan="1" colspan="1" style="width: 120px;" aria-label="Office: activate to sort column ascending">C</th>
-                                        <th class="sorting" tabindex="0" aria-controls="advanced_table" rowspan="1" colspan="1" style="width: 65px;" aria-label="Age: activate to sort column ascending">D</th>
+                                        <th class="nosort sorting_disabled" rowspan="1" colspan="1"  aria-label="Avatar">Pertanyaan</th>
+                                        <th class="sorting" tabindex="0" aria-controls="advanced_table" rowspan="1" colspan="1" style="width: 18%;" aria-label="Name: activate to sort column ascending">A</th>
+                                        <th class="sorting" tabindex="0" aria-controls="advanced_table" rowspan="1" colspan="1" style="width: 18%;" aria-label="Position: activate to sort column ascending">B</th>
+                                        <th class="sorting" tabindex="0" aria-controls="advanced_table" rowspan="1" colspan="1" style="width: 18%;" aria-label="Office: activate to sort column ascending">C</th>
+                                        <th class="sorting" tabindex="0" aria-controls="advanced_table" rowspan="1" colspan="1" style="width: 18%;" aria-label="Age: activate to sort column ascending">D</th>
+                                        <th class="sorting" tabindex="0" aria-controls="advanced_table" rowspan="1" colspan="1" style="width: 18%;" aria-label="Age: activate to sort column ascending">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -77,7 +77,7 @@
                                         <td @if($q->answer == "B") class="bg-success"  @endif >{{$q->b}}</td>
                                         <td @if($q->answer == "C") class="bg-success"  @endif >{{$q->c}}</td>
                                         <td @if($q->answer == "D") class="bg-success"  @endif >{{$q->d}}</td>
-                                        
+                                        <td><button type="button" class="btn btn-outline-danger"><i class="ik ik-trash"></i>Hapus</button></td>
                                     </tr>
                                     @endforeach
 
@@ -88,15 +88,7 @@
                     </div>
                     <div class="row">
 
-                        <div class="col-sm-12 col-md-7">
-                            <div class="dataTables_paginate paging_simple_numbers" id="advanced_table_paginate">
-                                <ul class="pagination">
-                                    <li class="paginate_button page-item previous disabled" id="advanced_table_previous"><a href="#" aria-controls="advanced_table" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li>
-                                    <li class="paginate_button page-item active"><a href="#" aria-controls="advanced_table" data-dt-idx="1" tabindex="0" class="page-link">1</a></li>
-                                    <li class="paginate_button page-item next disabled" id="advanced_table_next"><a href="#" aria-controls="advanced_table" data-dt-idx="2" tabindex="0" class="page-link">Next</a></li>
-                                </ul>
-                            </div>
-                        </div>
+                       
                     </div>
                 </div>
             </div>
