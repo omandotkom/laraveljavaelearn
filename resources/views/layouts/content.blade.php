@@ -89,6 +89,7 @@
                             <div class="p-2">
                                 <h3 class="mb-0">Saturday</h3><small>Banglore, India</small>
                             </div>
+                            <a type="button" role="button" href="{{route('viewquestions')}}" class="btn btn-outline-info">Info</a>
                         </div>
                     </div>
                 </div>

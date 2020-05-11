@@ -39,7 +39,7 @@
             <div class="page-wrap">
                 <div class="app-sidebar colored">
                     <div class="sidebar-header">
-                        <a class="header-brand" href="index.html">
+                        <a class="header-brand" href="{{route('index')}}">
                             
                             <span class="text">JavaLearn</span>
                         </a>
@@ -55,6 +55,9 @@
                 @break
                 @case('viewsoal')
                 @include('layouts.question')
+                @break
+                @case('questionlist')
+                @include('layouts.questions')
                 @break
                 @endswitch
                 @else

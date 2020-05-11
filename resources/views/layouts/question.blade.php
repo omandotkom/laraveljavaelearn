@@ -1,7 +1,40 @@
 <div class="main-content">
 
     <div class="container-fluid">
-
+        <div class="col-md-6 mx-auto">
+            <div class="card">
+                <div class="card-header">
+                    <h3>Informasi Soal</h3>
+                </div>
+                <div class="card-body">
+                    <form class="forms-sample" method="post" action="{{route('updatequestion')}}">
+                        <div class="form-group row">
+                            <label for="soalid" class="col-sm-3 col-form-label"><i class="ik ik-book-open"></i> Kode Soal</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="soalid" class="form-control" readonly value="{{$question->id}}" id="soalid">
+                                <small class="text-wrap">Kode ini bisa dibagikan langsung kepada orang lain yang berhak mengerjakan.</small>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="namasoal" class="col-sm-3 col-form-label"><i class="ik ik-folder"></i> Nama Soal</label>
+                            <div class="col-sm-9">
+                                <input type="text" required name="name" class="form-control" value="{{$question->name}}" id="namasoal">
+                            </div>
+                        </div>
+                        @csrf
+                        <div class="form-group row">
+                            <label for="kuncisoal" class="col-sm-3 col-form-label"><i class="ik ik-shield"></i> Kunci Soal</label>
+                            <div class="col-sm-9">
+                                <input type="text" required name="key" class="form-control" value="{{$question->key}}" id="kuncisoal">
+                                <small class="text-wrap"><strong>NO_PSWD</strong> untuk tanpa kunci (semua orang bisa mengerjakan soal).</small>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn float-right btn-info  mr-2"><i class="ik ik-save"></i> Ubah</button>
+                        
+                    </form>
+                </div>
+            </div>
+        </div>
         <div class="card">
             <div class="card-header">
                 <h3>Tambah Pertanyaan Baru</h3>
@@ -58,37 +91,37 @@
 
                     <div class="row">
                         <div class="col-sm-12">
-                            <table id="advanced_table" class="table dataTable no-footer mx-auto dtr-inline collapsed" role="grid" style="width: 95%;" aria-describedby="advanced_table_info" >
+                            <table id="advanced_table" class="table dataTable no-footer mx-auto dtr-inline collapsed" role="grid" style="width: 95%;" aria-describedby="advanced_table_info">
                                 <thead>
-                                        <th class="nosort sorting_disabled" rowspan="1" colspan="1"  aria-label="Avatar">Pertanyaan</th>
-                                        <th class="sorting" tabindex="0" aria-controls="advanced_table" rowspan="1" colspan="1" style="width: 18%;" aria-label="Name: activate to sort column ascending">A</th>
-                                        <th class="sorting" tabindex="0" aria-controls="advanced_table" rowspan="1" colspan="1" style="width: 18%;" aria-label="Position: activate to sort column ascending">B</th>
-                                        <th class="sorting" tabindex="0" aria-controls="advanced_table" rowspan="1" colspan="1" style="width: 18%;" aria-label="Office: activate to sort column ascending">C</th>
-                                        <th class="sorting" tabindex="0" aria-controls="advanced_table" rowspan="1" colspan="1" style="width: 18%;" aria-label="Age: activate to sort column ascending">D</th>
-                                        <th class="sorting" tabindex="0" aria-controls="advanced_table" rowspan="1" colspan="1" style="width: 18%;" aria-label="Age: activate to sort column ascending">Aksi</th>
+                                    <th class="nosort sorting_disabled" rowspan="1" colspan="1" aria-label="Avatar">Pertanyaan</th>
+                                    <th class="sorting" tabindex="0" aria-controls="advanced_table" rowspan="1" colspan="1" style="width: 18%;" aria-label="Name: activate to sort column ascending">A</th>
+                                    <th class="sorting" tabindex="0" aria-controls="advanced_table" rowspan="1" colspan="1" style="width: 18%;" aria-label="Position: activate to sort column ascending">B</th>
+                                    <th class="sorting" tabindex="0" aria-controls="advanced_table" rowspan="1" colspan="1" style="width: 18%;" aria-label="Office: activate to sort column ascending">C</th>
+                                    <th class="sorting" tabindex="0" aria-controls="advanced_table" rowspan="1" colspan="1" style="width: 18%;" aria-label="Age: activate to sort column ascending">D</th>
+                                    <th class="sorting" tabindex="0" aria-controls="advanced_table" rowspan="1" colspan="1" style="width: 18%;" aria-label="Age: activate to sort column ascending">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach($question->child as $q)
                                     <tr role="row" class="odd">
-                                        
+
                                         <td>{{$q->question_text}}</td>
-                                        <td @if($q->answer == "A") class="bg-success"  @endif >{{$q->a}}</td>
-                                        <td @if($q->answer == "B") class="bg-success"  @endif >{{$q->b}}</td>
-                                        <td @if($q->answer == "C") class="bg-success"  @endif >{{$q->c}}</td>
-                                        <td @if($q->answer == "D") class="bg-success"  @endif >{{$q->d}}</td>
+                                        <td @if($q->answer == "A") class="bg-success" @endif >{{$q->a}}</td>
+                                        <td @if($q->answer == "B") class="bg-success" @endif >{{$q->b}}</td>
+                                        <td @if($q->answer == "C") class="bg-success" @endif >{{$q->c}}</td>
+                                        <td @if($q->answer == "D") class="bg-success" @endif >{{$q->d}}</td>
                                         <td><button type="button" class="btn btn-outline-danger"><i class="ik ik-trash"></i>Hapus</button></td>
                                     </tr>
                                     @endforeach
 
-                                    
+
                                 </tbody>
                             </table>
                         </div>
                     </div>
                     <div class="row">
 
-                       
+
                     </div>
                 </div>
             </div>

@@ -4,7 +4,7 @@
                      
                         <div class="top-menu d-flex align-items-center">
                             
-                       <h3>@if(isset($title)) {{$title}} @else PAGE_NAME @endif</h3>
+                       <h3>@if(isset($title)) {{$title}} @else Dashboard @endif</h3>
 
                         </div>
                     </div>

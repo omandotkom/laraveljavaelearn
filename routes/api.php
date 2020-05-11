@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::post('/code/compile','CodeController@compileandrun')->name('compileandrun');
+Route::post('/question/status/save','QuestionController@updatestatus')->name('updatequestionstatus');
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
