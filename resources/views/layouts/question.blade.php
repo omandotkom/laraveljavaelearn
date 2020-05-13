@@ -43,7 +43,7 @@
                 <form class="forms-sample" method="post" action="{{route('savequestion')}}">
                     <div class="form-group">
                         <label for="exampleInputUsername1">Pertanyaan</label>
-                        <input type="text" name="questiontext" class="form-control" id="exampleInputUsername1" placeholder="Username">
+                        <input type="text" name="questiontext" class="form-control" id="exampleInputUsername1" placeholder="Jika variabel s...">
                     </div>
                     <input type="hidden" name="qid" value="{{$question->id}}">
                     <div class="form-group">
@@ -110,7 +110,7 @@
                                         <td @if($q->answer == "B") class="bg-success" @endif >{{$q->b}}</td>
                                         <td @if($q->answer == "C") class="bg-success" @endif >{{$q->c}}</td>
                                         <td @if($q->answer == "D") class="bg-success" @endif >{{$q->d}}</td>
-                                        <td><button type="button" class="btn btn-outline-danger"><i class="ik ik-trash"></i>Hapus</button></td>
+                                        <td><a type="button" role="button" href="{{route('deletequestiondetil',$q->id)}}" class="btn btn-outline-danger"><i class="ik ik-trash"></i>Hapus</a></td>
                                     </tr>
                                     @endforeach
 

@@ -17,6 +17,13 @@ class QuestionController extends Controller
         $question->save();
         return back();
     }
+    public function deletequestiondetil($id){
+        //question id
+    
+        $d = QuestionDetail::findOrFail($id);
+        $d->delete();
+        return back();
+    }
     public function store(Request $request)
     {
         
