@@ -44,7 +44,7 @@
                     <div class="d-flex flex-grow-1 min-width-zero card-content">
                         <div class="card-body align-self-center d-flex flex-column flex-md-row justify-content-between min-width-zero align-items-md-center">
                             <a class="list-item-heading mb-1 truncate w-40 w-xs-100" href="{{route('viewquestion',$q->id)}}">
-                                <i class="ik ik-book-open"></i> {{$q->name}}
+                                <i class="ik ik-book-open"></i> <strong>#{{$q->id}}</strong> {{$q->name}}
                             </a>
                             @if($q->key == "NO_PSWD")
                             <i class="ik ik-unlock"></i>
@@ -53,9 +53,11 @@
                             @endif
                             <p class="mb-1 text-muted text-small category w-15 w-xs-100"><i class="ik ik-user"></i> {{$q->owner->name}}</p>
                             <p class="mb-1 text-muted text-small date w-15 w-xs-100">{{$q->created_at}}</p>
+                            @if(Auth::user()->admin)
                             <div class="w-15 w-xs-100">
                                 <input type="checkbox" id="status{{$q->id}}" onchange="ubahstatus('{{$q->id}}','status{{$q->id}}');" class="rounded" data-style="slow" data-on="<i class='ik ik-check'></i>Terbuka" data-off="<i class='ik ik-x'></i>Ditutup" data-onstyle="success" data-offstyle="secondary" data-toggle="toggle" @if($q->status =="open") checked @endif>
                             </div>
+                            @endif
                         </div>
 
                     </div>

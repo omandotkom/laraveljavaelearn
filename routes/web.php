@@ -26,3 +26,5 @@ Route::get('/questiondetil/delete/{id}','QuestionController@deletequestiondetil'
 Auth::routes();
 Route::get('/c','CodeController@comptest');
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::post('/answer/save','AnswerController@save')->name('saveanswer');

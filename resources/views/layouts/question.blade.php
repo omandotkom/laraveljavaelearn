@@ -1,12 +1,21 @@
 <div class="main-content">
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js" defer></script>
+    <style>
+        .slow .toggle-group {
+            transition: left 0.7s;
+            -webkit-transition: left 0.7s;
+        }
+    </style>
 
     <div class="container-fluid">
         <div class="col-md-6 mx-auto">
             <div class="card">
                 <div class="card-header">
-                    <h3>Informasi Soal</h3>
+                    <h3 class="mx-auto">Informasi Soal <button type="button" data-toggle="collapse" data-target="#infocollapse" aria-expanded="false" aria-controls="infocollapse" class="btn btn-light"><i class="ik ik-chevron-down"></i></button>
+                    </h3>
                 </div>
-                <div class="card-body">
+                <div id="infocollapse" class="card-body collapse">
                     <form class="forms-sample" method="post" action="{{route('updatequestion')}}">
                         <div class="form-group row">
                             <label for="soalid" class="col-sm-3 col-form-label"><i class="ik ik-book-open"></i> Kode Soal</label>
@@ -30,39 +39,94 @@
                             </div>
                         </div>
                         <button type="submit" class="btn float-right btn-info  mr-2"><i class="ik ik-save"></i> Ubah</button>
-                        
+
                     </form>
                 </div>
             </div>
         </div>
         <div class="card">
             <div class="card-header">
-                <h3>Tambah Pertanyaan Baru</h3>
+                <h3>Tambah Pertanyaan Pilihan Ganda Baru</h3>
+
             </div>
             <div class="card-body">
                 <form class="forms-sample" method="post" action="{{route('savequestion')}}">
                     <div class="form-group">
                         <label for="exampleInputUsername1">Pertanyaan</label>
-                        <input type="text" name="questiontext" class="form-control" id="exampleInputUsername1" placeholder="Jika variabel s...">
+                        <textarea id="summernote" name="questiontext"></textarea>
+                        <script>
+                            $(document).ready(function() {
+                                $('#summernote').summernote({
+                                    placeholder: 'Hello Bootstrap 4',
+                                    tabsize: 2,
+                                    height: 200,
+                                    toolbar: [
+                                        ['style', ['style']],
+                                        ['font', ['bold', 'underline', 'clear']],
+                                        ['fontname', ['fontname']],
+                                        ['color', ['color']],
+                                        ['para', ['ul', 'ol', 'paragraph']],
+                                        ['table', ['table']],
+                                        ['insert', ['link']],
+                                        ['view', ['fullscreen', 'codeview', 'help']],
+                                    ],
+                                });
+                            });
+                        </script>
                     </div>
                     <input type="hidden" name="qid" value="{{$question->id}}">
                     <div class="form-group">
+                        <script>
+                            function onTipeChange() {
+                                var isPG = $("#tipesoal").is(":checked");
+                                if (!isPG) {
+                                    $("#frPilihanA").hide(1000);
+                                    $('#frPilihanA').prop("disabled", true);
+                                    $("#frPilihanB").hide(1000);
+                                    $('#frPilihanB').prop("disabled", true);
+                                    $("#frPilihanC").hide(1000);
+                                    $('#frPilihanC').prop("disabled", true);
+                                    $("#frPilihanD").hide(1000);
+                                    $('#frPilihanD').prop("disabled", true);
+                                    $("#frJawaban").hide(1000);
+                                    $('#frJawaban').prop("disabled", true);
+                                } else {
+                                    $("#frPilihanA").show(1000);
+                                    $('#frPilihanA').prop("disabled", false);
+                                    $("#frPilihanB").show(1000);
+                                    $('#frPilihanB').prop("disabled", false);
+                                    $("#frPilihanC").show(1000);
+                                    $('#frPilihanC').prop("disabled", false);
+                                    $("#frPilihanD").show(1000);
+                                    $('#frPilihanD').prop("disabled", false);
+                                    $("#frJawaban").show(1000);
+                                    $('#frJawaban').prop("disabled", false);
+                                }
+                            }
+                        </script>
+                        <label for="tipesoal">Tipe Soal</label><br>
+                        <input type="checkbox" class="rounded form-control" name="tipesoal" onchange="onTipeChange();" id="tipesoal" data-style="slow" data-on="Pilihan Ganda <i class='ik ik-chevrons-right'></i>" data-off="<i class='ik ik-chevrons-left'></i>Essay" data-onstyle="success" data-offstyle="primary" data-toggle="toggle" checked>
+                        <script>
+                            $("#tipesoal").prop("checked",true);
+                        </script>
+                    </div>
+                    <div id="frPilihanA" class="form-group">
                         <label for="pilihanA">Pilihan A</label>
                         <input type="text" class="form-control" id="pilihanA" name="a" placeholder="Jawaban Opsi A">
                     </div>
-                    <div class="form-group">
+                    <div id="frPilihanB" class="form-group">
                         <label for="pilihanB">Pilihan B</label>
                         <input type="text" class="form-control" id="pilihanB" name="b" placeholder="Jawaban Opsi B">
                     </div>
-                    <div class="form-group">
+                    <div id="frPilihanC" class="form-group">
                         <label for="pilihanC">Pilihan C</label>
                         <input type="text" class="form-control" id="pilihanC" name="c" placeholder="Jawaban Opsi C">
                     </div>
-                    <div class="form-group">
+                    <div id="frPilihanD" class="form-group">
                         <label for="pilihanD">Pilihan D</label>
                         <input type="text" class="form-control" id="pilihanD" name="d" placeholder="Jawaban Opsi D">
                     </div>
-                    <div class="form-group">
+                    <div id="frJawaban" class="form-group">
                         <label for="jawaban">Jawaban yang Tepat</label>
 
                         <select id="jawaban" name="answer" class="custom-select">
