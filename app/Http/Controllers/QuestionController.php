@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Answer;
 use Illuminate\Support\Facades\Auth;
 use App\Question;
 use App\QuestionDetail;
@@ -42,12 +43,18 @@ class QuestionController extends Controller
         if (Auth::user()->role == "admin") {
             $content = "viewsoal";
             $q = null;
+            $a = null;
         } else {
             $content = "jawabsoal";
 
             $q = QuestionDetail::where('question_id', $question->id)->paginate(1);
+            foreach($q as $u){
+                $a = Answer::where('question_detail_id',$u->id)->where('user_id',Auth::user()->id)->first();
+            }
+
+            
         }
-        return view('index', ['title' => 'Soal #' . $question->id, 'content' => $content, 'q' => $q, 'question' => $question]);
+        return view('index', ['title' => 'Soal #' . $question->id, 'answer'=> $a,'content' => $content, 'q' => $q, 'question' => $question]);
     }
     public function showbyUser()
     {
@@ -75,7 +82,7 @@ class QuestionController extends Controller
         $qd = new QuestionDetail();
         $qd->question_text = $request->questiontext;
         $qd->question_id = $request->qid;
-        if (!isset($request->tipesoal)) {
+        if (isset($request->tipesoal)) {
             $qd->a = $request->a;
             $qd->b = $request->b;
             $qd->c = $request->c;

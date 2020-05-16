@@ -169,7 +169,7 @@
                                     @foreach($question->child as $q)
                                     <tr role="row" class="odd">
 
-                                        <td>{{$q->question_text}}</td>
+                                        <td>{!! $q->question_text !!}</td>
                                         <td @if($q->answer == "A") class="bg-success" @endif >{{$q->a}}</td>
                                         <td @if($q->answer == "B") class="bg-success" @endif >{{$q->b}}</td>
                                         <td @if($q->answer == "C") class="bg-success" @endif >{{$q->c}}</td>

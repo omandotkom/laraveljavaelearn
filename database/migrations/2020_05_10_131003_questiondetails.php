@@ -23,7 +23,7 @@ class Questiondetails extends Migration
             $table->text("d")->nullable();
             $table->boolean("multiplechoice")->default(true);
             $table->text("code")->nullable();
-            $table->text("answer");
+            $table->text("answer")->nullable();
             $table->timestamps();
         });
     }
