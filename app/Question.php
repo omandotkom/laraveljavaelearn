@@ -11,6 +11,9 @@ class Question extends Model
     public function child(){
         return $this->hasMany('App\QuestionDetail','question_id');
     }
+    public function user(){
+        return $this->hasOne('App\User','id','user_id');
+    }
     public function owner(){
         return $this->hasOne('App\User','id','user_id');
     }

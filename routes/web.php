@@ -28,3 +28,4 @@ Route::get('/c','CodeController@comptest');
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::post('/answer/save','AnswerController@save')->name('saveanswer');
+Route::post('/soalkey','QuestionController@keyprocess')->name('soalkeyprocess');

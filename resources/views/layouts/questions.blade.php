@@ -49,7 +49,7 @@
                             @if($q->key == "NO_PSWD")
                             <i class="ik ik-unlock"></i>
                             @else
-                            <i class="ik ik-lock"></i> {{$q->key}}
+                                <i class="ik ik-lock"></i> @if(Auth::user()->role == "admin") {{$q->key}} @endif
                             @endif
                             <p class="mb-1 text-muted text-small category w-15 w-xs-100"><i class="ik ik-user"></i> {{$q->owner->name}}</p>
                             <p class="mb-1 text-muted text-small date w-15 w-xs-100">{{$q->created_at}}</p>

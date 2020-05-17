@@ -84,6 +84,9 @@
             @case('jawabsoal')
             @include('layouts.answer')
             @break
+            @case('askkey')
+            @include('layouts.key')
+            @break
             @endswitch
             @else
             @include('layouts.content')

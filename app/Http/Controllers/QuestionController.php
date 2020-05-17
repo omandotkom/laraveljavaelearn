@@ -37,6 +37,25 @@ class QuestionController extends Controller
         $question->save();
         return redirect()->route('viewquestion', $question->id);
     }
+    public function keyprocess (Request $request){
+        $q = Question::findOrFail($request->soalid);
+        if ($q->key === $request->key){
+            //correct
+            session(['soal_key'=> $q->key]);
+            return redirect()->route('viewquestion',$request->soalid);
+        }else{
+            session(['soal_key'=> 'NO_PSWD']);
+            return response("passwors salah");
+        }
+
+    }
+    private function  isAccessible(Question $question){
+        if(session('soal_key','NO_PSWD') === $question->key){
+            //key correct
+            return true;
+        };
+        return false;
+    }
     public function show($id)
     {
         $question = Question::findOrfail($id);
@@ -46,7 +65,10 @@ class QuestionController extends Controller
             $a = null;
         } else {
             $content = "jawabsoal";
-
+            if ($question->key != "NO_PSWD"){
+                if (!$this->isAccessible($question))
+                    return view('index', ['title' => 'KEY | #' . $question->id,'content' => 'askkey',  'question' => $question]);
+            }
             $q = QuestionDetail::where('question_id', $question->id)->paginate(1);
             foreach($q as $u){
                 $a = Answer::where('question_detail_id',$u->id)->where('user_id',Auth::user()->id)->first();
