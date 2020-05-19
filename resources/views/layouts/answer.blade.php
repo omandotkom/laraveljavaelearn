@@ -76,10 +76,15 @@
             </div>
             <input type="hidden" name="answertype" value="{{$u->multiplechoice}}">
             <input type="hidden" name="idquestion" value="{{$u->id}}" />
+            @if(!is_null($answer) && !$answer->editable)
+            
+            @else
             <div class="row float-right">
                 <button type="submit" class="btn btn-info float-right"><i class="ik ik-save"></i>Simpan</button>
             </div>
 
+            @endif
+            
         </form>
 
 
