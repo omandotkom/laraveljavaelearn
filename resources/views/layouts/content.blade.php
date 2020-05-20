@@ -1,4 +1,6 @@
 @if(Auth::user()->role == "student")
+@include('layouts.modal.getsoal')
+                        
 <div class="main-content">
     <div class="container-fluid">
         <div class="row">
@@ -36,7 +38,7 @@
                         </div>
                         <div class="d-flex align-items-center flex-row mt-30">
                             <div class="btn-group mx-auto" role="group" aria-label="Basic example">
-                                <a type="button" href="{{route('showcode')}}" class="btn btn-info mr-1 btn-sm" role="button"> <i class="ik ik-plus"></i> Kode Soal</a>
+                                <a type="button" data-toggle="modal" data-target="#getsoal" class="btn btn-info mr-1 btn-sm text-white" role="button"> <i class="ik ik-plus"></i> Kode Soal</a>
                                 <a type="button" href="{{route('viewquestions')}}" class="btn btn-info ml-1 btn-sm" role="button"> <i class="ik ik-book"></i> Lihat Semua</a>
                             </div>
                         </div>

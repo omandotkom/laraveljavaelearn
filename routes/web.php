@@ -18,7 +18,7 @@ Route::get('/', function () {
 })->middleware('auth')->name('index');
 Route::get('/code','CodeController@show')->name('showcode');
 Route::post('/question/save','QuestionController@store')->name('addquestion');
-Route::get('/question/{id}','QuestionController@show')->name('viewquestion');
+Route::get('/question/{id?}','QuestionController@show')->name('viewquestion');
 Route::post('/question/id','QuestionController@save')->name('savequestion');
 Route::get('/question','QuestionController@showbyUser')->name('viewquestions');
 Route::post('/question/update','QuestionController@update')->name('updatequestion');
