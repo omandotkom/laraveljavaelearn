@@ -78,6 +78,9 @@
             @case('viewsoal')
             @include('layouts.question')
             @break
+            @case('answererlist')
+            @include('layouts.questionsanswer')
+            @break
             @case('questionlist')
             @include('layouts.questions')
             @break

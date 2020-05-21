@@ -57,13 +57,20 @@ class QuestionController extends Controller
         };
         return false;
     }
-    public function show($id)
+    public function show($id, $ischeck = false,$uid = 0)
     {
         $a = null;
         $question = Question::findOrfail($id);
         if (Auth::user()->role == "admin") {
             $content = "viewsoal";
             $q = null;
+            if ($ischeck) {
+                $content = "jawabsoal";
+                $q = QuestionDetail::where('question_id', $question->id)->where('multiplechoice',false)->paginate(1);
+                foreach ($q as $u) {
+                    $a = Answer::where('question_detail_id', $u->id)->where('user_id', $uid)->first();
+                }
+            }
         } else {
             $content = "jawabsoal";
             if ($question->key != "NO_PSWD") {
@@ -75,7 +82,7 @@ class QuestionController extends Controller
                 $a = Answer::where('question_detail_id', $u->id)->where('user_id', Auth::user()->id)->first();
             }
         }
-        return view('index', ['title' => 'Soal #' . $question->id, 'answer' => $a, 'content' => $content, 'q' => $q, 'question' => $question]);
+        return view('index', ['title' => 'Soal #' . $question->id, 'answer' => $a, 'checkmode' =>$ischeck,'content' => $content, 'q' => $q, 'question' => $question]);
     }
     public function showbyUser()
     {
@@ -114,5 +121,10 @@ class QuestionController extends Controller
         }
         $qd->save();
         return back();
+    }
+    public function viewanswerer($id)
+    {
+        $answerer = Answer::select('user_id')->where('question_id', $id)->groupBy('user_id')->get();
+        return view('index', ['title' => 'Daftar Soal', 'content' => 'answererlist', 'answerer' => $answerer, 'questionid' => $id]);
     }
 }

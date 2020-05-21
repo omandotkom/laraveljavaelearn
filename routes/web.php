@@ -18,14 +18,16 @@ Route::get('/', function () {
 })->middleware('auth')->name('index');
 Route::get('/code','CodeController@show')->name('showcode');
 Route::post('/question/save','QuestionController@store')->name('addquestion');
-Route::get('/question/{id?}','QuestionController@show')->name('viewquestion');
+Route::get('/question/{id?}/{ischeck?}/{uid?}','QuestionController@show')->name('viewquestion');
 Route::post('/question/id','QuestionController@save')->name('savequestion');
 Route::get('/questions','QuestionController@showbyUser')->name('viewallquestions');
 Route::post('/question/update','QuestionController@update')->name('updatequestion');
 Route::get('/questiondetil/delete/{id}','QuestionController@deletequestiondetil')->name('deletequestiondetil');
+Route::get('/viewquestionsanswer/{id}','QuestionController@viewanswerer')->name('viewanswerer');
 Auth::routes();
 Route::get('/c','CodeController@comptest');
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::post('/answer/save','AnswerController@save')->name('saveanswer');
+Route::get('/answer/check/{question_id}/{user_id}','AnswerController@checkanswer')->name('checkanswer');
 Route::post('/soalkey','QuestionController@keyprocess')->name('soalkeyprocess');

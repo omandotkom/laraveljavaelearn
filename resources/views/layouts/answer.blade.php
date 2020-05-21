@@ -28,8 +28,14 @@
                             <input type="text" name="namasoal" class="form-control" readonly value="{{$question->name}} ({{$question->child->count()}} Pertanyaan)" id="namasoal">
                         </div>
                     </div>
-
-
+                    @if($checkmode)
+                    <div class="form-group row">
+                        <label for="pg" class="col-sm-3 col-form-label"><i class="ik ik-book-open"></i> Pilihan Gamda</label>
+                        <div class="col-sm-9">
+                            <input type="text" name="pg" class="form-control" readonly value="{{$answer}}" id="pg">
+                        </div>
+                    </div>
+                    @endif
                 </div>
             </div>
         </div>
@@ -119,25 +125,38 @@
             </div>
         </div>
 
-        <div class="card w-50 mx-auto rounded mt-3">
+        <div class="card w-75 mx-auto rounded mt-3">
             <div class="card-body">
                 <form action="{{route('saveanswer')}}" method="post">
                     @csrf
                     <div class="row">
                         <div class="input-group mb-3">
+                            @if($checkmode)
+                            <input type="text" name="filename" class="form-control" id="inputfilename" placeholder="Main" value="{{$answer->filename}}" aria-label="File Name" aria-describedby="basic-addon2">
+                            
+                            @else
                             <input type="text" name="filename" class="form-control" id="inputfilename" placeholder="Main" value="Main" aria-label="File Name" aria-describedby="basic-addon2">
                             <div class="input-group-append">
                                 <span class="input-group-text" id="basic-addon2">.java</span>
                             </div>
+                            
+                            @endif
                         </div>
                     </div>
                     <div class="row">
                         <div class="btn-group mx-auto" role="group" aria-label="Action">
                             <button type="button" id="inputbutton" onclick="compile();" class="btn btn-outline-primary "><i class="ik ik-play"></i>Jalankan</button>
+                            @if(!$checkmode)
                             <button type="submit" class="btn btn-info"><i class="ik ik-save"></i>Simpan</button>
                             <input type="hidden" id="editorghost" name="editorghost" />
                             <input type="hidden" name="answertype" value="{{$u->multiplechoice}}">
                             <input type="hidden" name="idquestion" value="{{$u->id}}" />
+                            @else
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                            <button type="submit" class="btn btn-success"><i class="ik ik-save"></i>Benar</button>
+                            <button type="submit" class="btn btn-danger"><i class="ik ik-save"></i>Salah</button>
+                            </div>
+                            @endif
                         </div>
                     </div>
                     <div class="row" id="loading" hidden>

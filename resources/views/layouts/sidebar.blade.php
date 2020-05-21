@@ -19,7 +19,7 @@
             <div class="nav-lavel">Soal/Quiz</div>
             <div class="nav-item">
                 @if(Auth::user()->role =="student")
-                <a href="pages/navbar.html"><i class="ik ik-book"></i><span>Lihat Soal</span></a>
+                <a href="{{route('viewallquestions')}}"><i class="ik ik-book"></i><span>Lihat Soal</span></a>
                 @endif
             </div>
             <div class="nav-item">
