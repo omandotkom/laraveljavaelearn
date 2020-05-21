@@ -37,20 +37,21 @@ class QuestionController extends Controller
         $question->save();
         return redirect()->route('viewquestion', $question->id);
     }
-    public function keyprocess (Request $request){
+    public function keyprocess(Request $request)
+    {
         $q = Question::findOrFail($request->soalid);
-        if ($q->key === $request->key){
+        if ($q->key === $request->key) {
             //correct
-            session(['soal_key'=> $q->key]);
-            return redirect()->route('viewquestion',$request->soalid);
-        }else{
-            session(['soal_key'=> 'NO_PSWD']);
+            session(['soal_key' => $q->key]);
+            return redirect()->route('viewquestion', $request->soalid);
+        } else {
+            session(['soal_key' => 'NO_PSWD']);
             return response("passwors salah");
         }
-
     }
-    private function  isAccessible(Question $question){
-        if(session('soal_key','NO_PSWD') === $question->key){
+    private function  isAccessible(Question $question)
+    {
+        if (session('soal_key', 'NO_PSWD') === $question->key) {
             //key correct
             return true;
         };
@@ -58,25 +59,23 @@ class QuestionController extends Controller
     }
     public function show($id)
     {
+        $a = null;
         $question = Question::findOrfail($id);
         if (Auth::user()->role == "admin") {
             $content = "viewsoal";
             $q = null;
-            $a = null;
         } else {
             $content = "jawabsoal";
-            if ($question->key != "NO_PSWD"){
+            if ($question->key != "NO_PSWD") {
                 if (!$this->isAccessible($question))
-                    return view('index', ['title' => 'KEY | #' . $question->id,'content' => 'askkey',  'question' => $question]);
+                    return view('index', ['title' => 'KEY | #' . $question->id, 'content' => 'askkey',  'question' => $question]);
             }
             $q = QuestionDetail::where('question_id', $question->id)->paginate(1);
-            foreach($q as $u){
-                $a = Answer::where('question_detail_id',$u->id)->where('user_id',Auth::user()->id)->first();
+            foreach ($q as $u) {
+                $a = Answer::where('question_detail_id', $u->id)->where('user_id', Auth::user()->id)->first();
             }
-
-            
         }
-        return view('index', ['title' => 'Soal #' . $question->id, 'answer'=> $a,'content' => $content, 'q' => $q, 'question' => $question]);
+        return view('index', ['title' => 'Soal #' . $question->id, 'answer' => $a, 'content' => $content, 'q' => $q, 'question' => $question]);
     }
     public function showbyUser()
     {

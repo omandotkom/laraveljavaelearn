@@ -53,9 +53,12 @@
                             @endif
                             <p class="mb-1 text-muted text-small category w-15 w-xs-100"><i class="ik ik-user"></i> {{$q->owner->name}}</p>
                             <p class="mb-1 text-muted text-small date w-15 w-xs-100">{{$q->created_at}}</p>
-                            @if(Auth::user()->admin)
-                            <div class="w-15 w-xs-100">
+                            @if(Auth::user()->role === "admin")
+                            <div class="w-10 w-xs-100">
                                 <input type="checkbox" id="status{{$q->id}}" onchange="ubahstatus('{{$q->id}}','status{{$q->id}}');" class="rounded" data-style="slow" data-on="<i class='ik ik-check'></i>Terbuka" data-off="<i class='ik ik-x'></i>Ditutup" data-onstyle="success" data-offstyle="secondary" data-toggle="toggle" @if($q->status =="open") checked @endif>
+                            </div>
+                            <div class="w-15 w-xs-100">
+                            <a class="btn btn-outline-primary" href="#" role="button">Lihat</a>
                             </div>
                             @endif
                         </div>
