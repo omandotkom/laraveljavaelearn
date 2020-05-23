@@ -30,7 +30,7 @@
                     </div>
                     @if($checkmode)
                     <div class="form-group row">
-                        <label for="pg" class="col-sm-3 col-form-label"><i class="ik ik-book-open"></i> Pilihan Gamda</label>
+                        <label for="pg" class="col-sm-3 col-form-label"><i class="ik ik-book-open"></i> Pilihan Ganda</label>
                         <div class="col-sm-9">
                             <input type="text" name="pg" class="form-control" readonly value="{{$answer}}" id="pg">
                         </div>
@@ -83,19 +83,30 @@
             <input type="hidden" name="answertype" value="{{$u->multiplechoice}}">
             <input type="hidden" name="idquestion" value="{{$u->id}}" />
             @if(!is_null($answer) && !$answer->editable)
-            
+
             @else
-            <div class="row float-right">
-                <button type="submit" class="btn btn-info float-right"><i class="ik ik-save"></i>Simpan</button>
+
+            <div class="row mt-5">
+                <button type="submit" class="btn btn-info mx-auto float-right"><i class="ik ik-save"></i>Simpan</button>
             </div>
 
             @endif
-            
+
         </form>
 
 
         @else
-
+        @if($checkmode)
+        @if($answer->correct)
+        <div class="alert alert-success" role="alert">
+            Jawaban sudah ditandai sebagai <strong>benar</strong>.
+        </div>
+        @else
+        <div class="alert alert-danger" role="alert">
+            Jawaban belum diperiksa <strong>atau</strong> sudah ditandai sebagai <strong>salah</strong>.
+        </div>
+        @endif
+        @endif
         <script src="{{url('/ace-builds/src-noconflict/ace.js')}}" type="text/javascript" charset="utf-8">
         </script>
         <script src="{{url('/ace-builds/src-noconflict/ext-language_tools.js')}}" type="text/javascript" charset="utf-8"></script>
@@ -133,13 +144,18 @@
                         <div class="input-group mb-3">
                             @if($checkmode)
                             <input type="text" name="filename" class="form-control" id="inputfilename" placeholder="Main" value="{{$answer->filename}}" aria-label="File Name" aria-describedby="basic-addon2">
-                            
+                            @php
+                            if(!$q->hasMorePages()){
+                                $qid = $answer->question_id;
+                                $uid = $answer->user_id;
+                            }
+                            @endphp
                             @else
                             <input type="text" name="filename" class="form-control" id="inputfilename" placeholder="Main" value="Main" aria-label="File Name" aria-describedby="basic-addon2">
                             <div class="input-group-append">
                                 <span class="input-group-text" id="basic-addon2">.java</span>
                             </div>
-                            
+
                             @endif
                         </div>
                     </div>
@@ -153,8 +169,8 @@
                             <input type="hidden" name="idquestion" value="{{$u->id}}" />
                             @else
                             <div class="btn-group" role="group" aria-label="Basic example">
-                            <button type="submit" class="btn btn-success"><i class="ik ik-save"></i>Benar</button>
-                            <button type="submit" class="btn btn-danger"><i class="ik ik-save"></i>Salah</button>
+                                <a type="submit" role="button" href="{{route('answercorrect',['answerid'=>$answer->id,'correct'=>1])}}" class="btn btn-success text-white"><i class="ik ik-save"></i>Benar</a>
+                                <a type="submit" role="button" href="{{route('answercorrect',['answerid'=>$answer->id,'correct'=>0])}}" class="btn btn-danger text-white"><i class="ik ik-save"></i>Salah</a>
                             </div>
                             @endif
                         </div>
@@ -246,11 +262,16 @@
 
         @csrf
 
+
+        @endforeach
         <div class="row mt-5">
             <label class="mx-auto">{{ $q->onEachSide(20)->links() }}</label>
         </div>
-
-        @endforeach
-
+        <div class="row mt-5">
+            @if($checkmode && !$q->hasMorePages())
+            @include('layouts.modal.scoresummary')
+            <button type="button" onclick="fetchscoredata();" class="btn btn-secondary mx-auto"><i class="ik ik-clipboard"></i> Beri Nilai</button>
+            @endif
+        </div>
     </div>
 </div>

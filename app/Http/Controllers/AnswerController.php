@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Answer;
 use App\QuestionDetail;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Questiondetails;
@@ -11,6 +12,12 @@ use Symfony\Component\HttpFoundation\Response;
 
 class AnswerController extends Controller
 {
+    public function correct($answerid, $correct){
+       $answer = Answer::findOrFail($answerid);
+       $answer->correct = $correct;
+       $answer->save();
+       return back(); 
+    }
     public function save(Request $request)
     {
         if (Answer::where('user_id', Auth::user()->id)->where('question_detail_id', $request->idquestion)->exists()) {
@@ -39,8 +46,25 @@ class AnswerController extends Controller
         $ans->save();
         return back();
     }
+    
     public function checkanswer($question_id,$user_id){
-        $answers = Answer::where('question_id',$question_id)->where('user_id',$user_id)->where('correct',true)->count();
-        return Response($answers);        
+        //$answers = Answer::where('question_id',$question_id)->where('user_id',$user_id)->where('correct',true)->count();
+        //filename null means its an multiplechoice answer
+        $multiplechoice = Answer::where('question_id',$question_id)->where('user_id',$user_id)->whereNull('filename')->count();
+        //filename not null means its an essay answer
+        $essay = Answer::where('question_id',$question_id)->where('user_id',$user_id)->whereNotNull('filename')->count();
+
+        $totalmc = QuestionDetail::where('question_id',$question_id)->where('multiplechoice',true)->count();
+        $totales = QuestionDetail::where('question_id',$question_id)->where('multiplechoice',false)->count();
+        $user = User::select("name","id")->where('id',$user_id)->first();
+        return response()->json([
+            'mc' => $multiplechoice,
+            'es' => $essay,
+            'totalmc' => $totalmc,
+            'totales' => $totales,
+            'user'=> $user,
+            'question_id' => $question_id,
+        ]);
+             
     }
 }

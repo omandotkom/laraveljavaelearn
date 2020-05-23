@@ -29,5 +29,7 @@ Route::get('/c','CodeController@comptest');
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::post('/answer/save','AnswerController@save')->name('saveanswer');
-Route::get('/answer/check/{question_id}/{user_id}','AnswerController@checkanswer')->name('checkanswer');
+Route::get('/answer/correct/{answerid}/{correct}','AnswerController@correct')->name('answercorrect');
 Route::post('/soalkey','QuestionController@keyprocess')->name('soalkeyprocess');
+
+Route::post('/score/save','ScoreController@save')->name('savescore');
