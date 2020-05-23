@@ -58,7 +58,7 @@
                                 <input type="checkbox" id="status{{$q->id}}" onchange="ubahstatus('{{$q->id}}','status{{$q->id}}');" class="rounded" data-style="slow" data-on="<i class='ik ik-check'></i>Terbuka" data-off="<i class='ik ik-x'></i>Ditutup" data-onstyle="success" data-offstyle="secondary" data-toggle="toggle" @if($q->status =="open") checked @endif>
                             </div>
                             <div class="w-xs-100">
-                            <a class="btn btn-outline-primary" href="{{route('viewanswerer',$q->id)}}" role="button">Lihat</a>
+                            <a class="btn btn-outline-info" href="{{route('viewanswerer',$q->id)}}" role="button">Lihat</a>
                             </div>
                             @endif
                         </div>

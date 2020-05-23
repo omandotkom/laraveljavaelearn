@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Question;
 use App\QuestionDetail;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 class QuestionController extends Controller
 {
     public function update(Request $request)
@@ -82,7 +82,8 @@ class QuestionController extends Controller
                 $a = Answer::where('question_detail_id', $u->id)->where('user_id', Auth::user()->id)->first();
             }
         }
-        return view('index', ['title' => 'Soal #' . $question->id, 'answer' => $a, 'checkmode' =>$ischeck,'content' => $content, 'q' => $q, 'question' => $question]);
+    
+         return view('index', ['title' => 'Soal #' . $question->id, 'answer' => $a, 'checkmode' =>$ischeck,'content' => $content, 'q' => $q, 'question' => $question]);
     }
     public function showbyUser()
     {
@@ -124,7 +125,12 @@ class QuestionController extends Controller
     }
     public function viewanswerer($id)
     {
-        $answerer = Answer::select('user_id')->where('question_id', $id)->groupBy('user_id')->get();
+        //$answerer = Answer::select('user_id')->where('question_id', $id)->groupBy('user_id')->get();
+        $answerer = DB::table('answers')->select('answers.user_id as answeruserid',"scores.*",'users.name')
+        ->leftJoin('scores','answers.question_id','=','scores.question_id')
+        ->join('users','answers.user_id','=','users.id')
+        ->groupBy('answers.user_id')
+        ->where('answers.question_id',$id)->get();
         return view('index', ['title' => 'Daftar Soal', 'content' => 'answererlist', 'answerer' => $answerer, 'questionid' => $id]);
     }
 }

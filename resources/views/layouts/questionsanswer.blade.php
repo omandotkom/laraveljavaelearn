@@ -24,16 +24,16 @@
                             @foreach($answerer as $a)
                             <tr>
                                 <th scope="row">{{$num}}</th>
-                                <td>{{$a->user->name}}</td>
+                                <td>{{$a->name}}</td>
                                 @php
-                                $url = route('viewquestion', ['id' =>$questionid,'ischeck' => true,'uid'=> $a->user_id]);
+                                $url = route('viewquestion', ['id' =>$questionid,'ischeck' => true,'uid'=> $a->answeruserid]);
                                 @endphp
-                                <td>Belum Diperiksa</td>
-                                <td>Belum Diperiksa</td>
+                                <td>@if(is_null($a->correct_multiplechoice)) Belum Diperiksa @else {{$a->correct_multiplechoice}} @endif</td>
+                                <td>@if(is_null($a->correct_essay)) Belum Diperiksa @else {{$a->correct_essay}} @endif</td>
                                 <td><a href="{{$url}}" type="button" role="button" class="btn btn-outline-primary btn-sm">Periksa Jawaban</a></td>
                                 <td>
                                     <div class="input-group">
-                                        <input type="text" class="form-control w-25" placeholder="90" aria-label="Nilai Jawaban" aria-describedby="basic-addon2">
+                                        <input type="text" class="form-control w-25" placeholder="90" value="{{$a->score}}" aria-label="Nilai Jawaban" aria-describedby="basic-addon2">
                                         <div class="input-group-append">
                                             <button class="btn btn-outline-primary" type="button">Simpan</button>
                                         </div>
