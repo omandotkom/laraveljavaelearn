@@ -70,30 +70,7 @@
                 </div>
                 @include('layouts.sidebar')
             </div>
-            @if(isset($content))
-            @switch($content)
-            @case('startcode')
-            @include('layouts.code')
-            @break
-            @case('viewsoal')
-            @include('layouts.question')
-            @break
-            @case('answererlist')
-            @include('layouts.questionsanswer')
-            @break
-            @case('questionlist')
-            @include('layouts.questions')
-            @break
-            @case('jawabsoal')
-            @include('layouts.answer')
-            @break
-            @case('askkey')
-            @include('layouts.key')
-            @break
-            @endswitch
-            @else
-            @include('layouts.content')
-            @endif
+            @include($includepage)
             <aside class="right-sidebar">
                 <div class="sidebar-chat" data-plugin="chat-sidebar">
                     <div class="sidebar-chat-info">

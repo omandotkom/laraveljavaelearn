@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('index');
+    return view('index',['includepage'=>'layouts.content']);
 })->middleware('auth')->name('index');
 Route::get('/code','CodeController@show')->name('showcode');
 Route::post('/question/save','QuestionController@store')->name('addquestion');
@@ -30,6 +30,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::post('/answer/save','AnswerController@save')->name('saveanswer');
 Route::get('/answer/correct/{answerid}/{correct}','AnswerController@correct')->name('answercorrect');
+Route::post('/answer/collect','AnswerController@update')->name('collectanswer');
 Route::post('/soalkey','QuestionController@keyprocess')->name('soalkeyprocess');
 
 Route::post('/score/save','ScoreController@save')->name('savescore');
+Route::get('/score','ScoreController@view')->name('viewscores');

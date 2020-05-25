@@ -67,4 +67,8 @@ class AnswerController extends Controller
         ]);
              
     }
+    public function update(Request $request){
+    Answer::where('question_id',$request->questionid)->where('user_id',Auth::user()->id)->update(['editable'=>false]);
+    return redirect()->route('viewallquestions'); 
+    }
 }

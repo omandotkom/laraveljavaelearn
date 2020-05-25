@@ -12,7 +12,7 @@ class CodeController extends Controller
 {
     public function show()
     {
-        return view('index', ['title' => 'Code', 'content' => 'startcode']);
+        return view('index', ['title' => 'Code', 'includepage'=>'layouts.code','content' => 'startcode']);
     }
     public function compileandrun(Request $request)
     {

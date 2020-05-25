@@ -58,6 +58,12 @@
                                 <h3 class="mb-0">Saturday</h3><small>Banglore, India</small>
                             </div>
                         </div>
+                        <div class="d-flex align-items-center flex-row mt-30">
+                            <div class="btn-group mx-auto" role="group" aria-label="Basic example">
+                                <a type="button" data-toggle="modal" data-target="#getsoal" class="btn btn-info mr-1 btn-sm text-white" role="button"> <i class="ik ik-plus"></i> Kode Soal</a>
+                                <a type="button" href="{{route('viewscores')}}" class="btn btn-info ml-1 btn-sm" role="button"> <i class="ik ik-book"></i> Lihat Semua</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

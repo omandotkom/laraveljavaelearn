@@ -8,6 +8,7 @@ use App\Question;
 use App\QuestionDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+
 class QuestionController extends Controller
 {
     public function update(Request $request)
@@ -57,7 +58,7 @@ class QuestionController extends Controller
         };
         return false;
     }
-    public function show($id, $ischeck = false,$uid = 0)
+    public function show($id, $ischeck = false, $uid = 0)
     {
         $a = null;
         $question = Question::findOrfail($id);
@@ -66,7 +67,7 @@ class QuestionController extends Controller
             $q = null;
             if ($ischeck) {
                 $content = "jawabsoal";
-                $q = QuestionDetail::where('question_id', $question->id)->where('multiplechoice',false)->paginate(1);
+                $q = QuestionDetail::where('question_id', $question->id)->where('multiplechoice', false)->paginate(1);
                 foreach ($q as $u) {
                     $a = Answer::where('question_detail_id', $u->id)->where('user_id', $uid)->first();
                 }
@@ -75,15 +76,19 @@ class QuestionController extends Controller
             $content = "jawabsoal";
             if ($question->key != "NO_PSWD") {
                 if (!$this->isAccessible($question))
-                    return view('index', ['title' => 'KEY | #' . $question->id, 'content' => 'askkey',  'question' => $question]);
+                    return view('index', ['title' => 'KEY | #' . $question->id, 'includepage' => 'layouts.key', 'content' => 'askkey',  'question' => $question]);
             }
             $q = QuestionDetail::where('question_id', $question->id)->paginate(1);
             foreach ($q as $u) {
                 $a = Answer::where('question_detail_id', $u->id)->where('user_id', Auth::user()->id)->first();
             }
         }
-    
-         return view('index', ['title' => 'Soal #' . $question->id, 'answer' => $a, 'checkmode' =>$ischeck,'content' => $content, 'q' => $q, 'question' => $question]);
+        if ($content === "jawabsoal") {
+            $includepage = "layouts.answer";
+        } else if ($content === "viewsoal") {
+            $includepage = "layouts.question";
+        }
+        return view('index', ['title' => 'Soal #' . $question->id, 'answer' => $a, 'includepage' => $includepage, 'checkmode' => $ischeck, 'content' => $content, 'q' => $q, 'question' => $question]);
     }
     public function showbyUser()
     {
@@ -92,7 +97,7 @@ class QuestionController extends Controller
         } else {
             $question = Question::where('status', 'open')->orderBy('created_at', 'desc')->simplePaginate(20);
         }
-        return view('index', ['title' => 'Daftar Soal', 'content' => 'questionlist', 'questions' => $question]);
+        return view('index', ['title' => 'Daftar Soal', 'includepage' => 'layouts.questions', 'content' => 'questionlist', 'questions' => $question]);
     }
     public function updatestatus(Request $request)
     {
@@ -126,11 +131,11 @@ class QuestionController extends Controller
     public function viewanswerer($id)
     {
         //$answerer = Answer::select('user_id')->where('question_id', $id)->groupBy('user_id')->get();
-        $answerer = DB::table('answers')->select('answers.user_id as answeruserid',"scores.*",'users.name')
-        ->leftJoin('scores','answers.question_id','=','scores.question_id')
-        ->join('users','answers.user_id','=','users.id')
-        ->groupBy('answers.user_id')
-        ->where('answers.question_id',$id)->get();
-        return view('index', ['title' => 'Daftar Soal', 'content' => 'answererlist', 'answerer' => $answerer, 'questionid' => $id]);
+        $answerer = DB::table('answers')->select('answers.user_id as answeruserid', "scores.*", 'users.name')
+            ->leftJoin('scores', 'answers.question_id', '=', 'scores.question_id')
+            ->join('users', 'answers.user_id', '=', 'users.id')
+            ->groupBy('answers.user_id')
+            ->where('answers.question_id', $id)->get();
+        return view('index', ['title' => 'Daftar Soal', 'includepage' => 'layouts.questionsanswer', 'content' => 'answererlist', 'answerer' => $answerer, 'questionid' => $id]);
     }
 }

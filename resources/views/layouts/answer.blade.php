@@ -146,8 +146,8 @@
                             <input type="text" name="filename" class="form-control" id="inputfilename" placeholder="Main" value="{{$answer->filename}}" aria-label="File Name" aria-describedby="basic-addon2">
                             @php
                             if(!$q->hasMorePages()){
-                                $qid = $answer->question_id;
-                                $uid = $answer->user_id;
+                            $qid = $answer->question_id;
+                            $uid = $answer->user_id;
                             }
                             @endphp
                             @else
@@ -264,14 +264,20 @@
 
 
         @endforeach
-        <div class="row mt-5">
-            <label class="mx-auto">{{ $q->onEachSide(20)->links() }}</label>
-        </div>
-        <div class="row mt-5">
-            @if($checkmode && !$q->hasMorePages())
-            @include('layouts.modal.scoresummary')
-            <button type="button" onclick="fetchscoredata();" class="btn btn-secondary mx-auto"><i class="ik ik-clipboard"></i> Beri Nilai</button>
-            @endif
+
+        <div class="d-flex align-items-end flex-column" style="height: 200px;">
+            <div class="row mt-auto">
+                <label class="mx-auto">{{ $q->onEachSide(20)->links() }}</label>
+            </div>
+            <div class="row d-flex align-items-end flex-column">
+                @if($checkmode && !$q->hasMorePages())
+                @include('layouts.modal.scoresummary')
+                <button type="button" onclick="fetchscoredata();" class="btn btn-secondary mx-auto"><i class="ik ik-clipboard"></i> Beri Nilai</button>
+                @elseif(Auth::user()->role == "student" && !$q->hasMorePages() && !is_null($answer) && $answer->editable)
+                @include('layouts.modal.confirmcollection')
+                <button type="button" data-target="#confirmpengumpulan" data-toggle="modal" class="btn btn-secondary mx-auto"><i class="ik ik-clipboard"></i> Kumpulkan</button>
+                @endif
+            </div>
         </div>
     </div>
 </div>
