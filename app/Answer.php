@@ -11,4 +11,7 @@ class Answer extends Model
     public function user(){
         return $this->hasOne('App\User','id','user_id');
     }
+    public function score(){
+        return $this->hasOne('App\Score','question_id','question_id');
+    }
 }

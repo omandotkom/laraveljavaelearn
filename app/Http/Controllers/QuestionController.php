@@ -47,7 +47,7 @@ class QuestionController extends Controller
             return redirect()->route('viewquestion', $request->soalid);
         } else {
             session(['soal_key' => 'NO_PSWD']);
-            return response("passwors salah");
+            return back()->with('error','Key soal yang Anda masukkan salah.');
         }
     }
     private function  isAccessible(Question $question)
@@ -131,11 +131,17 @@ class QuestionController extends Controller
     public function viewanswerer($id)
     {
         //$answerer = Answer::select('user_id')->where('question_id', $id)->groupBy('user_id')->get();
-        $answerer = DB::table('answers')->select('answers.user_id as answeruserid', "scores.*", 'users.name')
+        /*$answerer = DB::table('answers')->select('answers.user_id as answeruserid', "scores.*", 'users.name')
             ->leftJoin('scores', 'answers.question_id', '=', 'scores.question_id')
             ->join('users', 'answers.user_id', '=', 'users.id')
             ->groupBy('answers.user_id')
-            ->where('answers.question_id', $id)->get();
+            ->where('answers.question_idx', $id)->get();*/
+        //$answerer = Answer::select('user_id')->where('question_id',$id)->distinct()->get();
+        $answerer = DB::select("select `answers`.`user_id` as `answeruserid`, `scores`.*,
+         `users`.`name` from `answers` left join `scores` on `answers`.`question_id` = `scores`.`question_id`
+          and `answers`.`user_id`=`scores`.`user_id` inner join `users` on `answers`.`user_id` = `users`.`id`
+           where answers.question_id=".$id."  group by `answers`.`user_id`");
+        
         return view('index', ['title' => 'Daftar Soal', 'includepage' => 'layouts.questionsanswer', 'content' => 'answererlist', 'answerer' => $answerer, 'questionid' => $id]);
     }
 }

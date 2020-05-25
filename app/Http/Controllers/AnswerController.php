@@ -50,9 +50,9 @@ class AnswerController extends Controller
     public function checkanswer($question_id,$user_id){
         //$answers = Answer::where('question_id',$question_id)->where('user_id',$user_id)->where('correct',true)->count();
         //filename null means its an multiplechoice answer
-        $multiplechoice = Answer::where('question_id',$question_id)->where('user_id',$user_id)->whereNull('filename')->count();
+        $multiplechoice = Answer::where('question_id',$question_id)->where('user_id',$user_id)->where('correct',true)->whereNull('filename')->count();
         //filename not null means its an essay answer
-        $essay = Answer::where('question_id',$question_id)->where('user_id',$user_id)->whereNotNull('filename')->count();
+        $essay = Answer::where('question_id',$question_id)->where('user_id',$user_id)->where('correct',true)->whereNotNull('filename')->count();
 
         $totalmc = QuestionDetail::where('question_id',$question_id)->where('multiplechoice',true)->count();
         $totales = QuestionDetail::where('question_id',$question_id)->where('multiplechoice',false)->count();

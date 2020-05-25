@@ -7,6 +7,7 @@
         axios.get(scoresummaryurl)
             .then(function(response) {
                 // handle success
+                console.log(response);
                 $("#mc").val(response.data.mc);
                 $("#es").val(response.data.es);
                 $("#mctitle").text("Pilihan Ganda Benar dari ".concat(response.data.totalmc).concat(" soal"));

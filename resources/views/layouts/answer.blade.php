@@ -28,14 +28,7 @@
                             <input type="text" name="namasoal" class="form-control" readonly value="{{$question->name}} ({{$question->child->count()}} Pertanyaan)" id="namasoal">
                         </div>
                     </div>
-                    @if($checkmode)
-                    <div class="form-group row">
-                        <label for="pg" class="col-sm-3 col-form-label"><i class="ik ik-book-open"></i> Pilihan Ganda</label>
-                        <div class="col-sm-9">
-                            <input type="text" name="pg" class="form-control" readonly value="{{$answer}}" id="pg">
-                        </div>
-                    </div>
-                    @endif
+                    
                 </div>
             </div>
         </div>
