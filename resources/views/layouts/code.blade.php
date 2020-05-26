@@ -25,11 +25,7 @@
                         <h3 class="panel-title">Editor</h3>
                     </div>
                     <div class="panel-body">
-                        <div id="editor" class="rounded">public class filename{
-                            public static void main(String[] args){
-                            System.out.println("hello world");
-                            }
-                            }</div>
+                        <div id="editor" class="rounded">@include('layouts.defaultcode2')</div>
                     </div>
                 </div>
                 <div class="text-center">---End of editor---</div>
