@@ -35,3 +35,6 @@ Route::post('/soalkey','QuestionController@keyprocess')->name('soalkeyprocess');
 
 Route::post('/score/save','ScoreController@save')->name('savescore');
 Route::get('/score','ScoreController@view')->name('viewscores');
+Route::get('/user','UserController@view')->name('viewuser');
+Route::post('/user/save','UserController@save')->name('updateprofile');
+Route::post('/user/password/save','UserController@changepassword')->name('changepassword');
