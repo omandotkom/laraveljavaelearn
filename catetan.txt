@@ -1,0 +1,10 @@
+essay tombol simpan ketika dh dikumpulkan
+
+
+Siswa yang Sudah Mengerjakan (NAMA DIGANTI NIM)
+GANTO BS INDO SMUA
+DAFTAR NILAI DR SISWA TAMPILKAN ESSAY DAN PG BENER BRP
+
+quis dikasi waktu, misalnya 40 menit. kelar ngga kelar auto ke submit (ga bisa duybah jawabannya)
+
+Tambahin fitur upload file (dokumen soal)
