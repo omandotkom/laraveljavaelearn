@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <div class="card">
             <div class="card-header d-block">
-                <h3>Siswa yang udeh Mengerjakan</h3>
+                <h3>Siswa yang Sudah Mengerjakan</h3>
             </div>
             <div class="card-body p-0 table-border-style">
                 <div class="table-responsive">
