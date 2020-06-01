@@ -23,7 +23,6 @@
             .then(function() {
                 $("#scoreloadstatus").text("");
                 $("#submitnilai").prop("disabled", false);
-
             });
     }
 </script>
@@ -61,7 +60,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <a href=""  role="button" class="btn btn-secondary" >Nilai Nanti</a>
+                    <a href="{{route('viewscores')}}"  role="button" class="btn btn-secondary" >Nilai Nanti</a>
                     <button type="submit" id="submitnilai" class="btn btn-primary">Save changes</button>
                 </div>
             </form>
