@@ -143,7 +143,7 @@ class QuestionController extends Controller
             ->where('answers.question_idx', $id)->get();*/
         //$answerer = Answer::select('user_id')->where('question_id',$id)->distinct()->get();
         $answerer = DB::select("select `answers`.`user_id` as `answeruserid`, `scores`.*,
-         `users`.`name` from `answers` left join `scores` on `answers`.`question_id` = `scores`.`question_id`
+         `users`.`name`,`users`.`nim` from `answers` left join `scores` on `answers`.`question_id` = `scores`.`question_id`
           and `answers`.`user_id`=`scores`.`user_id` inner join `users` on `answers`.`user_id` = `users`.`id`
            where answers.question_id=".$id."  group by `answers`.`user_id`");
         
