@@ -2,7 +2,7 @@
 <div class="modal fade" id="addsoal" tabindex="-1" role="dialog" aria-labelledby="addsoaltitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-            <form class="forms-sample" method="post" action="{{route('addquestion')}}">
+            <form class="forms-sample" method="post" action="{{route('addquestion')}}" enctype="multipart/form-data">
                 <div class="modal-header">
                     <h5 class="modal-title" id="addsoaltitle">Buat Soal Baru</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -19,8 +19,13 @@
                         <input required type="text" name="name" class="form-control" id="exampleInputEmail1" placeholder="Soal Pemrograman Java 1">
                     </div>
                     <div class="form-group">
+                        <label for="dokumen">Dokumen</label>
+                        <input required type="file" name="dokumen" class="form-control" id="dokumen" >
+                    </div>
+                    
+                    <div class="form-group">
                         <label for="exampleInputPassword1">Password Soal</label>
-                        <input required type="text" name="key" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                        <input required type="text" name="key" value="NO_PSWD" class="form-control" id="exampleInputPassword1" placeholder="Password">
                         <small>gunakan NO_PSWD untuk tidak memberikan password.</small>
                     </div>
                     @csrf

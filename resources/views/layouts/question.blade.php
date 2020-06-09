@@ -16,7 +16,7 @@
                     </h3>
                 </div>
                 <div id="infocollapse" class="card-body collapse">
-                    <form class="forms-sample" method="post" action="{{route('updatequestion')}}">
+                    <form class="forms-sample" method="post" action="{{route('updatequestion')}}" enctype="multipart/form-data">
                         <div class="form-group row">
                             <label for="soalid" class="col-sm-3 col-form-label"><i class="ik ik-book-open"></i> Kode Soal</label>
                             <div class="col-sm-9">
@@ -25,14 +25,25 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="namasoal" class="col-sm-3 col-form-label"><i class="ik ik-folder"></i> Nama Soal</label>
+                            <label for="namasoal" class="col-sm-3 col-form-label"><i class="ik ik-file"></i> Nama Soal</label>
                             <div class="col-sm-9">
                                 <input type="text" required name="name" class="form-control" value="{{$question->name}}" id="namasoal">
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <label for="dokumen" class="col-sm-3 col-form-label"><i class="ik ik-folder"></i> Dokumen</label>
+                            <div class="col-sm-9">
+                                @if(is_null($question->document))
+                                <input required type="file" name="dokumen" class="form-control" id="dokumen">
+                                @else
+                                <a href="{{asset('storage/'.$question->document)}}" class="badge badge-light">Lihat Dokumen</a>
+
+                                @endif
+                            </div>
+                        </div>
                         @csrf
                         <div class="form-group row">
-                            <label for="kuncisoal" class="col-sm-3 col-form-label"><i class="ik ik-shield"></i> Kunci Soal</label>
+                            <label for="kuncisoal" class="col-sm-3 col-form-label"><i class="ik ik-lock"></i> Kunci Soal</label>
                             <div class="col-sm-9">
                                 <input type="text" required name="key" class="form-control" value="{{$question->key}}" id="kuncisoal">
                                 <small class="text-wrap"><strong>NO_PSWD</strong> untuk tanpa kunci (semua orang bisa mengerjakan soal).</small>
@@ -107,7 +118,7 @@
                         <label for="tipesoal">Tipe Soal</label><br>
                         <input type="checkbox" class="rounded form-control" name="tipesoal" onchange="onTipeChange();" id="tipesoal" data-style="slow" data-on="Pilihan Ganda <i class='ik ik-chevrons-right'></i>" data-off="<i class='ik ik-chevrons-left'></i>Essay" data-onstyle="success" data-offstyle="primary" data-toggle="toggle" checked>
                         <script>
-                            $("#tipesoal").prop("checked",true);
+                            $("#tipesoal").prop("checked", true);
                         </script>
                     </div>
                     <div id="frPilihanA" class="form-group">
@@ -140,7 +151,7 @@
                     @csrf
                     <div class="btn-group float-right" role="group" aria-label="Basic example">
                         <button type="submit" class="btn btn-primary mr-2"><i class="ik ik-save"></i> Simpan</button>
-                      </div>
+                    </div>
                 </form>
             </div>
         </div>

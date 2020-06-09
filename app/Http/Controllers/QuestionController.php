@@ -35,6 +35,11 @@ class QuestionController extends Controller
         $question->user_id = Auth::user()->id;
         $question->name = $request->name;
         $question->key = $request->key;
+        if ($request->hasFile('dokumen')) {
+            $document = $request->file('dokumen')->store('document/' . Auth::user()->id, 'public');
+            $question->document = $document;
+            //$archive->cv_path = $cv_path;
+        }
         $question->save();
         return redirect()->route('viewquestion', $question->id);
     }

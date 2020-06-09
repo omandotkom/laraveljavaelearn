@@ -23,12 +23,22 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="namasoal" class="col-sm-3 col-form-label"><i class="ik ik-book-open"></i> Nama Soal</label>
+                        <label for="namasoal" class="col-sm-3 col-form-label"><i class="ik ik-file"></i> Nama Soal</label>
                         <div class="col-sm-9">
                             <input type="text" name="namasoal" class="form-control" readonly value="{{$question->name}} ({{$question->child->count()}} Pertanyaan)" id="namasoal">
                         </div>
                     </div>
-                    
+                    <div class="form-group row">
+                        <label for="document" class="col-sm-3 col-form-label"><i class="ik ik-folder"></i> Dokumen</label>
+                        <div class="col-sm-9">
+                            @if(is_null($question->document))
+                            -
+                            @else
+                            <a href="{{asset('storage/'.$question->document)}}" class="badge badge-light">Lihat Dokumen</a>
+                            @endif
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -76,7 +86,7 @@
             <input type="hidden" name="answertype" value="{{$u->multiplechoice}}">
             <input type="hidden" name="idquestion" value="{{$u->id}}" />
             @if(!is_null($answer) && !$answer->editable)
-                        
+
             @else
 
             <div class="row mt-5">
