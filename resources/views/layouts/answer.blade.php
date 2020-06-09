@@ -76,7 +76,7 @@
             <input type="hidden" name="answertype" value="{{$u->multiplechoice}}">
             <input type="hidden" name="idquestion" value="{{$u->id}}" />
             @if(!is_null($answer) && !$answer->editable)
-
+                        
             @else
 
             <div class="row mt-5">
@@ -156,10 +156,13 @@
                         <div class="btn-group mx-auto" role="group" aria-label="Action">
                             <button type="button" id="inputbutton" onclick="compile();" class="btn btn-outline-primary "><i class="ik ik-play"></i>Jalankan</button>
                             @if(!$checkmode)
+                            @if(!is_null($answer) && !$answer->editable)
+                            @else
                             <button type="submit" class="btn btn-info"><i class="ik ik-save"></i>Simpan</button>
                             <input type="hidden" id="editorghost" name="editorghost" />
                             <input type="hidden" name="answertype" value="{{$u->multiplechoice}}">
                             <input type="hidden" name="idquestion" value="{{$u->id}}" />
+                            @endif
                             @else
                             <div class="btn-group" role="group" aria-label="Basic example">
                                 <a type="submit" role="button" href="{{route('answercorrect',['answerid'=>$answer->id,'correct'=>1])}}" class="btn btn-success text-white"><i class="ik ik-save"></i>Benar</a>
