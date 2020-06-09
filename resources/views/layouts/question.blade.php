@@ -57,7 +57,7 @@
                         <script>
                             $(document).ready(function() {
                                 $('#summernote').summernote({
-                                    placeholder: 'Hello Bootstrap 4',
+                                    placeholder: 'Tulis soal di sini',
                                     tabsize: 2,
                                     height: 200,
                                     toolbar: [
@@ -140,8 +140,7 @@
                     @csrf
                     <div class="btn-group float-right" role="group" aria-label="Basic example">
                         <button type="submit" class="btn btn-primary mr-2"><i class="ik ik-save"></i> Simpan</button>
-                        <button class="btn btn-light">Cancel</button>
-                    </div>
+                      </div>
                 </form>
             </div>
         </div>

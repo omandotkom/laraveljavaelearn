@@ -23,10 +23,10 @@
         <div class="card">
             <ul class="nav nav-pills custom-pills" id="pills-tab" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link active show" id="pills-setting-tab" data-toggle="pill" href="#settings" role="tab" aria-controls="pills-setting" aria-selected="true"><i class="ik ik-user"></i> Setting</a>
+                    <a class="nav-link active show" id="pills-setting-tab" data-toggle="pill" href="#settings" role="tab" aria-controls="pills-setting" aria-selected="true"><i class="ik ik-user"></i> Akun</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#changepassword" role="tab" aria-controls="pills-profile" aria-selected="false"><i class="ik ik-lock"></i> Change Password</a>
+                    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#changepassword" role="tab" aria-controls="pills-profile" aria-selected="false"><i class="ik ik-lock"></i> Sandi</a>
                 </li>
             </ul>
             <div class="tab-content" id="pills-tabContent">
@@ -46,7 +46,7 @@
                                 <label for="example-password">NIM / NIDN</label>
                                 <input type="text" class="form-control" value="{{Auth::user()->nim}}" name="nim" id="example-password">
                             </div>
-                            <button class="btn btn-success float-right m-3" type="submit"><i class="ik ik-user-check"></i>Update Profile</button>
+                            <button class="btn btn-success float-right m-3" type="submit"><i class="ik ik-user-check"></i>Simpan Perubahan</button>
                         </form>
                     </div>
                 </div>
@@ -55,10 +55,6 @@
                     <form class="form-horizontal" method="post" action="{{route('changepassword')}}">
                             @csrf
                             <div class="form-group">
-                                <label for="oldpass">Password Lama</label>
-                                <input type="text"  class="form-control" name="oldpass" id="oldpass">
-                            </div>
-                            <div class="form-group">
                                 <label for="newpass">Password Baru</label>
                                 <input type="password"   class="form-control" name="password" id="newpass">
                             </div>
@@ -66,7 +62,7 @@
                                 <label for="confirnewpass">Konfirmasi Password Baru</label>
                                 <input type="password" class="form-control"  name="password_confirmation" id="confirnewpass">
                             </div>
-                            <button class="btn btn-success float-right m-3" type="submit"><i class="ik ik-lock"></i> Update Profile</button>
+                            <button class="btn btn-success float-right m-3" type="submit"><i class="ik ik-lock"></i> Ubah Sandi</button>
                         </form>
                     </div>
                 </div>

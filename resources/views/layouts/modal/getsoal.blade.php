@@ -16,7 +16,7 @@
                 @csrf
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
                 <button type="submit" id="lanjutkanbtn" class="btn btn-info">Lanjutkan</button>
             </div>
             <script>

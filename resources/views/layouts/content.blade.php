@@ -53,7 +53,7 @@
                         </div>
                         <div class="d-flex align-items-center flex-row mt-30">
                             <div class="btn-group mx-auto" role="group" aria-label="Basic example">
-                                <a type="button" href="{{route('viewscores')}}" class="btn btn-info ml-1 btn-sm" role="button"> <i class="ik ik-book"></i> Lihat Semua</a>
+                                <a type="button" href="{{route('viewscores')}}" class="btn btn-info ml-1 btn-sm" role="button"><i class="ik ik-book"></i> Lihat Semua</a>
                             </div>
                         </div>
                     </div>
@@ -92,7 +92,7 @@
                             <img src="{{url('dashboardasset/img/list.png')}}" class="rounded img-fluid mx-auto d-block" alt="...">
                         </div>
                         <div class="d-flex align-items-center flex-row mt-30">
-                            <a type="button" role="button" href="{{route('viewallquestions')}}" class="btn mx-auto btn-outline-info">Lihat Semua</a>
+                            <a type="button" role="button" href="{{route('viewallquestions')}}" class="btn mx-auto btn-outline-info"><i class="ik ik-book"></i>Lihat Semua</a>
                         </div>
                     </div>
                 </div>

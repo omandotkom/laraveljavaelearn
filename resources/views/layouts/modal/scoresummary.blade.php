@@ -59,9 +59,9 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
                     <a href="{{route('viewscores')}}"  role="button" class="btn btn-secondary" >Nilai Nanti</a>
-                    <button type="submit" id="submitnilai" class="btn btn-primary">Save changes</button>
+                    <button type="submit" id="submitnilai" class="btn btn-primary">Simpan</button>
                 </div>
             </form>
         </div>
