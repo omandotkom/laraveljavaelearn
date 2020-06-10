@@ -13,7 +13,8 @@
                                                    <th>Nomor</th>
                                                    <th>Kode Quiz</th>
                                                    <th>Nama Soal</th>
-                                                   <th>Nama Dosen</th>
+                                                   <th>PG (benar)</th>
+                                                   <th>Essay (benar)</th>
                                                    <th>Nilai</th>
                                                    <th>Waktu Penilaian</th>
                                                </tr>
@@ -26,8 +27,9 @@
                                                <tr>
                                                    <th scope="row">{{$i}}</th>
                                                    <td>{{$score->question_id}}</td>
-                                                   <td>{{$score->question->name}}</td>
-                                                   <td>{{$score->question->owner->name}}</td>
+                                                   <td>{{$score->question->name}} ({{$score->question->owner->name}})</td>
+                                                   <td>{{$score->correct_multiplechoice}}</td>
+                                                   <td>{{$score->correct_essay}}</td>
                                                    @php
                                                    if ($score->score >= 70){
                                                    $bgclass="bg-success";}
