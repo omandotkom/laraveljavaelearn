@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Answer;
+use App\Duration;
 use Illuminate\Support\Facades\Auth;
 use App\Question;
 use App\QuestionDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Carbon;
 
 class QuestionController extends Controller
 {
@@ -35,6 +37,9 @@ class QuestionController extends Controller
         $question->user_id = Auth::user()->id;
         $question->name = $request->name;
         $question->key = $request->key;
+        $question->start = $request->start;
+        $question->end = $request->end;
+        $question->duration_minute = $request->minute_duration;
         if ($request->hasFile('dokumen')) {
             $document = $request->file('dokumen')->store('document/' . Auth::user()->id, 'public');
             $question->document = $document;
@@ -52,7 +57,7 @@ class QuestionController extends Controller
             return redirect()->route('viewquestion', $request->soalid);
         } else {
             session(['soal_key' => 'NO_PSWD']);
-            return back()->with('error','Key soal yang Anda masukkan salah.');
+            return back()->with('error', 'Key soal yang Anda masukkan salah.');
         }
     }
     private function  isAccessible(Question $question)
@@ -79,6 +84,35 @@ class QuestionController extends Controller
             }
         } else {
             $content = "jawabsoal";
+            //tambah x minute
+            $duration = Duration::select("start_at", "end_at")->where('question_id', $question->id)->where('user_id', Auth::user()->id)->first();
+
+            if ($duration != null && $duration->exists()) {
+
+                //exist
+                if (Carbon::now() > $duration->end_at) {
+                    //waktu habis
+                    Answer::where('question_id', $question->id)->where('user_id', Auth::user()->id)->update(['editable' => false]);
+                    $message = "Maaf, waktu pengerjaan sudah habis, durasi pengerjaan hanya " . $question->duration_minute . " menit, Anda mulai pada " . $duration->start_at . " dan berakhir pada " . $duration->end_at . ".";
+
+                    return view('index', ['title' => 'Akses Ditolak', 'includepage' => 'layouts.erroraccess', 'message' => $message]);
+                }
+            } else {
+                //not exit
+                $duration = new Duration();
+                $duration->question_id = $question->id;
+                $duration->user_id = Auth::user()->id;
+                $duration->start_at = Carbon::now();
+                $duration->end_at = Carbon::now()->addMinute($question->duration_minute);
+                $duration->save();
+            }
+            //validasi tanggal akses
+
+            if (date("Y-m-d") < $question->start || date('Y-m-d') > $question->end) {
+                //terlalu gasik terlalu lama
+                $message = "Soal ini hanya bisa diakses pada tanggal " . $question->start . " hingga tanggal " . $question->end . ", untuk informasi lebih lanjut atau pembukaan akses hubungi dosen terkait (" . $question->owner->name . ").";
+                return view('index', ['title' => 'Akses Ditolak', 'includepage' => 'layouts.erroraccess', 'message' => $message]);
+            }
             if ($question->key != "NO_PSWD") {
                 if (!$this->isAccessible($question))
                     return view('index', ['title' => 'KEY | #' . $question->id, 'includepage' => 'layouts.key', 'content' => 'askkey',  'question' => $question]);
@@ -145,8 +179,8 @@ class QuestionController extends Controller
         $answerer = DB::select("select `answers`.`user_id` as `answeruserid`, `scores`.*,
          `users`.`name`,`users`.`nim` from `answers` left join `scores` on `answers`.`question_id` = `scores`.`question_id`
           and `answers`.`user_id`=`scores`.`user_id` inner join `users` on `answers`.`user_id` = `users`.`id`
-           where answers.question_id=".$id."  group by `answers`.`user_id`");
-        
+           where answers.question_id=" . $id . "  group by `answers`.`user_id`");
+
         return view('index', ['title' => 'Daftar Soal', 'includepage' => 'layouts.questionsanswer', 'content' => 'answererlist', 'answerer' => $answerer, 'questionid' => $id]);
     }
 }

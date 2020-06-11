@@ -28,6 +28,20 @@
                         <input required type="text" name="key" value="NO_PSWD" class="form-control" id="exampleInputPassword1" placeholder="Password">
                         <small>gunakan NO_PSWD untuk tidak memberikan password.</small>
                     </div>
+                    <div class="form-group">
+                        <label for="dropper-default">Dapat dikerjakan mulai</label>
+                        <input class="form-control" required name="start" type="date" placeholder="Select your date" >
+                    </div>
+                    <div class="form-group">
+                        <label for="dropper-default">Tidak dapat dikerjakan pada</label>
+                        <input class="form-control" name="end"  required type="date" placeholder="Select your date" >
+                    </div>
+                    <div class="form-group">
+                        <label for="minute_duration">Durasi Pengerjaan (Menit)</label>
+                        <input aria-describedby="minute_duration_help" type="numeric" name="minute_duration" class="form-control" id="minute_duration" placeholder="60">
+                        <small id="minute_duration_help">Dalam menit.</small>
+                    </div>
+                    
                     @csrf
                 </div>
                 <div class="modal-footer">
