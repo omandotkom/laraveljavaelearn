@@ -49,6 +49,26 @@
                                 <small class="text-wrap"><strong>NO_PSWD</strong> untuk tanpa kunci (semua orang bisa mengerjakan soal).</small>
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <label for="startdate" class="col-sm-3 col-form-label"><i class="ik ik-calendar"></i> Tanggal Buka</label>
+                            <div class="col-sm-9">
+                                <input type="date" required name="startdate" class="form-control" value="{{$question->start}}" id="startdate">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="enddate" class="col-sm-3 col-form-label"><i class="ik ik-calendar"></i> Tanggal Tutup</label>
+                            <div class="col-sm-9">
+                                <input type="date" required name="enddate" class="form-control" value="{{$question->end}}" id="enddate">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="duration" class="col-sm-3 col-form-label"><i class="ik ik-clock"></i> Durasi</label>
+                            <div class="col-sm-9">
+                                <input type="numeric" required name="duration" class="form-control" value="{{$question->duration_minute}}" id="duration">
+                                <small class="text-wrap">*Dalam satuan menit</small>
+                            </div>
+                        </div>
+                        
                         <button type="submit" class="btn float-right btn-info  mr-2"><i class="ik ik-save"></i> Ubah</button>
 
                     </form>

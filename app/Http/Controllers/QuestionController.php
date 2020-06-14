@@ -19,6 +19,9 @@ class QuestionController extends Controller
         $question = Question::findOrFail($request->soalid);
         $question->name = $request->name;
         $question->key = $request->key;
+        $question->start = $request->startdate;
+        $question->end = $request->enddate;
+        $question->duration_minute = $request->duration;
         $question->save();
         return back();
     }
