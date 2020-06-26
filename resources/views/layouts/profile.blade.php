@@ -43,7 +43,7 @@
                                 <input type="email" placeholder="johnathan@admin.com" value="{{Auth::user()->email}}" class="form-control" name="email" id="example-email">
                             </div>
                             <div class="form-group">
-                                <label for="example-password">NIM / NIDN</label>
+                                <label for="example-password">@if(Auth::user()->role =="student")NIM @else NIDN @endif</label>
                                 <input type="text" class="form-control" value="{{Auth::user()->nim}}" name="nim" id="example-password">
                             </div>
                             <button class="btn btn-success float-right m-3" type="submit"><i class="ik ik-user-check"></i>Simpan Perubahan</button>
