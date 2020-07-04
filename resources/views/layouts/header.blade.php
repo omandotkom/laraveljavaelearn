@@ -1,6 +1,6 @@
 <header class="header-top" header-theme="light">
                 <div class="container-fluid">
-                    <div class="d-flex justify-content-between float-right">
+                    <div class="d-flex justify-content-between float-left">
                      
                         <div class="top-menu d-flex align-items-center">
                             
@@ -9,7 +9,7 @@
                         </div>
                     </div>
                     
-                    <div class="d-flex justify-content-between float-left">
+                    <div class="d-flex justify-content-between float-right">
                      
                         <div class="top-menu d-flex align-items-center">
                             

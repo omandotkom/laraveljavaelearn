@@ -14,8 +14,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('index',['includepage'=>'layouts.content']);
+    return view('index',['includepage'=>'layouts.content','pagetype'=>'default']);
+})->middleware('auth')->name('index2');
+Route::get('/home/{mode?}', function ($mode = "default") {
+    return view('index',['includepage'=>'layouts.content','pagetype'=>$mode]);
 })->middleware('auth')->name('index');
+
 Route::get('/code','CodeController@show')->name('showcode');
 Route::post('/question/save','QuestionController@store')->name('addquestion');
 Route::get('/question/{id?}/{ischeck?}/{uid?}','QuestionController@show')->name('viewquestion');

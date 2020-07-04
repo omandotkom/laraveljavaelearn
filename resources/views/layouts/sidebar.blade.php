@@ -7,7 +7,7 @@
             </div>
             <div class="nav-item">
                 @if(Auth::user()->role =="student")
-                <a href="{{route('showcode')}}"><i class="ik ik-code"></i><span>Praktik</span></a>
+                <a href="{{route('index',['mode'=>'practice'])}}"><i class="ik ik-code"></i><span>Praktik</span></a>
                 @endif
             </div>
             <div class="nav-item">
@@ -18,18 +18,25 @@
 
             <div class="nav-lavel">Soal/Quiz</div>
             <div class="nav-item">
-                <a href="{{route('viewallquestions')}}"><i class="ik ik-book"></i><span>Lihat Soal</span></a>
+                <a href="{{route('index',['mode'=>'view'])}}"><i class="ik ik-book"></i><span>Lihat Soal</span></a>
             </div>
             <div class="nav-item">
+                <!--
+                //MAKING IT AS A COMMENT SINCE 04 JUN 2020    
                 @if(Auth::user()->role =="student")
                 <a href="#" data-toggle="modal" data-target="#getsoal"><i class="ik ik-plus"></i><span>Kode Soal</span></a>
                 @else
                 <a href="#" data-toggle="modal" data-target="#addsoal"><i class="ik ik-plus"></i><span>Buat Soal</span></a>
+                @endif-->
+                @if(Auth::user()->role =="student")
+                <a href="#" data-toggle="modal" data-target="#getsoal"><i class="ik ik-plus"></i><span>Kode Soal</span></a>
+                @else
+                <a href="{{route('index',['mode'=>'create'])}}"><i class="ik ik-plus"></i><span>Buat Soal</span></a>
                 @endif
             </div>
             <div class="nav-item">
                 @if(Auth::user()->role =="student")
-                <a href="{{route('viewscores')}}"><i class="ik ik-check-square"></i><span>Nilai</span></a>
+                <a href="{{route('index',['mode'=>'score'])}}"><i class="ik ik-check-square"></i><span>Nilai</span></a>
                 @endif
             </div>
 
