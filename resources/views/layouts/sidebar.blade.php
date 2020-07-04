@@ -43,13 +43,7 @@
                 <a onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();" href="{{ route('logout') }}"><i class="ik ik-log-out"></i><span>Keluar</span></a>
             </div>
-            <div class="nav-lavel">Sistem</div>
-            <div class="nav-item">
-                <a href="pages/form-picker.html"><i class="ik ik-help-circle"></i><span>Bantuan</span> </a>
-            </div>
-            <div class="nav-item">
-                <a href="javascript:void(0)"><i class="ik ik-help-circle"></i><span>Submit Issue</span></a>
-            </div>
+           
 
         </nav>
     </div>
