@@ -186,4 +186,9 @@ class QuestionController extends Controller
 
         return view('index', ['title' => 'Daftar Soal', 'includepage' => 'layouts.questionsanswer', 'content' => 'answererlist', 'answerer' => $answerer, 'questionid' => $id]);
     }
+ public function ApiGetQuestions($id){
+    $scorequestions = Question::select('id','name')->where('user_id',$id)->orderBy('updated_at','desc')->limit(10)->get();
+    
+    return $scorequestions;
+ }   
 }

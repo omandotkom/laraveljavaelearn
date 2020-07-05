@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Dosen\DosenParams;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,7 +28,7 @@ Route::post('/question/id','QuestionController@save')->name('savequestion');
 Route::get('/questions','QuestionController@showbyUser')->name('viewallquestions');
 Route::post('/question/update','QuestionController@update')->name('updatequestion');
 Route::get('/questiondetil/delete/{id}','QuestionController@deletequestiondetil')->name('deletequestiondetil');
-Route::get('/viewquestionsanswer/{id}','QuestionController@viewanswerer')->name('viewanswerer');
+Route::get('/viewquestionsanswer/{id?}','QuestionController@viewanswerer')->name('viewanswerer');
 Auth::routes();
 Route::get('/c','CodeController@comptest');
 Route::get('/home', 'HomeController@index')->name('home');

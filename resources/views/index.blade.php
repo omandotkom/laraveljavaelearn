@@ -17,12 +17,10 @@
     <link rel="stylesheet" href="{{url('dashboardasset/plugins/fontawesome-free/css/all.min.css')}}">
     <link rel="stylesheet" href="{{url('dashboardasset/plugins/icon-kit/dist/css/iconkit.min.css')}}">
     <link rel="stylesheet" href="{{url('dashboardasset/plugins/ionicons/dist/css/ionicons.min.css')}}">
-    <link rel="stylesheet" href="{{url('dashboardasset/plugins/perfect-scrollbar/css/perfect-scrollbar.css')}}">
     <link rel="stylesheet" href="{{url('dashboardasset/plugins/datatables.net-bs4/css/dataTables.bootstrap4.min.css')}}">
     <link rel="stylesheet" href="{{url('dashboardasset/plugins/jvectormap/jquery-jvectormap.css')}}">
     <link rel="stylesheet" href="{{url('dashboardasset/plugins/tempusdominus-bootstrap-4/build/css/tempusdominus-bootstrap-4.min.css')}}">
     <link rel="stylesheet" href="{{url('dashboardasset/plugins/weather-icons/css/weather-icons.min.css')}}">
-    <link rel="stylesheet" href="{{url('dashboardasset/plugins/c3/c3.min.css')}}">
     <link rel="stylesheet" href="{{url('dashboardasset/plugins/owl.carousel/dist/assets/owl.carousel.min.css')}}">
     <link rel="stylesheet" href="{{url('dashboardasset/plugins/owl.carousel/dist/assets/owl.theme.default.min.css')}}">
     <link rel="stylesheet" href="{{url('dashboardasset/dist/css/theme.min.css')}}">
@@ -30,7 +28,6 @@
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="{{url('dashboardasset/plugins/popper.js/dist/umd/popper.min.js')}}"></script>
     <script src="{{url('dashboardasset/plugins/bootstrap/dist/js/bootstrap.min.js')}}"></script>
-    <script src="{{url('dashboardasset/plugins/perfect-scrollbar/dist/perfect-scrollbar.min.js')}}"></script>
     <script src="{{url('dashboardasset/plugins/screenfull/dist/screenfull.js')}}"></script>
     <script src="{{url('dashboardasset/plugins/datatables.net/js/jquery.dataTables.min.js')}}"></script>
     <script src="{{url('dashboardasset/plugins/datatables.net-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
@@ -41,10 +38,8 @@
     <script src="{{url('dashboardasset/plugins/moment/moment.js')}}"></script>
     <script src="{{url('dashboardasset/plugins/tempusdominus-bootstrap-4/build/js/tempusdominus-bootstrap-4.min.js')}}"></script>
     <script src="{{url('dashboardasset/plugins/d3/dist/d3.min.js')}}"></script>
-    <script src="{{url('dashboardasset/plugins/c3/c3.min.js')}}"></script>
     <script src="{{url('dashboardasset/js/tables.js')}}"></script>
     <script src="{{url('dashboardasset/js/widgets.js')}}"></script>
-    <script src="{{url('dashboardasset/js/charts.js')}}"></script>
     <script src="{{url('dashboardasset/dist/js/theme.min.js')}}"></script>
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-bs4.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-bs4.min.js"></script>
