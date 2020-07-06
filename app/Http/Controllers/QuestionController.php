@@ -98,7 +98,7 @@ class QuestionController extends Controller
                     Answer::where('question_id', $question->id)->where('user_id', Auth::user()->id)->update(['editable' => false]);
                     $message = "Maaf, waktu pengerjaan sudah habis, durasi pengerjaan hanya " . $question->duration_minute . " menit, Anda mulai pada " . $duration->start_at . " dan berakhir pada " . $duration->end_at . ".";
 
-                    return view('index', ['title' => 'Akses Ditolak', 'includepage' => 'layouts.erroraccess', 'message' => $message]);
+                    return view('index', ['title' => 'Akses Ditolak', 'includepage' => 'layouts.erroraccess', 'message' => $message, 'link' => route('viewallquestions')]);
                 }
             } else {
                 //not exit
@@ -114,7 +114,7 @@ class QuestionController extends Controller
             if (date("Y-m-d") < $question->start || date('Y-m-d') > $question->end) {
                 //terlalu gasik terlalu lama
                 $message = "Soal ini hanya bisa diakses pada tanggal " . $question->start . " hingga tanggal " . $question->end . ", untuk informasi lebih lanjut atau pembukaan akses hubungi dosen terkait (" . $question->owner->name . ").";
-                return view('index', ['title' => 'Akses Ditolak', 'includepage' => 'layouts.erroraccess', 'message' => $message]);
+                return view('index', ['title' => 'Akses Ditolak', 'includepage' => 'layouts.erroraccess', 'message' => $message, 'link' => route('viewallquestions')]);
             }
             if ($question->key != "NO_PSWD") {
                 if (!$this->isAccessible($question))
@@ -122,6 +122,22 @@ class QuestionController extends Controller
             }
             $q = QuestionDetail::where('question_id', $question->id)->paginate(1);
             foreach ($q as $u) {
+                /* if($u->level > 1 && !$this->levelCheck($u->id)){
+                    $message = "Anda harus menyelesaikan semua soal dengan level Mudah terlebih dahulu sebelum mengerjakan soal level sulit.";
+                    return view('index', ['title' => 'Akses Ditolak', 'includepage' => 'layouts.erroraccess', 'message' => $message,'link'=>url()->previous()]);
+                        
+                }*/
+                if ($u->level > 1) {
+
+                    $easyQuestionCount = QuestionDetail::select("id")->where("question_id", $u->question_id)->where('level', "=", 1)->count();
+                    $easyAnsweredCount = DB::table("answers")->select("answers.id", "question_details.level")->join("question_details", "answers.question_detail_id", "=", "question_details.id")
+                        ->where("answers.user_id", "=", Auth::user()->id)
+                        ->where("question_details.level", "=", 1)->count();
+                    if ($easyAnsweredCount < $easyQuestionCount) {
+                        $message = "Anda harus menyelesaikan semua soal dengan kesulitan mudah terlebih dahulu.";
+                        return view('index', ['title' => 'Akses Ditolak', 'includepage' => 'layouts.erroraccess', 'message' => $message, 'link' => url()->previous()]);
+                    }
+                }
                 $a = Answer::where('question_detail_id', $u->id)->where('user_id', Auth::user()->id)->first();
             }
         }
@@ -132,6 +148,7 @@ class QuestionController extends Controller
         }
         return view('index', ['title' => 'Soal #' . $question->id, 'answer' => $a, 'includepage' => $includepage, 'checkmode' => $ischeck, 'content' => $content, 'q' => $q, 'question' => $question]);
     }
+
     public function showbyUser()
     {
         if (Auth::user()->role == "admin") {

@@ -17,7 +17,7 @@
                 </button>
             </div>
             <div class="row">
-                <a href="{{route('viewallquestions')}}" class="badge mx-auto badge-info"><i class="ik ik-arrow-left"></i>Kembali</a>
+                <a href="{{$link}}" class="badge mx-auto badge-info"><i class="ik ik-arrow-left"></i>Kembali</a>
             </div>
         </div>
     </div>
