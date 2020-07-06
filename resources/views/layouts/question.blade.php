@@ -141,6 +141,11 @@
                             $("#tipesoal").prop("checked", true);
                         </script>
                     </div>
+                    <div id="tingkatkesulitan" class="form-group">
+                        <label for="level" >Tingkat Kesulitan</label><br>
+                        <input type="checkbox" class="rounded form-control" name="levelsoal" id="levelsoal" data-style="slow" data-on="Mudah <i class='ik ik-chevrons-right'></i>" data-off="<i class='ik ik-chevrons-left'></i> Sulit" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" checked>
+                        <br><small>*Usahakan untuk membuat soal yang mudah terlebih dahulu lalu sulit<br>misal jika terdapat 10 soal, buat 7 pertama sebagai mudah lalu 3 terakhir sulit.</small>
+                    </div>
                     <div id="frPilihanA" class="form-group">
                         <label for="pilihanA">Pilihan A</label>
                         <input type="text" class="form-control" id="pilihanA" name="a" placeholder="Jawaban Opsi A">

@@ -184,6 +184,11 @@ class QuestionController extends Controller
         } else {
             $qd->multiplechoice = false;
         }
+        if(isset($request->levelsoal)){
+            $qd->level = 1;
+        }else{
+            $qd->level =2;
+        }
         $qd->save();
         return back();
     }
