@@ -14,4 +14,5 @@ class Answer extends Model
     public function score(){
         return $this->hasOne('App\Score','question_id','question_id');
     }
+    
 }
