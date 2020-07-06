@@ -18,4 +18,7 @@ Route::post('/question/status/save','QuestionController@updatestatus')->name('up
 Route::get('/answer/check/{question_id}/{user_id}','AnswerController@checkanswer')->name('checkanswer');
 /*Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
+
 });*/
+
+Route::get('/questions/{id?}','QuestionController@ApiGetQuestions')->name('getdosenquestions');
