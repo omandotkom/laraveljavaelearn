@@ -60,9 +60,7 @@
 
                         <span class="text">JavaLearn</span>
                     </a>
-                    <button type="button" class="nav-toggle"><i data-toggle="expanded" class="ik ik-toggle-right toggle-icon"></i></button>
-                    <button id="sidebarClose" class="nav-close"><i class="ik ik-x"></i></button>
-                </div>
+                   </div>
                 @include('layouts.sidebar')
             </div>
             @include($includepage)
