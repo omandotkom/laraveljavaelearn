@@ -43,3 +43,9 @@ Route::get('/score','ScoreController@view')->name('viewscores');
 Route::get('/user','UserController@view')->name('viewuser');
 Route::post('/user/save','UserController@save')->name('updateprofile');
 Route::post('/user/password/save','UserController@changepassword')->name('changepassword');
+Route::get('/about',function(){
+return view('index',['includepage'=>'layouts.history']);    
+})->name("about");
+Route::get('/history',function(){
+    return view('index',['includepage'=>'layouts.history']);
+})->name("history");

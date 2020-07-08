@@ -67,6 +67,7 @@
             </div>
             @break
             @default
+            @include('layouts.defaultcontent')
             @break
             @endswitch
         </div>
@@ -114,6 +115,8 @@
             </div>
             @break
             @default
+
+            @include('layouts.defaultcontent')
             @break
             @endswitch
 
