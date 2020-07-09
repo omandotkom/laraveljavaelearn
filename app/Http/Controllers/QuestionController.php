@@ -74,15 +74,23 @@ class QuestionController extends Controller
     public function show($id, $ischeck = false, $uid = 0)
     {
         $a = null;
+        $titleAddition = "";
         $question = Question::findOrfail($id);
         if (Auth::user()->role == "admin") {
             $content = "viewsoal";
             $q = null;
             if ($ischeck) {
+
                 $content = "jawabsoal";
                 $q = QuestionDetail::where('question_id', $question->id)->where('multiplechoice', false)->paginate(1);
                 foreach ($q as $u) {
                     $a = Answer::where('question_detail_id', $u->id)->where('user_id', $uid)->first();
+                    if ($a === null) {
+                        $message = "Mahasiswa tidak (belum) mengerjakan soal ini";
+                        return view('index', ['title' => 'Soal Belum Dikerjakan', 'includepage' => 'layouts.erroraccess','checkmode'=>$ischeck ,'message' => $message, 'link' => url()->previous(),'q'=>$q,
+                        'uid'=>$uid,'qid'=>$question->id]);
+                    }
+                    $titleAddition = " (Jawaban Milik " . $a->user->name . ")";
                 }
             }
         } else {
@@ -134,8 +142,8 @@ class QuestionController extends Controller
                         ->where("answers.user_id", "=", Auth::user()->id)
                         ->where("question_details.level", "=", 1)->count();
                     if ($easyAnsweredCount < $easyQuestionCount) {
-                        $message = "Anda harus menyelesaikan semua soal dengan kesulitan mudah terlebih dahulu.";
-                        return view('index', ['title' => 'Akses Ditolak', 'includepage' => 'layouts.erroraccess', 'message' => $message, 'link' => url()->previous()]);
+                        $message = "Soal ini bertipe sulit, Anda harus menyelesaikan semua soal dengan kesulitan mudah terlebih dahulu.";
+                        return view('index', ['title' => 'Akses Ditolak', 'includepage' => 'layouts.erroraccess', 'message' => $message, 'link' => url()->previous(),'q'=>$q,'question'=>$question]);
                     }
                 }
                 $a = Answer::where('question_detail_id', $u->id)->where('user_id', Auth::user()->id)->first();
@@ -146,7 +154,7 @@ class QuestionController extends Controller
         } else if ($content === "viewsoal") {
             $includepage = "layouts.question";
         }
-        return view('index', ['title' => 'Soal #' . $question->id, 'answer' => $a, 'includepage' => $includepage, 'checkmode' => $ischeck, 'content' => $content, 'q' => $q, 'question' => $question]);
+        return view('index', ['title' => 'Soal #' . $question->id . $titleAddition, 'answer' => $a, 'includepage' => $includepage, 'checkmode' => $ischeck, 'content' => $content, 'q' => $q, 'question' => $question]);
     }
 
     public function showbyUser()
@@ -184,10 +192,10 @@ class QuestionController extends Controller
         } else {
             $qd->multiplechoice = false;
         }
-        if(isset($request->levelsoal)){
+        if (isset($request->levelsoal)) {
             $qd->level = 1;
-        }else{
-            $qd->level =2;
+        } else {
+            $qd->level = 2;
         }
         $qd->save();
         return back();
@@ -206,11 +214,12 @@ class QuestionController extends Controller
           and `answers`.`user_id`=`scores`.`user_id` inner join `users` on `answers`.`user_id` = `users`.`id`
            where answers.question_id=" . $id . "  group by `answers`.`user_id`");
 
-        return view('index', ['title' => 'Daftar Soal', 'includepage' => 'layouts.questionsanswer', 'content' => 'answererlist', 'answerer' => $answerer, 'questionid' => $id]);
+        return view('index', ['title' => 'Laporan Mahasiswa yang Sudah Mengerjakan', 'includepage' => 'layouts.questionsanswer', 'content' => 'answererlist', 'answerer' => $answerer, 'questionid' => $id]);
     }
- public function ApiGetQuestions($id){
-    $scorequestions = Question::select('id','name')->where('user_id',$id)->orderBy('updated_at','desc')->limit(10)->get();
-    
-    return $scorequestions;
- }   
+    public function ApiGetQuestions($id)
+    {
+        $scorequestions = Question::select('id', 'name')->where('user_id', $id)->orderBy('updated_at', 'desc')->limit(10)->get();
+
+        return $scorequestions;
+    }
 }

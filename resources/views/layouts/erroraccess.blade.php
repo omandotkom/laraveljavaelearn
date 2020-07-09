@@ -19,6 +19,28 @@
             <div class="row">
                 <a href="{{$link}}" class="badge mx-auto badge-info"><i class="ik ik-arrow-left"></i>Kembali</a>
             </div>
+            @if(isset($q))
+            <div class="row">
+                <label class="mx-auto mt-5">{{ $q->onEachSide(20)->links() }}</label>
+            </div>
+            @if(Auth::user()->role == "admin")
+                    @if($checkmode && !$q->hasMorePages())
+                    <div class="row d-flex align-items-end flex-column">
+                    @include('layouts.modal.scoresummary')
+                    <button type="button" onclick="fetchscoredata();" class="btn btn-secondary mx-auto"><i class="ik ik-clipboard"></i> Beri Nilai</button>
+                    </div>
+                    @endif
+            @else
+                @if(!$q->hasMorePages())
+              
+            <div class="row d-flex align-items-end flex-column">
+                @include('layouts.modal.confirmcollection')
+                <button type="button" data-target="#confirmpengumpulan" data-toggle="modal" class="btn btn-secondary mx-auto"><i class="ik ik-clipboard"></i> Kumpulkan</button>
+                
+            </div>
+            @endif
+            @endif
+            @endif
         </div>
     </div>
 </div>
