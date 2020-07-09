@@ -8,7 +8,7 @@
                 <img src="{{url('dashboardasset/img/info.png')}}" class="rounded img-fluid mx-auto d-block" alt="...">
             </div>
             <div class="d-flex align-items-center flex-row mt-30">
-                <a type="button" role="button" href="{{route('viewallquestions')}}" class="btn mx-auto btn-outline-info"><i class="ik ik-info"></i>Tentang Kami</a>
+                <a type="button" role="button" href="{{route('about')}}" class="btn mx-auto btn-outline-info"><i class="ik ik-info"></i>Tentang Kami</a>
             </div>
         </div>
     </div>

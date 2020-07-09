@@ -30,11 +30,15 @@
             </div>
         </div>
         <div class="row w-50 mt-xl-5 mx-auto">
-            <p>Java sejak awal sudah didesain sebagai bahasa pemrograman yang bisa berjalan di berbagai komputer termasuk telepon genggam. Bahasa ini dikembangkan pertama kali oleh James Gosling saat masih bergabung di Sun Microsystems, saat ini Sun sudah diakusisi oleh Oracle sehingga menjadi bagian dari Oracle.
-            <p>Bahasa java awal dirilis tahun 1995. Sintaksnya banyak meniru sintaks yang terdapat pada C dan C++, hanya saja model objek dibuat sederhana serta dukungan rutin-rutin level bawah yang minimal.
-            <p>Aplikasi-aplikasi berbasis java nantinya akan dikompilasi ke dalam p-code (bytecode) dan dapat dijalankan pada berbagai Mesin Virtual Java (JVM). Ditinjau dari segi penggunaannya, Java merupakan bahasa pemrograman yang bersifat umum/non spesifik (general purpose).
-            <p>Java sedari awal didesain untuk memanfaatkan dependensi implementasi seminimal mungkin. Karenanya aplikasi java mampu berjalan di beberapa platform sistem operasi yang berbeda, java dikenal pula dengan slogannya “Write Once, Run Anywhere” atau diterjemahkan sebagai “Tulis sekali, jalankan dimanapun”. Artinya program java hanya perlu ditulis sekali saja, dan bisa dijalankan di berbagai platform sistem operasi seperti Linux dan Windows tanpa perlu menulis ulang program lagi.
-            <p>Sekarang, java telah menjadi bahasa pemrograman yang paling populer digunakan, dan secara luas dimanfaatkan dalam pengembangan berbagai jenis perangkat lunak aplikasi ataupun aplikasi berbasis web
+            <p>Nama : Destanur Fadhilah Sya’ban<br>
+                NPM : 11116850<br>
+                Universitas Gunadarma
+
+                <p>Java sejak awal sudah didesain sebagai bahasa pemrograman yang bisa berjalan di berbagai komputer termasuk telepon genggam. Bahasa ini dikembangkan pertama kali oleh James Gosling saat masih bergabung di Sun Microsystems, saat ini Sun sudah diakusisi oleh Oracle sehingga menjadi bagian dari Oracle.
+                    <p>Bahasa java awal dirilis tahun 1995. Sintaksnya banyak meniru sintaks yang terdapat pada C dan C++, hanya saja model objek dibuat sederhana serta dukungan rutin-rutin level bawah yang minimal.
+                        <p>Aplikasi-aplikasi berbasis java nantinya akan dikompilasi ke dalam p-code (bytecode) dan dapat dijalankan pada berbagai Mesin Virtual Java (JVM). Ditinjau dari segi penggunaannya, Java merupakan bahasa pemrograman yang bersifat umum/non spesifik (general purpose).
+                            <p>Java sedari awal didesain untuk memanfaatkan dependensi implementasi seminimal mungkin. Karenanya aplikasi java mampu berjalan di beberapa platform sistem operasi yang berbeda, java dikenal pula dengan slogannya “Write Once, Run Anywhere” atau diterjemahkan sebagai “Tulis sekali, jalankan dimanapun”. Artinya program java hanya perlu ditulis sekali saja, dan bisa dijalankan di berbagai platform sistem operasi seperti Linux dan Windows tanpa perlu menulis ulang program lagi.
+                                <p>Sekarang, java telah menjadi bahasa pemrograman yang paling populer digunakan, dan secara luas dimanfaatkan dalam pengembangan berbagai jenis perangkat lunak aplikasi ataupun aplikasi berbasis web
         </div>
     </div>
 </div>
