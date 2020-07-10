@@ -10,11 +10,7 @@
                 <a href="{{route('index',['mode'=>'practice'])}}"><i class="ik ik-code"></i><span>Praktik</span></a>
                 @endif
             </div>
-            <div class="nav-item">
-                @if(Auth::user()->role =="student")
-                <a href="pages/navbar.html"><i class="ik ik-book-open"></i><span>Dokumentasi</span></a>
-                @endif
-            </div>
+            
 
             <div class="nav-lavel">Soal/Quiz</div>
             <div class="nav-item">
