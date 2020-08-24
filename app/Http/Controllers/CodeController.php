@@ -20,7 +20,7 @@ class CodeController extends Controller
         try {
             
             //$process = Process::fromShellCommandline('cd storage && cd '.$request->id.' && javac '.$request->filename.'.java && java '.$request->filename, null, ['path' => 'C:\Program Files\Java\jdk1.8.0_251\bin']);
-            $process = Process::fromShellCommandline('cd storage && cd '.$request->id.' && javac '.$request->filename.'.java && java '.$request->filename, null, ['path' => '/home/publikas/java/jdk/bin']);
+            $process = Process::fromShellCommandline('cd storage && cd '.$request->id.' && javac '.$request->filename.'.java && java '.$request->filename, null, ['path' => '/home/publikas/java/jdk/bin/']);
             
             $process->run();
             if (!$process->isSuccessful()) {
