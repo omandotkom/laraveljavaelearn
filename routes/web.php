@@ -63,3 +63,5 @@ Route::get('/about', function () {
 Route::get('/history', function () {
     return view('index', ['includepage' => 'layouts.history', 'title' => 'Sejarah Java']);
 })->name("history");
+
+Route::post('/logout/custom','Auth\LoginController@logout')->name("logoutcustom");
