@@ -38,7 +38,7 @@ Route::get('/home/{mode?}', function ($mode = "default") {
 Route::get('/code', 'CodeController@show')->name('showcode');
 Route::post('/question/save', 'QuestionController@store')->name('addquestion');
 Route::get('/question/{id?}/{ischeck?}/{uid?}', 'QuestionController@show')->name('viewquestion');
-Route::post('/question/id', 'QuestionController@save')->name('savequestion');
+Route::post('/question/{id?}', 'QuestionController@save')->name('savequestion');
 Route::get('/questions', 'QuestionController@showbyUser')->name('viewallquestions');
 Route::post('/question/update', 'QuestionController@update')->name('updatequestion');
 Route::get('/questiondetil/delete/{id}', 'QuestionController@deletequestiondetil')->name('deletequestiondetil');
