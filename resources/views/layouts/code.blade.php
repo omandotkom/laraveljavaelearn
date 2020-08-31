@@ -36,7 +36,7 @@
                     <div class="row">
                         <form class="form-inline mx-auto">
                             <div class="form-group mx-sm-3 mb-2">
-                                <input type="text" class="form-control" id="inputfilename" placeholder="FileName.java"> .java
+                                <input type="text" class="form-control" id="inputfilename" placeholder="Hello.java"> .java
                             </div>
                             <button type="button" id="inputbutton" onclick="compile();" class="btn btn-outline-primary "><i class="ik ik-play"></i> Compile & Run</button>
                         </form>

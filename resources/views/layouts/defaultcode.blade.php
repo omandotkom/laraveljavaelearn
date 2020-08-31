@@ -1,4 +1,4 @@
-public class Main {
+public class Hello {
     public static void main(String[] args){
         //tulis kode disini
         for(int i=0;i<100;i++){
