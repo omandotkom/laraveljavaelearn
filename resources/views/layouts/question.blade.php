@@ -68,7 +68,7 @@
                                 <small class="text-wrap">*Dalam satuan menit</small>
                             </div>
                         </div>
-                        
+
                         <button type="submit" class="btn float-right btn-info  mr-2"><i class="ik ik-save"></i> Ubah</button>
 
                     </form>
@@ -142,7 +142,7 @@
                         </script>
                     </div>
                     <div id="tingkatkesulitan" class="form-group">
-                        <label for="level" >Tingkat Kesulitan</label><br>
+                        <label for="level">Tingkat Kesulitan</label><br>
                         <input type="checkbox" class="rounded form-control" name="levelsoal" id="levelsoal" data-style="slow" data-on="Mudah <i class='ik ik-chevrons-right'></i>" data-off="<i class='ik ik-chevrons-left'></i> Sulit" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" checked>
                         <br><small>*Usahakan untuk membuat soal yang mudah terlebih dahulu lalu sulit<br>misal jika terdapat 10 soal, buat 7 pertama sebagai mudah lalu 3 terakhir sulit.</small>
                     </div>
@@ -186,43 +186,33 @@
                 <h5>Daftar Pertanyaan</h5>
             </div>
             <div class="card-body">
-                <div id="advanced_table_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
 
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <table id="advanced_table" class="table dataTable no-footer mx-auto dtr-inline collapsed" role="grid" style="width: 95%;" aria-describedby="advanced_table_info">
-                                <thead>
-                                    <th class="nosort sorting_disabled" rowspan="1" colspan="1" aria-label="Avatar">Pertanyaan</th>
-                                    <th class="sorting" tabindex="0" aria-controls="advanced_table" rowspan="1" colspan="1" style="width: 18%;" aria-label="Name: activate to sort column ascending">A</th>
-                                    <th class="sorting" tabindex="0" aria-controls="advanced_table" rowspan="1" colspan="1" style="width: 18%;" aria-label="Position: activate to sort column ascending">B</th>
-                                    <th class="sorting" tabindex="0" aria-controls="advanced_table" rowspan="1" colspan="1" style="width: 18%;" aria-label="Office: activate to sort column ascending">C</th>
-                                    <th class="sorting" tabindex="0" aria-controls="advanced_table" rowspan="1" colspan="1" style="width: 18%;" aria-label="Age: activate to sort column ascending">D</th>
-                                    <th class="sorting" tabindex="0" aria-controls="advanced_table" rowspan="1" colspan="1" style="width: 18%;" aria-label="Age: activate to sort column ascending">Aksi</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach($question->child as $q)
-                                    <tr role="row" class="odd">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Pertanyaan</th>
+                            <th scope="col">A</th>
+                            <th scope="col">B</th>
+                            <th scope="col">C</th>
+                            <th scope="col">D</th>
+                            <th scope="col">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($question->child as $q)
+                        <tr role="row" class="odd">
 
-                                        <td>{!! $q->question_text !!}</td>
-                                        <td @if($q->answer == "A") class="bg-success" @endif >{{$q->a}}</td>
-                                        <td @if($q->answer == "B") class="bg-success" @endif >{{$q->b}}</td>
-                                        <td @if($q->answer == "C") class="bg-success" @endif >{{$q->c}}</td>
-                                        <td @if($q->answer == "D") class="bg-success" @endif >{{$q->d}}</td>
-                                        <td><a type="button" role="button" href="{{route('deletequestiondetil',$q->id)}}" class="btn btn-outline-danger"><i class="ik ik-trash"></i>Hapus</a></td>
-                                    </tr>
-                                    @endforeach
+                            <td>{!! $q->question_text !!}</td>
+                            <td @if($q->answer == "A") class="bg-success" @endif >{{$q->a}}</td>
+                            <td @if($q->answer == "B") class="bg-success" @endif >{{$q->b}}</td>
+                            <td @if($q->answer == "C") class="bg-success" @endif >{{$q->c}}</td>
+                            <td @if($q->answer == "D") class="bg-success" @endif >{{$q->d}}</td>
+                            <td><a type="button" role="button" href="{{route('deletequestiondetil',$q->id)}}" class="btn btn-outline-danger"><i class="ik ik-trash"></i>Hapus</a></td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
 
-
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="row">
-
-
-                    </div>
-                </div>
             </div>
         </div>
     </div>
