@@ -19,7 +19,7 @@
                     <a class="dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img class="avatar" src="{{url('dashboardasset/img/user.png')}}" alt=""></a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                         <a class="dropdown-item" href="{{route('viewuser')}}"><i class="ik ik-user dropdown-icon"></i> Akun</a>
-                        <a class="dropdown-item" href="{{ route('logout-custom') }}" onclick="event.preventDefault();
+                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();">
                             <i class="ik ik-power dropdown-icon"></i> {{ __('Keluar') }}
                         </a>
