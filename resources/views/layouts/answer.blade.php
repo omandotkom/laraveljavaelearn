@@ -233,7 +233,7 @@
                 $('#inputfilename').prop('disabled', true);
                 $('#inputbutton').prop('disabled', true);
                 $("#loading").prop("hidden", false);
-                var url = "{{route('compileandrun')}}";
+                var url = "https://javalearn.publikasi.tech/api/code/compile";
                 const options = {
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
