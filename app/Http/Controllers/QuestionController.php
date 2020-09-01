@@ -31,8 +31,8 @@ class QuestionController extends Controller
 
         $d = QuestionDetail::findOrFail($id);
         $d->delete();
-        return redirect()->route('viewquestion',$d->question_id);
-        //   return back();
+        //return redirect()->route('viewquestion',$d->question_id);
+           return back();
     }
     public function store(Request $request)
     {
