@@ -14,7 +14,7 @@ class ModifyUsersTableAddNIM extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('nim')->default(0);
+            $table->string('nim',20)->default(0);
         });
     }
 
