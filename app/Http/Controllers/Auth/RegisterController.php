@@ -73,7 +73,7 @@ class RegisterController extends Controller
 
         $user->role = "admin";
         }
-    $user->save();
+         $user->save();
         return $user;
         /*$user = new User();
         $user->name =
