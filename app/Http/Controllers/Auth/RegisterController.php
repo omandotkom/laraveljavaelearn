@@ -7,6 +7,7 @@ use App\Providers\RouteServiceProvider;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
@@ -64,10 +65,22 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $user = new User();
+        $user->name = $data["name"];
+        $user->email = $data["email"];
+        $user->password = Hash::make($data['password']);
+        if (array_key_exists('role',$data)){
+
+        $user->role = "admin";
+        }
+    $user->save();
+        return $user;
+        /*$user = new User();
+        $user->name =
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-        ]);
+        ]);*/
     }
 }

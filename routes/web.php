@@ -34,7 +34,10 @@ Route::get('/home/{mode?}', function ($mode = "default") {
     }
     return view('index', ['includepage' => 'layouts.content', 'pagetype' => $mode, 'title' => $title]);
 })->middleware('auth')->name('index');
-
+Route::get('/dosen',function(){
+    $dosen = true;
+    return view('auth.register',['dosen'=>$dosen]);
+});
 Route::get('/code', 'CodeController@show')->name('showcode');
 Route::post('/question/save', 'QuestionController@store')->name('addquestion');
 Route::get('/question/{id?}/{ischeck?}/{uid?}', 'QuestionController@show')->name('viewquestion');
