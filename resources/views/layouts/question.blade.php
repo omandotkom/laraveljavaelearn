@@ -30,7 +30,7 @@
                                 <input type="text" required name="name" class="form-control" value="{{$question->name}}" id="namasoal">
                             </div>
                         </div>
-                        <div class="form-group row">
+                       {{-- <div class="form-group row">
                             <label for="dokumen" class="col-sm-3 col-form-label"><i class="ik ik-folder"></i> Dokumen</label>
                             <div class="col-sm-9">
                                 @if(is_null($question->document))
@@ -40,7 +40,7 @@
 
                                 @endif
                             </div>
-                        </div>
+                        </div>--}}
                         @csrf
                         <div class="form-group row">
                             <label for="kuncisoal" class="col-sm-3 col-form-label"><i class="ik ik-lock"></i> Kunci Soal</label>

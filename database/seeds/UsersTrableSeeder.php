@@ -35,6 +35,7 @@ class UsersTrableSeeder extends Seeder
         DB::table('users')->insert([
             'name' => 'Oman 4',
             'email' => 'c@gmail.com',
+        'role' =>'superadmin',
             'password' => Hash::make('system3298'),
         ]);
         DB::table('users')->insert([

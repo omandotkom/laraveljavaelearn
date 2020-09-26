@@ -28,7 +28,7 @@
                             <input type="text" name="namasoal" class="form-control" readonly value="{{$question->name}} ({{$question->child->count()}} Pertanyaan)" id="namasoal">
                         </div>
                     </div>
-                    <div class="form-group row">
+                    {{--<div class="form-group row">
                         <label for="document" class="col-sm-3 col-form-label"><i class="ik ik-folder"></i> Dokumen</label>
                         <div class="col-sm-9">
                             @if(is_null($question->document))
@@ -37,7 +37,7 @@
                             <a href="{{asset('storage/'.$question->document)}}" class="badge badge-light">Lihat Dokumen</a>
                             @endif
                         </div>
-                    </div>
+                    </div>--}}
 
                 </div>
             </div>

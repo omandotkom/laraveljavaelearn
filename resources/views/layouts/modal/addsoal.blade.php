@@ -18,10 +18,7 @@
                         <label for="exampleInputEmail1">Nama Soal</label>
                         <input required type="text" name="name" class="form-control" id="exampleInputEmail1" placeholder="Soal Pemrograman Java 1">
                     </div>
-                    <div class="form-group">
-                        <label for="dokumen">Dokumen</label>
-                        <input required type="file" name="dokumen" class="form-control" id="dokumen" >
-                    </div>
+                   
                     
                     <div class="form-group">
                         <label for="exampleInputPassword1">Password Soal</label>

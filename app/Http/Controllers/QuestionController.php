@@ -51,11 +51,11 @@ class QuestionController extends Controller
         $question->start = $request->start;
         $question->end = $request->end;
         $question->duration_minute = $request->minute_duration;
-        if ($request->hasFile('dokumen')) {
+        /*if ($request->hasFile('dokumen')) {
             $document = $request->file('dokumen')->store('document/' . Auth::user()->id, 'public');
             $question->document = $document;
             //$archive->cv_path = $cv_path;
-        }
+        }*/
         $question->save();
         return redirect()->route('viewquestion', $question->id);
     }
