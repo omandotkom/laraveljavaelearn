@@ -11,7 +11,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex">
-                            <h4 class="card-title">Praktik Java</h4>
+                            <h4 class="card-title">Latihan Koding</h4>
                         </div>
                         <div class="d-flex align-items-center flex-row mt-30">
                             <img src="{{url('dashboardasset/img/code.png')}}" class="rounded img-fluid mx-auto d-block" alt="...">
