@@ -13,6 +13,7 @@ use Illuminate\Support\Carbon;
 
 class QuestionController extends Controller
 {
+    
     public function update(Request $request)
     {
 
@@ -37,6 +38,12 @@ class QuestionController extends Controller
     public function store(Request $request)
     {
 
+        $QuestionLimit= 1;
+        $count = Question::select('id')->where('user_id',Auth::user()->id)->count();
+        if ($count>=$QuestionLimit){
+            $message = "Anda hanya bisa membuat 1 soal saja.";
+            return view('index', ['title' => 'Akses Ditolak', 'includepage' => 'layouts.erroraccess', 'message' => $message, 'link' => route('viewallquestions')]);
+        }
         $question = new Question();
         $question->user_id = Auth::user()->id;
         $question->name = $request->name;
