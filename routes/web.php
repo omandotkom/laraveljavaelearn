@@ -63,8 +63,5 @@ Route::post('/user/password/save', 'UserController@changepassword')->name('chang
 Route::get('/about', function () {
     return view('index', ['includepage' => 'layouts.about', 'title' => 'Tentang Saya']);
 })->name("about");
-Route::get('/history', function () {
-    return view('index', ['includepage' => 'layouts.history', 'title' => 'Sejarah Java']);
-})->name("history");
 
 Route::post('/logout/custom','Auth\LoginController@logout')->name("logoutcustom");
