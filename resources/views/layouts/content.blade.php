@@ -73,7 +73,7 @@
         </div>
     </div>
 </div>
-@else
+@elseif (Auth::user()->role == "admin")
 <div class="main-content">
     <div class="container-fluid">
         <div class="row">
@@ -123,4 +123,31 @@
         </div>
     </div>
 </div>
+@elseif(Auth::user()->role == "superadmin")
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+        @include('layouts.modal.addakun')
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex">
+                            <h4 class="card-title">Akun Instruktur</h4>
+                        </div>
+                        <div class="d-flex align-items-center flex-row mt-30">
+                            <img src="{{url('dashboardasset/img/list.png')}}" class="rounded img-fluid mx-auto d-block" alt="...">
+                        </div>
+                        <div class="d-flex align-items-center flex-row mt-30">
+                            <a type="button" data-toggle="modal" data-target="#addakun" role="button" href="#" class="btn mx-auto btn-outline-info"></i>Buat Akun</a>
+                            <a type="button" data-toggle="modal" data-target="#addakun" role="button" href="{{route('showinstructor')}}" class="btn mx-auto btn-outline-info"></i>Lihat Akun</a>
+                       
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+        </div>
+    </div>
+</div>
+
 @endif

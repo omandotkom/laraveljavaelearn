@@ -21,6 +21,20 @@ class UserController extends Controller
         $user->save();
         return back()->with('success','Berhasil memperbarui informasi profile.');
     }
+    public function saveInstructor(Request $request){
+        $user = new User();
+        $user->name  = $request->name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->role = "admin";
+        $user->save();
+       return redirect()->route('showinstructor');
+    }
+    public function showInstructor(){
+        $user = User::where('role','admin')->get();
+        return view('index', ['title' => 'Seluruh Instruktur', 'includepage' => 'layouts.instructors','users'=>$user]);
+            
+    }
     public function changepassword(Request $request){
         $validator = Validator::make($request->all(), [
             'password' => 'required|confirmed|min:6',

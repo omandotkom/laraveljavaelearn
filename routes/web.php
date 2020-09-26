@@ -65,3 +65,6 @@ Route::get('/about', function () {
 })->name("about");
 
 Route::post('/logout/custom','Auth\LoginController@logout')->name("logoutcustom");
+
+Route::post('/instructor/create','UserController@saveInstructor')->name('saveinstructor');
+Route::get('/instructor','UserController@showInstructor')->name('showinstructor');
