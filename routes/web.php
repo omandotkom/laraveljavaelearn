@@ -76,3 +76,6 @@ Route::get('/instructor','UserController@showInstructor')->name('showinstructor'
 
 Route::post('/class','ClassController@store')->name('storeclass');
 Route::get('/class','ClassController@index')->name('indexclass');
+
+Route::get('/materials','MaterialController@index')->name('indexmaterial');
+Route::post('/materials','MaterialController@store')->name('storematerial');
