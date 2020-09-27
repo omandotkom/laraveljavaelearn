@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Dosen\DosenParams;
+use App\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,9 +14,13 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+use Illuminate\Support\Facades\Auth;
 Route::get('/', function () {
-    return view('index', ['includepage' => 'layouts.content', 'pagetype' => 'default']);
+    $instructors = null;
+    if (Auth::user()->role == "superadmin"){
+        $instructors = User::select('id','name')->where('role','admin')->get();
+    }
+    return view('index', ['includepage' => 'layouts.content', 'pagetype' => 'default','instructors' => $instructors]);
 })->middleware('auth')->name('index2');
 Route::get('/home/{mode?}', function ($mode = "default") {
     switch ($mode) {
@@ -68,3 +73,6 @@ Route::post('/logout/custom','Auth\LoginController@logout')->name("logoutcustom"
 
 Route::post('/instructor/create','UserController@saveInstructor')->name('saveinstructor');
 Route::get('/instructor','UserController@showInstructor')->name('showinstructor');
+
+Route::post('/class','ClassController@store')->name('storeclass');
+Route::get('/class','ClassController@index')->name('indexclass');

@@ -56,7 +56,7 @@
         <div class="page-wrap">
             <div class="app-sidebar colored">
                 <div class="sidebar-header">
-                    <a class="header-brand" href="{{route('index')}}">
+                    <a class="header-brand" href="{{route('index2')}}">
 
                         <span class="text">JavaLearn</span>
                     </a>
