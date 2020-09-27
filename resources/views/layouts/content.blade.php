@@ -5,8 +5,6 @@
     <div class="container-fluid">
         <div class="row">
 
-            @switch($pagetype)
-            @case('practice')
             <div class="col-md-4">
                 <div class="card">
                     <div class="card-body">
@@ -24,8 +22,6 @@
                     </div>
                 </div>
             </div>
-            @break
-            @case('view')
             <div class="col-md-4">
                 <div class="card">
                     <div class="card-body">
@@ -46,8 +42,6 @@
                 </div>
             </div>
 
-            @break
-            @case('score')
             <div class="col-md-4">
                 <div class="card">
                     <div class="card-body">
@@ -65,11 +59,7 @@
                     </div>
                 </div>
             </div>
-            @break
-            @default
-            @include('layouts.defaultcontent')
-            @break
-            @endswitch
+            
         </div>
     </div>
 </div>
@@ -78,8 +68,6 @@
     <div class="container-fluid">
         <div class="row">
 
-            @switch($pagetype)
-            @case('create')
             <div class="col-md-4">
                 <div class="card">
                     <div class="card-body">
@@ -112,8 +100,6 @@
                     </div>
                 </div>
             </div>
-            @break
-            @case('view')
             <div class="col-md-4">
                 <div class="card">
                     <div class="card-body">
@@ -129,13 +115,7 @@
                     </div>
                 </div>
             </div>
-            @break
-            @default
-
-            @include('layouts.defaultcontent')
-            @break
-            @endswitch
-
+            
         </div>
     </div>
 </div>
