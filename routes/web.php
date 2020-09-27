@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 use Illuminate\Support\Facades\Auth;
+Route::get('/daftar','Auth\RegisterController@index')->name('daftar')->middleware('guest');
 Route::get('/', function () {
     $instructors = null;
     if (Auth::user()->role == "superadmin"){

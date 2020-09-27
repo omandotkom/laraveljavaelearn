@@ -9,7 +9,8 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
-
+use App\UserClass;
+use App\Kelas;
 class RegisterController extends Controller
 {
     /*
@@ -69,11 +70,18 @@ class RegisterController extends Controller
         $user->name = $data["name"];
         $user->email = $data["email"];
         $user->password = Hash::make($data['password']);
-        if (array_key_exists('role',$data)){
+        if (array_key_exists('role', $data)) {
 
-        $user->role = "admin";
+            $user->role = "admin";
+        }else{
+            $user->role = "student";
+            
         }
-         $user->save();
+        $user->save();
+        $userclass=  new UserClass;
+        $userclass->user_id = $user->id;
+        $userclass->class_id = $data["classid"];
+        $userclass->save();
         return $user;
         /*$user = new User();
         $user->name =
@@ -82,5 +90,9 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);*/
+    }
+    public function index(){
+        $classes = Kelas::all();
+        return view('auth.register',['classes'=>$classes]);
     }
 }
