@@ -13,6 +13,9 @@
                                 <tr>
                                     <th>Kelas</th>
                                     <th>Instruktur</th>
+                                    @if(Auth::user()->role == "admin")
+                                    <th>Ubah Aturan</th>
+                                    @endif
                                 </tr>
                             </thead>
                             <tbody>
@@ -20,6 +23,9 @@
                                 <tr>
                                     <td>{{$class->name}}</td>
                                     <td>{{$class->user->name}}</td>
+                                    @if(Auth::user()->role == "admin")
+                                    <td><a class="btn btn-primary btn-sm" href="{{route('ruleindex',$class->id)}}" role="button">Ubah</a></td>
+                                    @endif
                                 </tr>
                                 @endforeach
                             </tbody>

@@ -131,6 +131,21 @@
                     </div>
                 </div>
             </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex">
+                            <h4 class="card-title">Manajemen Kelas</h4>
+                        </div>
+                        <div class="d-flex align-items-center flex-row mt-30">
+                            <img src="{{url('dashboardasset/img/list.png')}}" class="rounded img-fluid mx-auto d-block" alt="...">
+                        </div>
+                        <div class="d-flex align-items-center flex-row mt-30">
+                            <a type="button" role="button" href="{{route('indexclass')}}" class="btn mx-auto btn-outline-info"></i>Lihat Kelas</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

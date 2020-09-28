@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Kelas;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ClassController extends Controller
 {
@@ -14,9 +15,26 @@ class ClassController extends Controller
      */
     public function index()
     {
+        if (Auth::user()->role == "superadmin")
         $class = Kelas::all();
+        elseif (Auth::user()->role =="admin")
+        $class = Kelas::where('user_id',Auth::user()->id)->get();
+        else
+        $class = null;
+
+
         return view('index',['title'=>'Kelas','includepage'=>'layouts.class','content'=>'profile','classes'=>$class]);
    
+    }
+    public function storerule(Request $request,$id){
+        $class = Kelas::findOrFail($id);
+        $class->rule = $request->rule;
+        $class->save();
+        return back();
+    }
+    public function ruleindex($id){
+        $class = Kelas::findOrFail($id);
+        return view('index',['title'=>'Kelas','includepage'=>'layouts.rule','content'=>'rule','class'=>$class]);
     }
 
     /**

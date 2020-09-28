@@ -82,3 +82,6 @@ Route::get('/materials','MaterialController@index')->name('indexmaterial');
 Route::post('/materials','MaterialController@store')->name('storematerial');
 
 Route::get('/students','UserClassController@index')->name('userclassindex');
+
+Route::get('/class/{id}/rule','ClassController@ruleindex')->name('ruleindex');
+Route::post('/class/{id}/rule','ClassController@storerule')->name('storerule');
