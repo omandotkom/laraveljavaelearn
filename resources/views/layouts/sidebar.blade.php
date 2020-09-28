@@ -79,9 +79,9 @@
             @endif
 
             <div class="nav-lavel">Akun</div>
-            <div class="nav-item">
+            {{--<div class="nav-item">
                 <a href="{{route('viewuser')}}"><i class="ik ik-unlock"></i><span>Ubah Sandi</span></a>
-            </div>
+            </div>--}}
             <div class="nav-item">
                 <a onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();" href="{{ route('logout') }}"><i class="ik ik-log-out"></i><span>Keluar</span></a>
