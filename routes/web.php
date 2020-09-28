@@ -80,3 +80,5 @@ Route::get('/class','ClassController@index')->name('indexclass');
 
 Route::get('/materials','MaterialController@index')->name('indexmaterial');
 Route::post('/materials','MaterialController@store')->name('storematerial');
+
+Route::get('/students','UserClassController@index')->name('userclassindex');

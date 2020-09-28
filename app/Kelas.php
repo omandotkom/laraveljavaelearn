@@ -11,4 +11,7 @@ class Kelas extends Model
     protected function user(){
         return $this->hasOne('App\User','id','user_id');
     }
+    public function userclass(){
+        return $this->hasMany('App\UserClass','class_id','id');
+    }
 }
