@@ -10,7 +10,7 @@
                 <a href="{{route('index',['mode'=>'practice'])}}"><i class="ik ik-code"></i><span>Praktik</span></a>
                 @endif
             </div>
-
+{{--
             <div class="nav-item">
                 <!--
                 //MAKING IT AS A COMMENT SINCE 04 JUN 2020    
@@ -24,7 +24,7 @@
                 @elseif(Auth::user()->role == "admin")
                 <a href="{{route('index',['mode'=>'create'])}}"><i class="ik ik-plus"></i><span>Buat Soal</span></a>
                 @endif
-            </div>
+            </div>--}}
             <div class="nav-item">
                 @if(Auth::user()->role =="student")
                 <a href="{{route('index',['mode'=>'score'])}}"><i class="ik ik-check-square"></i><span>Nilai</span></a>
