@@ -18,7 +18,7 @@
                 <form class="forms-sample" method="post" action="{{route('storerule',$class->id)}}">
                     <div class="form-group">
                         <label for="exampleInputUsername1">Tulis aturan secara jelas dan lengkap</label>
-                        <textarea id="summernote" name="rule"></textarea>
+                        <textarea id="summernote" required name="rule"></textarea>
                         <script>
                             $(document).ready(function() {
                                 $('#summernote').summernote({
