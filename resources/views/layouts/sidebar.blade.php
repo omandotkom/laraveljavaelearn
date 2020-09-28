@@ -11,13 +11,6 @@
                 @endif
             </div>
 
-            @if (Auth::user()->role != "superadmin")
-             
-            <div class="nav-lavel">Soal/Quiz</div>
-            <div class="nav-item">
-                <a href="{{route('index',['mode'=>'view'])}}"><i class="ik ik-book"></i><span>Lihat Soal</span></a>
-            </div>
-            @endif
             <div class="nav-item">
                 <!--
                 //MAKING IT AS A COMMENT SINCE 04 JUN 2020    
@@ -38,7 +31,7 @@
                 @endif
             </div>
             @if(Auth::user()->role == "admin")
-            <div class="nav-lavel">Laporan Pengerjaan</div>
+            <div class="nav-lavel">Report Progress Siswa</div>
             <div id="laporansidebar"></div>
             <script>
                 $(document).ready(function() {
