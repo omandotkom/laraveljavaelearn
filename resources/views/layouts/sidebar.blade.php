@@ -3,13 +3,9 @@
         <nav id="main-menu-navigation" class="navigation-main">
             <div class="nav-lavel">Navigation</div>
             <div class="nav-item active">
-                <a href="{{route('index')}}"><i class="ik ik-home"></i><span>Dashboard</span></a>
+                <a href="{{route('index2')}}"><i class="ik ik-home"></i><span>Dashboard</span></a>
             </div>
-            <div class="nav-item">
-                @if(Auth::user()->role =="student")
-                <a href="{{route('index',['mode'=>'practice'])}}"><i class="ik ik-code"></i><span>Praktik</span></a>
-                @endif
-            </div>
+          
 {{--
             <div class="nav-item">
                 <!--
@@ -25,11 +21,7 @@
                 <a href="{{route('index',['mode'=>'create'])}}"><i class="ik ik-plus"></i><span>Buat Soal</span></a>
                 @endif
             </div>--}}
-            <div class="nav-item">
-                @if(Auth::user()->role =="student")
-                <a href="{{route('index',['mode'=>'score'])}}"><i class="ik ik-check-square"></i><span>Nilai</span></a>
-                @endif
-            </div>
+            
             @if(Auth::user()->role == "admin")
             <div class="nav-lavel">Report Progress Siswa</div>
             <div id="laporansidebar"></div>
