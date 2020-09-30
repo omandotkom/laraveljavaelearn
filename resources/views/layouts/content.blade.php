@@ -34,7 +34,7 @@
 
                         <div class="d-flex align-items-center flex-row mt-30">
                             <div class="btn-group mx-auto" role="group" aria-label="Basic example">
-                                <a type="button" data-toggle="modal" data-target="#getsoal" class="btn btn-info mr-1 btn-sm text-white" role="button"> <i class="ik ik-plus"></i> Kode Soal</a>
+                                {{--<a type="button" data-toggle="modal" data-target="#getsoal" class="btn btn-info mr-1 btn-sm text-white" role="button"> <i class="ik ik-plus"></i> Kode Soal</a> --}}
                                 <a type="button" href="{{route('viewallquestions')}}" class="btn btn-info ml-1 btn-sm" role="button"> <i class="ik ik-book"></i> Lihat Soal</a>
                             </div>
                         </div>
@@ -46,7 +46,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex">
-                            <h4 class="card-title">Nilai</h4>
+                            <h4 class="card-title">Evaluasi Nilai</h4>
                         </div>
                         <div class="d-flex align-items-center flex-row mt-30">
                             <img src="{{url('dashboardasset/img/exam.png')}}" class="rounded img-fluid mx-auto d-block" alt="...">
@@ -70,7 +70,9 @@
                             <img src="{{url('dashboardasset/img/list.png')}}" class="rounded img-fluid mx-auto d-block" alt="...">
                         </div>
                         <div class="d-flex align-items-center flex-row mt-30">
-                            <a type="button" role="button" href="{{route('indexclass')}}" class="btn mx-auto btn-outline-info"></i>Lihat Kelas</a>
+                            @if (isset($userclass) && $userclass != null)
+                            <a type="button" role="button" href="{{route('ruleindex',$userclass->class_id)}}" class="btn mx-auto btn-outline-info"></i>Lihat Kelas</a>
+                            @endif
                         </div>
                     </div>
                 </div>

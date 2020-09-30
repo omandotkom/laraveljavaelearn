@@ -10,6 +10,7 @@ use App\QuestionDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Carbon;
+use App\UserClass;
 
 class QuestionController extends Controller
 {
@@ -38,7 +39,7 @@ class QuestionController extends Controller
     public function store(Request $request)
     {
 
-        $QuestionLimit= 1;
+        $QuestionLimit= 10;
         $count = Question::select('id')->where('user_id',Auth::user()->id)->count();
         if ($count>=$QuestionLimit){
             $message = "Anda hanya bisa membuat 1 soal saja.";
@@ -51,6 +52,7 @@ class QuestionController extends Controller
         $question->start = $request->start;
         $question->end = $request->end;
         $question->duration_minute = $request->minute_duration;
+        $question->class_id = $request->classid;
         /*if ($request->hasFile('dokumen')) {
             $document = $request->file('dokumen')->store('document/' . Auth::user()->id, 'public');
             $question->document = $document;
@@ -170,7 +172,12 @@ class QuestionController extends Controller
         if (Auth::user()->role == "admin") {
             $question = Question::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->simplePaginate(20);
         } else {
-            $question = Question::where('status', 'open')->orderBy('created_at', 'desc')->simplePaginate(20);
+            $classid = UserClass::where('user_id',Auth::user()->id)->first();
+            if ($classid === null){
+                return abort(403,"Anda belum memilih kelas!");
+            }
+            $question = Question::where('status','open')->where('class_id',$classid->class_id)->orderBy('created_at','desc')->simplePaginate(20);
+            //$question = Question::where('status', 'open')->orderBy('created_at', 'desc')->simplePaginate(20);
         }
         return view('index', ['title' => 'Daftar Soal', 'includepage' => 'layouts.questions', 'content' => 'questionlist', 'questions' => $question]);
     }

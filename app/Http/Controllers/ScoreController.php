@@ -26,6 +26,6 @@ class ScoreController extends Controller
     public function view()
     {
         $scores = Score::where('user_id', Auth::user()->id)->get();
-        return view('index', ['title' => 'Nilai', 'includepage' => 'layouts.scores', 'scores' => $scores]);
+        return view('index', ['title' => 'Evaluasi Nilai', 'includepage' => 'layouts.scores', 'scores' => $scores]);
     }
 }

@@ -17,6 +17,7 @@ class Questions extends Migration
             $table->id();
             $table->string('name',50);
             $table->integer('user_id');
+            $table->integer('class_id')->nullable();
             $table->string('key')->default('NO_KEY');
             $table->timestamps();
         });

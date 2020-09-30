@@ -65,7 +65,7 @@
                                 <td>{{$q->owner->name}}</td>
                                 <td>{{$q->start}} sampai {{$q->end}}</td>
                                 <td>{{$q->duration_minute}} Menit</td>
-                                @if(Auth::user()->role === "admin")<td><a class="btn btn-outline-info" href="{{route('viewanswerer',$q->id)}}" role="button">Lihat Rincian</a></td>
+                                @if(Auth::user()->role === "admin")<td><a class="btn btn-outline-info" href="{{route('viewquestion',$q->id)}}" role="button">Rincian</a><a class="btn btn-outline-info" href="{{route('viewanswerer',$q->id)}}" role="button">Siswa</a></td>
                                 <td> <input type="checkbox" id="status{{$q->id}}" onchange="ubahstatus('{{$q->id}}','status{{$q->id}}');" class="rounded" data-style="slow" data-on="<i class='ik ik-check'></i>Terbuka" data-off="<i class='ik ik-x'></i>Ditutup" data-onstyle="success" data-offstyle="secondary" data-toggle="toggle" @if($q->status =="open") checked @endif  > </td> @endif
                                 <td>{{$q->created_at}}</td>
                             </tr>

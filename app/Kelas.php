@@ -14,4 +14,7 @@ class Kelas extends Model
     public function userclass(){
         return $this->hasMany('App\UserClass','class_id','id');
     }
+    public function questions(){
+        return $this->hasMany('App\Question','class_id','id');
+    }
 }

@@ -15,6 +15,18 @@
                         <input required type="text" class="form-control" readonly id="exampleInputUsername1" value="{{Auth::user()->name}}">
                     </div>
                     <div class="form-group">
+                        <label for="kelas">Kelas</label>
+                        <select name="classid" required class="custom-select">
+                        @if(isset($classes) && $classes != null)
+                        @foreach($classes as $c)
+                        
+                            <option value="{{$c->id}}">{{$c->name}}</option>
+                        
+                        @endforeach
+                        @endif
+                        </select>
+                    </div>
+                    <div class="form-group">
                         <label for="exampleInputEmail1">Nama Soal</label>
                         <input required type="text" name="name" class="form-control" id="exampleInputEmail1" placeholder="Soal Pemrograman Java 1">
                     </div>

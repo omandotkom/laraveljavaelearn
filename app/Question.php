@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Question extends Model
 {
     protected $table = "questions";
-    protected $fillable = ['name','user_id','key','status'];
+    protected $fillable = ['name','user_id','key','status','class_id'];
     public function child(){
         return $this->hasMany('App\QuestionDetail','question_id');
     }

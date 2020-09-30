@@ -1,9 +1,10 @@
 <?php
 
 use App\Http\Controllers\Dosen\DosenParams;
+use App\Kelas;
 use App\User;
 use Illuminate\Support\Facades\Route;
-
+use App\UserClass;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,10 +19,17 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/daftar','Auth\RegisterController@index')->name('daftar')->middleware('guest');
 Route::get('/', function () {
     $instructors = null;
+    $classes = null;
+    $userclass = null;
     if (Auth::user()->role == "superadmin"){
         $instructors = User::select('id','name')->where('role','admin')->get();
+    }else if (Auth::user()->role == "admin"){
+        $classes = Kelas::where('user_id',Auth::user()->id)->get();
+    }else if (Auth::user()->role == "student"){
+        $userclass = UserClass::select("class_id")->where('user_id',Auth::user()->id)->first();
+        
     }
-    return view('index', ['includepage' => 'layouts.content', 'pagetype' => 'default','instructors' => $instructors]);
+    return view('index', ['includepage' => 'layouts.content', 'pagetype' => 'default','instructors' => $instructors,'classes'=>$classes,'userclass'=>$userclass]);
 })->middleware('auth')->name('index2');
 Route::get('/home/{mode?}', function ($mode = "default") {
     switch ($mode) {

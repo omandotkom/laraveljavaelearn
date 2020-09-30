@@ -14,11 +14,13 @@
                 <h3>Peraturan Kelas</h3>
 
             </div>
+            @if(Auth::user()->role != "student")
             <div class="card-body">
                 <form class="forms-sample" method="post" action="{{route('storerule',$class->id)}}">
                     <div class="form-group">
                         <label for="exampleInputUsername1">Tulis aturan secara jelas dan lengkap</label>
                         <textarea id="summernote" required name="rule"></textarea>
+                        
                         <script>
                             $(document).ready(function() {
                                 $('#summernote').summernote({
@@ -48,6 +50,13 @@
                     </div>
                 </form>
             </div>
+        @else
+        <div class="card-body">
+                {!! $class->rule  !!}
+            </div>
+
+            @endif
+        
         </div>
 
     </div>
