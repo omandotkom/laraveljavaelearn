@@ -1,4 +1,6 @@
+@if(Auth::user()->role == "admin")
 @include('layouts.modal.addmaterials')
+@endif
 <div class="main-content">
     <div class="container-fluid">
         <div class="col-md-12">

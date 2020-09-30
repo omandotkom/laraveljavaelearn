@@ -6,7 +6,7 @@ use App\Kelas;
 use App\Material;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use App\UserClass;
 class MaterialController extends Controller
 {
     /**
@@ -21,7 +21,11 @@ class MaterialController extends Controller
         if (Auth::user()->role == "admin") {
             $materials = Material::where('user_id', Auth::user()->id)->get();
             $classes = Kelas::where('user_id',Auth::user()->id)->get();
-        }
+        }elseif(Auth::user()->role == "student")
+      { 
+        $class = UserClass::where('user_id',Auth::user()->id)->first();
+        $materials = Material::where('class_id',$class->class_id)->get();
+    }
     
         return view('index',['title'=>'Materi','includepage'=>'layouts.materials','content'=>'materials','materials'=>$materials,'classes'=> $classes]);
    
