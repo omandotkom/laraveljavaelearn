@@ -19,7 +19,7 @@
         </div>
 
         @endif
-
+        @if(!isset($viewmode))
         <div class="card">
             <ul class="nav nav-pills custom-pills" id="pills-tab" role="tablist">
                 <li class="nav-item">
@@ -36,31 +36,45 @@
                             @csrf
                             <div class="form-group">
                                 <label for="example-name">Nama Lengkap</label>
-                                <input type="text" placeholder="Johnathan Doe" value="{{Auth::user()->name}}" class="form-control" name="name" id="example-name">
+                                <input required type="text" placeholder="Johnathan Doe" value="{{Auth::user()->name}}" class="form-control" name="name" id="example-name">
                             </div>
                             <div class="form-group">
                                 <label for="example-email">Email</label>
-                                <input type="email" placeholder="johnathan@admin.com" value="{{Auth::user()->email}}" class="form-control" name="email" id="example-email">
+                                <input required type="email" placeholder="johnathan@admin.com" value="{{Auth::user()->email}}" class="form-control" name="email" id="example-email">
+                            </div>
+                            @if(Auth::user()->role == "admin")
+                            <div class="form-group">
+                                <label for="phone">Telepon</label>
+                                <input required type="text" placeholder="08139812...." value="{{Auth::user()->phone}}" class="form-control" name="phone">
                             </div>
                             <div class="form-group">
-                                <label for="example-password">@if(Auth::user()->role =="student")NIM @else NIDN @endif</label>
-                                <input type="text" class="form-control" value="{{Auth::user()->nim}}" name="nim" id="example-password">
+                                <label for="address">Alamat</label>
+                                <textarea required class="form-control" id="exampleFormControlTextarea1" name="address" rows="4">{{Auth::user()->address}}</textarea>
                             </div>
+                            <div class="form-group">
+                                <label for="address">Kota</label>
+                                <input required type="text" placeholder="Bekasi" value="{{Auth::user()->city}}" class="form-control" name="city">
+                            </div>
+                            <div class="form-group">
+                                <label for="birthdate">Tnnggal Lahir</label>
+                                <input required type="date" value="{{Auth::user()->birthdate}}" class="form-control" name="birthdate">
+                            </div>
+                            @endif
                             <button class="btn btn-success float-right m-3" type="submit"><i class="ik ik-user-check"></i>Simpan Perubahan</button>
                         </form>
                     </div>
                 </div>
                 <div class="tab-pane fade" id="changepassword" role="tabpanel" aria-labelledby="pills-profile-tab">
                     <div class="card-body">
-                    <form class="form-horizontal" method="post" action="{{route('changepassword')}}">
+                        <form class="form-horizontal" method="post" action="{{route('changepassword')}}">
                             @csrf
                             <div class="form-group">
                                 <label for="newpass">Password Baru</label>
-                                <input type="password"   class="form-control" name="password" id="newpass">
+                                <input type="password" class="form-control" name="password" id="newpass">
                             </div>
                             <div class="form-group">
                                 <label for="confirnewpass">Konfirmasi Password Baru</label>
-                                <input type="password" class="form-control"  name="password_confirmation" id="confirnewpass">
+                                <input type="password" class="form-control" name="password_confirmation" id="confirnewpass">
                             </div>
                             <button class="btn btn-success float-right m-3" type="submit"><i class="ik ik-lock"></i> Ubah Sandi</button>
                         </form>
@@ -68,6 +82,30 @@
                 </div>
             </div>
         </div>
+        @else
+        <div class="card">
+            <div class="tab-content" id="pills-tabContent">
+                <div class="tab-pane fade active show" id="settings" role="tabpanel" aria-labelledby="pills-setting-tab">
+                    <div class="card-body">
+                        <dl>
+                            <dt>Kelas</dt>
+                            <dd>{{$class->name}}</dd>
+                            <dt>Nama Instruktur</dt>
+                            <dd>{{$user->name}}</dd>
+                            <dt>Email</dt>
+                            <dd>{{$user->email}}</dd>
+                            <dt>Telepon</dt>
+                            <dd>{{$user->phone}}</dd>
+                            <dt>Alamat</dt>
+                            <dd>{{$user->address}}</dd>
+                            <dt>Tempat Tanggal Lahir</dt>
+                            <dd>{{$user->city}}, {{$user->birthdate}}</dd>
+                        </dl>
+                    </div>
+                </div>
 
+            </div>
+        </div>
+        @endif
     </div>
 </div>

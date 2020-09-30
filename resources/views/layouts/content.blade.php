@@ -71,7 +71,7 @@
                         </div>
                         <div class="d-flex align-items-center flex-row mt-30">
                             @if (isset($userclass) && $userclass != null)
-                            <a type="button" role="button" href="{{route('ruleindex',$userclass->class_id)}}" class="btn mx-auto btn-outline-info"></i>Lihat Kelas</a>
+                            <a type="button" role="button" href="{{route('ruleindex',$userclass->class_id)}}" class="btn mx-auto btn-info"></i>Lihat Kelas</a>
                             @endif
                         </div>
                     </div>
@@ -88,7 +88,25 @@
                         </div>
                         @include('layouts.modal.addsoal')
                         <div class="d-flex align-items-center flex-row mt-30">
-                            <a href="{{route('indexmaterial')}}" type="button" role="button" class="btn mx-auto btn-outline-primary"><i class="ik ik-plus"></i> Lihat / Tambah Materi</a>
+                            <a href="{{route('indexmaterial')}}" type="button" role="button" class="btn mx-auto btn-info"><i class="ik ik-plus"></i> Lihat / Tambah Materi</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex">
+                            <h4 class="card-title">Instruktur</h4>
+                        </div>
+                        <div class="d-flex align-items-center flex-row mt-30">
+                            <img src="{{url('dashboardasset/img/usersm.png')}}" class="rounded img-fluid mx-auto d-block" alt="...">
+                        </div>
+
+                        <div class="d-flex align-items-center flex-row mt-30">
+                            <div class="btn-group mx-auto" role="group" aria-label="Basic example">
+                                 <a type="button" href="{{route('viewinstructorprofile')}}" class="btn btn-info ml-1 btn-sm" role="button"> <i class="ik ik-user"></i> Lihat Instruktur</a>
+                            </div>
                         </div>
                     </div>
                 </div>

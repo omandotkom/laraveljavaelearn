@@ -93,3 +93,5 @@ Route::get('/students','UserClassController@index')->name('userclassindex');
 
 Route::get('/class/{id}/rule','ClassController@ruleindex')->name('ruleindex');
 Route::post('/class/{id}/rule','ClassController@storerule')->name('storerule');
+
+Route::get('/profile/instructor','UserController@viewdosen')->name('viewinstructorprofile');
