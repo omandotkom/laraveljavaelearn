@@ -10,7 +10,7 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>NIM</th>
+                                
                                 <th>Nama</th>
                                 <th>Pilihan Ganda</th>
                                 <th>Essay</th>
@@ -24,8 +24,8 @@
                             @endphp
                             @foreach($answerer as $a)
                             <tr>
-                                <th scope="row">{{$num}}</th>
-                                <td>{{$a->nim}}</td>
+                                <th scope="row">{{$a->answeruserid}}</th>
+                               {{-- <td>{{$a->nim}}</td>--}}
                                 <td>{{$a->name}}</td>
                                 @php
                                 $url = route('viewquestion', ['id' =>$questionid,'ischeck' => true,'uid'=> $a->answeruserid]);
