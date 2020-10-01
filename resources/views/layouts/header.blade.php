@@ -12,7 +12,11 @@
         <div class="d-flex justify-content-between float-right">
 
             <div class="top-menu d-flex align-items-center">
+                @if(Auth::user()->role == "admin") 
+                (Instruktur)
+                @else
                 ({{Auth::user()->role}})
+                @endif
                 {{Auth::user()->name}}
                 <button type="button" class="nav-link ml-10" id="apps_modal_btn" data-toggle="modal" data-target="#appsModal"><i class="ik ik-grid"></i></button>
                 <div class="dropdown">
