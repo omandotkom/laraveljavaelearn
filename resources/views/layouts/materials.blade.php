@@ -31,8 +31,10 @@
                     </div>
                 </div>
                 <div class="card-footer">
-                    <button type="button" data-toggle="modal" data-target="#addmaterials" class="btn btn-outline-primary float-right">Tambah Materi</button>
-                </div>
+                @if(Auth::user()->role != "student")    
+                <button type="button" data-toggle="modal" data-target="#addmaterials" class="btn btn-outline-primary float-right">Tambah Materi</button>
+            @endif    
+            </div>
             </div>
 
         </div>
