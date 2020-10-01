@@ -88,7 +88,7 @@
                         </div>
                         @include('layouts.modal.addsoal')
                         <div class="d-flex align-items-center flex-row mt-30">
-                            <a href="{{route('indexmaterial')}}" type="button" role="button" class="btn mx-auto btn-info"><i class="ik ik-plus"></i> Lihat / Tambah Materi</a>
+                            <a href="{{route('indexmaterial')}}" type="button" role="button" class="btn mx-auto btn-info"><i class="ik ik-plus"></i> Lihat Materi</a>
                         </div>
                     </div>
                 </div>
