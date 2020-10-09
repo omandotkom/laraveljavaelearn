@@ -23,7 +23,7 @@
                                                @foreach($scores as $score)
                                                <tr>
                                                    <td>{{$score->question_id}}</td>
-                                                   <td>{{$score->question->name}})</td>
+                                                   <td>{{$score->question->name}}</td>
 
                                                    @php
                                                    if ($score->score >= 70){
