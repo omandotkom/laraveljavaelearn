@@ -10,26 +10,21 @@
                                        <table class="table table-inverse">
                                            <thead>
                                                <tr>
-                                                   <th>Nomor</th>
                                                    <th>Kode Quiz</th>
-                                                   <th>Nama Soal</th>
-                                                   <th>PG (benar)</th>
-                                                   <th>Essay (benar)</th>
+                                                   <th>Nama Quiz</th>
                                                    <th>Nilai</th>
-                                                   <th>Waktu Penilaian</th>
                                                </tr>
                                            </thead>
+                                           
                                            <tbody>
                                                @php
-                                               $i=1;
+                                               $totalScore = 0;
                                                @endphp
                                                @foreach($scores as $score)
                                                <tr>
-                                                   <th scope="row">{{$i}}</th>
                                                    <td>{{$score->question_id}}</td>
-                                                   <td>{{$score->question->name}} ({{$score->question->owner->name}})</td>
-                                                   <td>{{$score->correct_multiplechoice}}</td>
-                                                   <td>{{$score->correct_essay}}</td>
+                                                   <td>{{$score->question->name}})</td>
+
                                                    @php
                                                    if ($score->score >= 70){
                                                    $bgclass="bg-success";}
@@ -38,18 +33,22 @@
                                                    else{
                                                    $bgclass="bg-danger";
                                                    }
+                                                   $totalScore+=$score->score;
                                                    @endphp
                                                    <td class="{{$bgclass}}">{{$score->score}}</td>
-                                                   <td>{{$score->created_at}}</td>
+
                                                </tr>
-                                               @php
-                                               $i++;
-                                               @endphp
                                                @endforeach
                                            </tbody>
                                        </table>
                                    </div>
+
                                </div>
+                               @if(Auth::user()->role == "student")
+                               <div class="card-footer">
+                                   Rata Rata : {{$totalScore / $scores->count()}}
+                               </div>
+                               @endif
                            </div>
 
                        </div>
