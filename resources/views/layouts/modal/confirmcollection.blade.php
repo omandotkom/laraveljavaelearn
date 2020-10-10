@@ -13,8 +13,8 @@
                 <div class="modal-body">
                     Dengan mengumpulkan jawaban, maka :
                     <ul>
-                        <li>Peserta tidak bisa mengubah jawaban.</li>
-                        <li>Peserta dinyatakan sudah selesai mengerjakan quiz / soal ini.</li>
+                        <li>Siswa tidak bisa mengubah jawaban.</li>
+                        <li>Siswa dinyatakan sudah selesai mengerjakan quiz / soal ini.</li>
                     </ul>
                     <input type="hidden" name="questionid" value="{{$question->id}}"/>
                     

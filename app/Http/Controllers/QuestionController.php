@@ -39,7 +39,7 @@ class QuestionController extends Controller
     public function store(Request $request)
     {
 
-        $QuestionLimit= 10;
+        $QuestionLimit= 100;
         $count = Question::select('id')->where('user_id',Auth::user()->id)->count();
         if ($count>=$QuestionLimit){
             $message = "Anda hanya bisa membuat 1 soal saja.";
@@ -93,10 +93,17 @@ class QuestionController extends Controller
 
                 $content = "jawabsoal";
                 $q = QuestionDetail::where('question_id', $question->id)->where('multiplechoice', false)->paginate(1);
+                if ($q->total() < 1){
+                    //gada essayna alias semuanya pg
+                    $message="Seluruh jawaban pada quiz ini sudah otomatis diperiksa oleh sistem.";
+                    return view('index', ['title' => 'Soal Selesai Diperiksa', 'includepage' => 'layouts.erroraccess','checkmode'=>$ischeck ,'message' => $message, 'link' => url()->previous(),'q'=>$q,
+                    'uid'=>$uid,'qid'=>$question->id]);
+               
+                }
                 foreach ($q as $u) {
                     $a = Answer::where('question_detail_id', $u->id)->where('user_id', $uid)->first();
                     if ($a === null) {
-                        $message = "Mahasiswa tidak (belum) mengerjakan soal ini";
+                        $message = "Siswa tidak (belum) mengerjakan soal ini";
                         return view('index', ['title' => 'Soal Belum Dikerjakan', 'includepage' => 'layouts.erroraccess','checkmode'=>$ischeck ,'message' => $message, 'link' => url()->previous(),'q'=>$q,
                         'uid'=>$uid,'qid'=>$question->id]);
                     }

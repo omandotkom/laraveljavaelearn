@@ -39,8 +39,8 @@
                     <label id="scoreloadstatus"></label>
                     <div class="card-body">
                         <div class="form-group">
-                            <label for="nama">Nama Peserta</label>
-                            <input type="text" readonly class="form-control" name="nama" readonly id="nama" placeholder="Nama Peserta">
+                            <label for="nama">Nama Siswa</label>
+                            <input type="text" readonly class="form-control" name="nama" readonly id="nama" placeholder="Nama Siswa">
                         </div>
                         <div class="form-group">
                             <label id="mctitle" for="pg">Pilihan Ganda</label>
