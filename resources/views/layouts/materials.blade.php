@@ -22,19 +22,21 @@
                             </thead>
                             <tbody>
                                 @foreach($materials as $m)
+                                <tr>
                                 <td>{{$m->kelas->name}}</td>
                                 <td>{{$m->name}}</td>
                                 <td><a href="{{asset('storage/'.$m->document)}}" target="_blank" class="badge badge-primary">Unduh</a></td>
+                                </tr>
                                 @endforeach
                             </tbody>
                         </table>
                     </div>
                 </div>
                 <div class="card-footer">
-                @if(Auth::user()->role != "student")    
-                <button type="button" data-toggle="modal" data-target="#addmaterials" class="btn btn-outline-primary float-right">Tambah Materi</button>
-            @endif    
-            </div>
+                    @if(Auth::user()->role != "student")
+                    <button type="button" data-toggle="modal" data-target="#addmaterials" class="btn btn-outline-primary float-right">Tambah Materi</button>
+                    @endif
+                </div>
             </div>
 
         </div>
