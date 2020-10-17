@@ -9,10 +9,13 @@
                     <div class="table-responsive">
                         <table class="table table-inverse">
                             <thead>
-                                
+
                                 <tr>
                                     <th>Nama</th>
                                     <th>Email</th>
+                                    <th>Informasi</th>
+                                    <th>Aksi</th>
+                                    <th>Terakhir Login</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -20,6 +23,24 @@
                                 <tr>
                                     <td>{{$user->name}}</td>
                                     <td>{{$user->email}}</td>
+                                    <td>
+                                        
+                                    <div class="btn-group-vertical">
+                                            <a class="btn btn-outline-info m-1" href="{{route('userclassindex',$user->id)}}" role="button">Siswa</a>
+
+                                            <a class="btn btn-outline-info m-1" href="{{route('indexmaterial',$user->id)}}" role="button">Materi</a>
+
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="btn-group-vertical">
+                                            <a class="btn btn-outline-info m-1" href="{{route('viewuser',$user->id)}}" role="button">Edit</a>
+
+                                            <a class="btn btn-outline-danger m-1" href="#" role="button">Hapus</a>
+
+                                        </div>
+                                    </td>
+                                    <td>{{$user->last_activity}}</td>
                                 </tr>
                                 @endforeach
                             </tbody>

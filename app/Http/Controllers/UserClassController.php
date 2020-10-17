@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\UserClass;
 use App\Kelas;
+use App\Question;
 
 class UserClassController extends Controller
 {
@@ -14,15 +15,24 @@ class UserClassController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id=null)
     {
         //
         if (Auth::user()->role == "admin") {
             $kelas = Kelas::where('user_id', Auth::user()->id)->first();
-            $userclasses = UserClass::where('class_id',$kelas->id)->get();
-           
-             return view('index',['title'=>'Seluruh Siswa','includepage'=>'layouts.students','content'=>'profile','students'=>$userclasses]);
+            $userclasses = UserClass::where('class_id', $kelas->id)->get();
 
+            return view('index', ['title' => 'Seluruh Siswa', 'includepage' => 'layouts.students', 'content' => 'profile', 'students' => $userclasses]);
+        } else { 
+            if ($id === null){
+                return abort("Internal error");
+            }
+            
+            $kelas = Kelas::where('user_id', $id)->first();
+            $userclasses = UserClass::where('class_id', $kelas->id)->get();
+
+            return view('index', ['title' => 'Seluruh Siswa', 'includepage' => 'layouts.students', 'content' => 'profile', 'students' => $userclasses]);
+            
         }
     }
 

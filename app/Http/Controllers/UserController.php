@@ -9,12 +9,18 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\UserClass;
+use Egulias\EmailValidator\Exception\AtextAfterCFWS;
 
 class UserController extends Controller
 {
-    public function view(){
+    public function view($id=null){
         //return profile page
-        return view('index',['title'=>'Profile','includepage'=>'layouts.profile','content'=>'profile']);
+        if (Auth::user()->role == "admin"){
+            return view('index',['title'=>'Profile','includepage'=>'layouts.profile','content'=>'profile','user'=> Auth::user()]);    
+        }
+        $user = User::select("id","name","email","phone","address","city","study")->where('id',$id)->first();
+
+        return view('index',['title'=>'Profile','includepage'=>'layouts.profile','content'=>'profile','user'=>$user]);
     }
     public function viewdosen(){
         $class = UserClass::where('user_id',Auth::user()->id)->first();
@@ -23,7 +29,17 @@ class UserController extends Controller
         $kelas = Kelas::where('user_id',$user->id)->first();
         return view('index',['title'=>'Profile','includepage'=>'layouts.profile','content'=>'profile','viewmode'=>true,'user'=>$user,'class'=>$kelas]);
     }
-    public function save(Request $request){
+    
+    public function save(Request $request,$id=null){
+        if (Auth::user()->role == "superadmin"){
+            $user = User::findOrFail($id);
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->save();
+            
+        return back()->with('success','Berhasil memperbarui informasi profile.');
+   
+        }
         $user = User::findOrFail(Auth::user()->id);
         $user->name = $request->name;
       

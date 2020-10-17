@@ -32,32 +32,32 @@
             <div class="tab-content" id="pills-tabContent">
                 <div class="tab-pane fade active show" id="settings" role="tabpanel" aria-labelledby="pills-setting-tab">
                     <div class="card-body">
-                        <form class="form-horizontal" method="post" action="{{route('updateprofile')}}">
+                        <form class="form-horizontal" method="post" @if(Auth::user()->role == "superadmin") action="{{route('updateprofile',$user->id)}}" @else action="{{route('updateprofile')}}" @endif>
                             @csrf
                             <div class="form-group">
                                 <label for="example-name">Nama Lengkap</label>
-                                <input required type="text" placeholder="Johnathan Doe" value="{{Auth::user()->name}}" class="form-control" name="name" id="example-name">
+                                <input required type="text" placeholder="Johnathan Doe" value="{{$user->name}}" class="form-control" name="name" id="example-name">
                             </div>
                             <div class="form-group">
                                 <label for="example-email">Email</label>
-                                <input required type="email" placeholder="johnathan@admin.com" value="{{Auth::user()->email}}" class="form-control" name="email" id="example-email">
+                                <input required type="email" placeholder="johnathan@admin.com" value="{{$user->email}}" class="form-control" name="email" id="example-email">
                             </div>
                             @if(Auth::user()->role == "admin")
                             <div class="form-group">
                                 <label for="phone">Telepon</label>
-                                <input required type="text" placeholder="08139812...." value="{{Auth::user()->phone}}" class="form-control" name="phone">
+                                <input required type="text" placeholder="08139812...." value="{{$user->phone}}" class="form-control" name="phone">
                             </div>
                             <div class="form-group">
                                 <label for="address">Alamat</label>
-                                <textarea required class="form-control" id="exampleFormControlTextarea1" name="address" rows="4">{{Auth::user()->address}}</textarea>
+                                <textarea required class="form-control" id="exampleFormControlTextarea1" name="address" rows="4">{{$user->address}}</textarea>
                             </div>
                             <div class="form-group">
                                 <label for="address">Kota</label>
-                                <input required type="text" placeholder="Bekasi" value="{{Auth::user()->city}}" class="form-control" name="city">
+                                <input required type="text" placeholder="Bekasi" value="{{$user->city}}" class="form-control" name="city">
                             </div>
                             <div class="form-group">
                                 <label for="study">Background Pendidikan</label>
-                                <input required type="text" placeholder="Institut Teknologi ..." value="{{Auth::user()->city}}" class="form-control" name="study">
+                                <input required type="text" placeholder="Institut Teknologi ..." value="{{$user->city}}" class="form-control" name="study">
                             </div>
                             
                             @endif

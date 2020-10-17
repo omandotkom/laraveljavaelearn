@@ -72,8 +72,8 @@ Route::post('/soalkey', 'QuestionController@keyprocess')->name('soalkeyprocess')
 
 Route::post('/score/save', 'ScoreController@save')->name('savescore');
 Route::get('/score', 'ScoreController@view')->name('viewscores');
-Route::get('/user', 'UserController@view')->name('viewuser');
-Route::post('/user/save', 'UserController@save')->name('updateprofile');
+Route::get('/user/{id?}', 'UserController@view')->name('viewuser');
+Route::post('/user/save/{id?}', 'UserController@save')->name('updateprofile');
 Route::post('/user/password/save', 'UserController@changepassword')->name('changepassword');
 Route::get('/about', function () {
     return view('index', ['includepage' => 'layouts.about', 'title' => 'Tentang Saya']);
@@ -87,12 +87,12 @@ Route::get('/instructor','UserController@showInstructor')->name('showinstructor'
 Route::post('/class','ClassController@store')->name('storeclass');
 Route::get('/class','ClassController@index')->name('indexclass');
 
-Route::get('/materials','MaterialController@index')->name('indexmaterial');
+Route::get('/materials/view/{id?}','MaterialController@index')->name('indexmaterial');
 Route::get('/materials/delete/{id}','MaterialController@destroy')->name('deletematerial');
 Route::post('/materials','MaterialController@store')->name('storematerial');
 
 
-Route::get('/students','UserClassController@index')->name('userclassindex');
+Route::get('/students/view/{id?}','UserClassController@index')->name('userclassindex');
 
 Route::get('/class/{id}/rule','ClassController@ruleindex')->name('ruleindex');
 Route::post('/class/{id}/rule','ClassController@storerule')->name('storerule');

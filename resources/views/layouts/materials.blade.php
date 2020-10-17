@@ -44,7 +44,7 @@
                     </div>
                 </div>
                 <div class="card-footer">
-                    @if(Auth::user()->role != "student")
+                    @if(Auth::user()->role == "admin")
                     <button type="button" data-toggle="modal" data-target="#addmaterials" class="btn btn-outline-primary float-right">Tambah Materi</button>
                     @else
                     <small>*Setelah anda membaca materi, silahkan langsung ke menu latihan koding</small>
