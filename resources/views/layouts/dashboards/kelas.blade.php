@@ -10,7 +10,7 @@
             <div class="d-flex align-items-center flex-row mt-30">
                 @if(Auth::user()->role == "student")
                 @if (isset($userclass) && $userclass != null)
-                <a type="button" role="button" href="{{route('ruleindex',$userclass->class_id)}}" class="btn mx-auto btn-info"></i>Lihat Kelas</a>
+                <a type="button" role="button" href="{{route('ruleindex',$userclass->class_id)}}" class="btn mx-auto btn-outline-info"></i>Lihat Kelas</a>
                 @endif
                 @else
                     <a type="button" role="button" href="{{route('indexclass')}}" class="btn mx-auto btn-outline-info"></i>Lihat Kelas</a>

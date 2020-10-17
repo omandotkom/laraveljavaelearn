@@ -11,7 +11,7 @@
 
 
                         <div class="d-flex align-items-center flex-row mt-30">
-                            <a type="button" href="{{route('showcode')}}" class="btn mx-auto btn-info btn-sm" role="button"> <i class="ik ik-code"></i> Code</a>
+                            <a type="button" href="{{route('showcode')}}" class="btn mx-auto btn-outline-info btn-sm" role="button"> <i class="ik ik-code"></i> Code</a>
                         </div>
                     </div>
                 </div>
