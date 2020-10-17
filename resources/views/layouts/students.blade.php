@@ -12,18 +12,14 @@
                                 <tr>
                                     <th>Nama</th>
                                     <th>Bergabung Pada</th>
-                                    <th>Kelas</th>
-                                    <th>Pengampu</th>
-                                </tr>
+                                     </tr>
                             </thead>
                             <tbody>
                                 @foreach($students as $student)
                                 <tr>
                                     <td>{{$student->student->name}}</td>
                                     <td>{{$student->created_at}}</td>
-                                    <td>{{$student->kelas->name}}</td>
-                                    <td>{{$student->kelas->user->name}}</td>
-                                </tr>
+                                   </tr>
                                 @endforeach
                             </tbody>
                         </table>
