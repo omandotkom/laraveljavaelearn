@@ -56,9 +56,10 @@
                                 <input required type="text" placeholder="Bekasi" value="{{Auth::user()->city}}" class="form-control" name="city">
                             </div>
                             <div class="form-group">
-                                <label for="birthdate">Tnnggal Lahir</label>
-                                <input required type="date" value="{{Auth::user()->birthdate}}" class="form-control" name="birthdate">
+                                <label for="study">Background Pendidikan</label>
+                                <input required type="text" placeholder="Institut Teknologi ..." value="{{Auth::user()->city}}" class="form-control" name="study">
                             </div>
+                            
                             @endif
                             <button class="btn btn-success float-right m-3" type="submit"><i class="ik ik-user-check"></i>Simpan Perubahan</button>
                         </form>
@@ -98,8 +99,10 @@
                             <dd>{{$user->phone}}</dd>
                             <dt>Alamat</dt>
                             <dd>{{$user->address}}</dd>
-                            <dt>Tempat Tanggal Lahir</dt>
-                            <dd>{{$user->city}}, {{$user->birthdate}}</dd>
+                            <dt>Background Pendidikan</dt>
+                            <dd>{{$user->study}}</dd>
+                            <dt>Tempat</dt>
+                            <dd>{{$user->city}}</dd>
                         </dl>
                     </div>
                 </div>

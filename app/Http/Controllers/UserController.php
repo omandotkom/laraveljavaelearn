@@ -19,7 +19,7 @@ class UserController extends Controller
     public function viewdosen(){
         $class = UserClass::where('user_id',Auth::user()->id)->first();
         $class = $class->kelas()->first();
-        $user = User::select("name","id","email","address","phone","birthdate","city")->where('id',$class->user_id)->first();
+        $user = User::select("name","id","email","address","phone","study","city")->where('id',$class->user_id)->first();
         $kelas = Kelas::where('user_id',$user->id)->first();
         return view('index',['title'=>'Profile','includepage'=>'layouts.profile','content'=>'profile','viewmode'=>true,'user'=>$user,'class'=>$kelas]);
     }
@@ -32,7 +32,8 @@ class UserController extends Controller
             $user->phone = $request->phone;
             $user->address = $request->address;
             $user->city = $request->city;
-            $user->birthdate = $request->birthdate;
+            $user->study = $request->study;
+            
         }
         $user->save();
 
