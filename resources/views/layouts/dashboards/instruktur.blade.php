@@ -2,7 +2,7 @@
     <div class="card">
         <div class="card-body">
             <div class="d-flex">
-                <h4 class="card-title">Instruktur</h4>
+                <h4 class="card-title">@if(isset($num)) <b style="font-size:25px;">@php echo $num; @endphp</b> @endif Instruktur</h4>
             </div>
             <div class="d-flex align-items-center flex-row mt-30">
                 <img src="{{url('dashboardasset/img/usersm.png')}}" class="rounded img-fluid mx-auto d-block" alt="...">

@@ -4,13 +4,34 @@
 <div class="main-content">
     <div class="container-fluid">
         <div class="row">
+        @php
+        $num = 1;
+        @endphp
     @include('layouts.dashboards.materi')
+    @php
+        $num = $num+1;
+    @endphp
     @include('layouts.dashboards.coding')
+    @php
+        $num = $num+1;
+    @endphp
     @include('layouts.dashboards.soal')
+    @php
+        $num = $num+1;
+    @endphp
     @include('layouts.dashboards.nilai')
+    @php
+        $num = $num+1;
+    @endphp
     @include('layouts.dashboards.kelas')
+    
+    @php
+        $num = $num+1;
+    @endphp
     @include('layouts.dashboards.instruktur')
-            
+    @php
+        $num = $num+1;
+    @endphp        
     @include('layouts.dashboards.bantuan')
         </div>
     </div>
