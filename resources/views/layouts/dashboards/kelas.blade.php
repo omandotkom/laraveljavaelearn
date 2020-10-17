@@ -13,7 +13,7 @@
                 <a type="button" role="button" href="{{route('ruleindex',$userclass->class_id)}}" class="btn mx-auto btn-outline-info"></i>Lihat Kelas</a>
                 @endif
                 @else
-                    <a type="button" role="button" href="{{route('indexclass')}}" class="btn mx-auto btn-outline-info"></i>Lihat Kelas</a>
+                    <a type="button" role="button" href="{{route('indexclass')}}" class="btn mx-auto btn-outline-info"></i>Input Info</a>
                 @endif
             </div>
         </div>

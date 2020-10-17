@@ -57,7 +57,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="study">Background Pendidikan</label>
-                                <input required type="text" placeholder="Institut Teknologi ..." value="{{$user->city}}" class="form-control" name="study">
+                                <input required type="text" placeholder="Institut Teknologi ..." value="{{$user->study}}" class="form-control" name="study">
                             </div>
                             
                             @endif
