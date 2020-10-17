@@ -244,4 +244,10 @@ class QuestionController extends Controller
 
         return $scorequestions;
     }
+
+    public function destroy($id){
+        $question = Question::findOrFail($id);
+        $question->delete();
+        return back();
+    }
 }

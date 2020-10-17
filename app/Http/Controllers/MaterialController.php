@@ -21,6 +21,7 @@ class MaterialController extends Controller
         if (Auth::user()->role == "admin") {
             $materials = Material::where('user_id', Auth::user()->id)->get();
             $classes = Kelas::where('user_id',Auth::user()->id)->get();
+            
         }elseif(Auth::user()->role == "student")
       { 
         $class = UserClass::where('user_id',Auth::user()->id)->first();
@@ -104,6 +105,8 @@ class MaterialController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $material = Material::findOrFail($id);
+        $material->delete();
+        return back();
     }
 }

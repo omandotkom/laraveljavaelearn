@@ -18,14 +18,25 @@
                                     <th>Kelas</th>
                                     <th>Judul Materi</th>
                                     <th>Dokumen</th>
+                                    <th>Upload</th>
+
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach($materials as $m)
                                 <tr>
-                                <td>{{$m->kelas->name}}</td>
-                                <td>{{$m->name}}</td>
-                                <td><a href="{{asset('storage/'.$m->document)}}" target="_blank" class="badge badge-primary">Unduh</a></td>
+                                    <td>{{$m->kelas->name}}</td>
+                                    <td>{{$m->name}}</td>
+                                    <td>
+                                        <div class="btn-group-vertical">
+                                            <a href="{{asset('storage/'.$m->document)}}" target="_blank" class="badge badge-primary m-1">Unduh</a>
+                                            @if(Auth::user()->role == "admin")
+                                            <a href="{{route('deletematerial',$m->id)}}" target="_blank" class="badge badge-danger m-1">Hapus</a>
+                                            @endif
+                                        </div>
+                                    </td>
+                                    <td>{{$m->created_at}}</td>
+
                                 </tr>
                                 @endforeach
                             </tbody>

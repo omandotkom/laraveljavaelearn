@@ -54,7 +54,8 @@ Route::get('/dosen',function(){
 });
 Route::get('/code', 'CodeController@show')->name('showcode');
 Route::post('/question/save', 'QuestionController@store')->name('addquestion');
-Route::get('/question/{id?}/{ischeck?}/{uid?}', 'QuestionController@show')->name('viewquestion');
+Route::get('/question/view/{id?}/{ischeck?}/{uid?}', 'QuestionController@show')->name('viewquestion');
+Route::get('/question/delete/{id}','QuestionController@destroy')->name('deletequestion');
 Route::post('/question/{id?}', 'QuestionController@save')->name('savequestion');
 Route::get('/questions', 'QuestionController@showbyUser')->name('viewallquestions');
 Route::post('/question/update', 'QuestionController@update')->name('updatequestion');
@@ -87,7 +88,9 @@ Route::post('/class','ClassController@store')->name('storeclass');
 Route::get('/class','ClassController@index')->name('indexclass');
 
 Route::get('/materials','MaterialController@index')->name('indexmaterial');
+Route::get('/materials/delete/{id}','MaterialController@destroy')->name('deletematerial');
 Route::post('/materials','MaterialController@store')->name('storematerial');
+
 
 Route::get('/students','UserClassController@index')->name('userclassindex');
 
