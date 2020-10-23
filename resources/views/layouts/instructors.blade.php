@@ -1,7 +1,7 @@
 <div class="main-content">
     <div class="container-fluid">
         <div class="col-md-12">
-            <div class="card w-50">
+            <div class="card w-75">
                 <div class="card-header d-block">
                     <h3>Daftar Instruktur</h3>
                 </div>
@@ -25,7 +25,7 @@
                                     <td>{{$user->email}}</td>
                                     <td>
                                         
-                                    <div class="btn-group-vertical">
+                                    <div class="btn-group">
                                             <a class="btn btn-outline-info m-1" href="{{route('userclassindex',$user->id)}}" role="button">Siswa</a>
 
                                             <a class="btn btn-outline-info m-1" href="{{route('indexmaterial',$user->id)}}" role="button">Materi</a>
@@ -33,7 +33,7 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <div class="btn-group-vertical">
+                                        <div class="btn-group">
                                             <a class="btn btn-outline-info m-1" href="{{route('viewuser',$user->id)}}" role="button">Edit</a>
 
                                             <a class="btn btn-outline-danger m-1" href="#" role="button">Hapus</a>
