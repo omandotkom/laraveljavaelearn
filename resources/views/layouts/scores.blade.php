@@ -44,10 +44,15 @@
                                    </div>
 
                                </div>
-                               @if(Auth::user()->role == "student")
+                               @if(Auth::user()->role == "student" && $scores->count()>0)
                                <div class="card-footer">
                                    Rata Rata : {{$totalScore / $scores->count()}}
                                </div>
+                               @else
+                               <div class="card-footer">
+                            <small>Anda belum mengerjakan apapun.</small>       
+                            </div>
+                               
                                @endif
                            </div>
 
