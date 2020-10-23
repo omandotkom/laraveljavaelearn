@@ -34,9 +34,10 @@
                 @if(!$q->hasMorePages())
               
             <div class="row d-flex align-items-end flex-column">
+            @if(!isset($collected))
                 @include('layouts.modal.confirmcollection')
                 <button type="button" data-target="#confirmpengumpulan" data-toggle="modal" class="btn btn-secondary mx-auto"><i class="ik ik-clipboard"></i> Kumpulkan</button>
-                
+            @endif
             </div>
             @endif
             @endif

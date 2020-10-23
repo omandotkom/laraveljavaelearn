@@ -13,6 +13,7 @@
                                     <th>Nama</th>
                                     <th>Bergabung Pada</th>
                                     <th>Progress</th>
+                                    <th>Status</th>
                                      </tr>
                             </thead>
                             <tbody>
@@ -20,7 +21,8 @@
                                 <tr>
                                     <td>{{$student->student->name}}</td>
                                     <td>{{$student->created_at}}</td>
-                                    <td></td>   
+                                    <td></td>
+                                    <td>{{$student->student->status}}</td>   
                                 </tr>
                                 @endforeach
                             </tbody>
