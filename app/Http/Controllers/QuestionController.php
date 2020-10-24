@@ -11,10 +11,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Carbon;
 use App\UserClass;
+use PDF;
 
 class QuestionController extends Controller
 {
-    
+
     public function update(Request $request)
     {
 
@@ -34,14 +35,14 @@ class QuestionController extends Controller
         $d = QuestionDetail::findOrFail($id);
         $d->delete();
         //return redirect()->route('viewquestion',$d->question_id);
-           return back();
+        return back();
     }
     public function store(Request $request)
     {
 
-        $QuestionLimit= 100;
-        $count = Question::select('id')->where('user_id',Auth::user()->id)->count();
-        if ($count>=$QuestionLimit){
+        $QuestionLimit = 100;
+        $count = Question::select('id')->where('user_id', Auth::user()->id)->count();
+        if ($count >= $QuestionLimit) {
             $message = "Anda hanya bisa membuat 1 soal saja.";
             return view('index', ['title' => 'Akses Ditolak', 'includepage' => 'layouts.erroraccess', 'message' => $message, 'link' => route('viewallquestions')]);
         }
@@ -93,19 +94,22 @@ class QuestionController extends Controller
 
                 $content = "jawabsoal";
                 $q = QuestionDetail::where('question_id', $question->id)->where('multiplechoice', false)->paginate(1);
-                if ($q->total() < 1){
+                if ($q->total() < 1) {
                     //gada essayna alias semuanya pg
-                    $message="Seluruh jawaban pada quiz ini sudah otomatis diperiksa oleh sistem.";
-                    return view('index', ['title' => 'Soal Selesai Diperiksa', 'includepage' => 'layouts.erroraccess','checkmode'=>$ischeck ,'message' => $message, 'link' => url()->previous(),'q'=>$q,
-                    'uid'=>$uid,'qid'=>$question->id]);
-               
+                    $message = "Seluruh jawaban pada quiz ini sudah otomatis diperiksa oleh sistem.";
+                    return view('index', [
+                        'title' => 'Soal Selesai Diperiksa', 'includepage' => 'layouts.erroraccess', 'checkmode' => $ischeck, 'message' => $message, 'link' => url()->previous(), 'q' => $q,
+                        'uid' => $uid, 'qid' => $question->id
+                    ]);
                 }
                 foreach ($q as $u) {
                     $a = Answer::where('question_detail_id', $u->id)->where('user_id', $uid)->first();
                     if ($a === null) {
                         $message = "Siswa tidak (belum) mengerjakan soal ini";
-                        return view('index', ['title' => 'Soal Belum Dikerjakan', 'includepage' => 'layouts.erroraccess','checkmode'=>$ischeck ,'message' => $message, 'link' => url()->previous(),'q'=>$q,
-                        'uid'=>$uid,'qid'=>$question->id]);
+                        return view('index', [
+                            'title' => 'Soal Belum Dikerjakan', 'includepage' => 'layouts.erroraccess', 'checkmode' => $ischeck, 'message' => $message, 'link' => url()->previous(), 'q' => $q,
+                            'uid' => $uid, 'qid' => $question->id
+                        ]);
                     }
                     $titleAddition = " (Jawaban Milik " . $a->user->name . ")";
                 }
@@ -160,16 +164,15 @@ class QuestionController extends Controller
                         ->where("question_details.level", "=", 1)->count();
                     if ($easyAnsweredCount < $easyQuestionCount) {
                         $message = "Soal ini bertipe sulit, Anda harus menyelesaikan semua soal dengan kesulitan mudah terlebih dahulu.";
-                        return view('index', ['title' => 'Akses Ditolak', 'includepage' => 'layouts.erroraccess', 'message' => $message, 'link' => url()->previous(),'q'=>$q,'question'=>$question]);
+                        return view('index', ['title' => 'Akses Ditolak', 'includepage' => 'layouts.erroraccess', 'message' => $message, 'link' => url()->previous(), 'q' => $q, 'question' => $question]);
                     }
                 }
                 $a = Answer::where('question_detail_id', $u->id)->where('user_id', Auth::user()->id)->first();
-                if (!$a->editable){
+                if (!$a->editable) {
                     //jika tidak editable maka munculkan pesan soal ini sudah dikerjakan
-                    
-                        $message = "Quiz ini sudah dikerjakan dan sudah di kumpulkan sebelumnya.";
-                        return view('index', ['title' => 'Quiz Sudah Dikerjakan', 'includepage' => 'layouts.erroraccess', 'message' => $message, 'link' => url()->previous(),'q'=>$q,'question'=>$question,'collected'=>true]);
-                    
+
+                    $message = "Quiz ini sudah dikerjakan dan sudah di kumpulkan sebelumnya.";
+                    return view('index', ['title' => 'Quiz Sudah Dikerjakan', 'includepage' => 'layouts.erroraccess', 'message' => $message, 'link' => url()->previous(), 'q' => $q, 'question' => $question, 'collected' => true]);
                 }
             }
         }
@@ -186,11 +189,11 @@ class QuestionController extends Controller
         if (Auth::user()->role == "admin") {
             $question = Question::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->simplePaginate(20);
         } else {
-            $classid = UserClass::where('user_id',Auth::user()->id)->first();
-            if ($classid === null){
-                return abort(403,"Anda belum memilih kelas!");
+            $classid = UserClass::where('user_id', Auth::user()->id)->first();
+            if ($classid === null) {
+                return abort(403, "Anda belum memilih kelas!");
             }
-            $question = Question::where('status','open')->where('class_id',$classid->class_id)->orderBy('created_at','desc')->simplePaginate(20);
+            $question = Question::where('status', 'open')->where('class_id', $classid->class_id)->orderBy('created_at', 'desc')->simplePaginate(20);
             //$question = Question::where('status', 'open')->orderBy('created_at', 'desc')->simplePaginate(20);
         }
         return view('index', ['title' => 'Daftar Soal', 'includepage' => 'layouts.questions', 'content' => 'questionlist', 'questions' => $question]);
@@ -229,7 +232,7 @@ class QuestionController extends Controller
         $qd->save();
         return back();
     }
-    public function viewanswerer($id)
+    public function viewanswerer($id, $save = null)
     {
         //$answerer = Answer::select('user_id')->where('question_id', $id)->groupBy('user_id')->get();
         /*$answerer = DB::table('answers')->select('answers.user_id as answeruserid', "scores.*", 'users.name')
@@ -239,11 +242,28 @@ class QuestionController extends Controller
             ->where('answers.question_idx', $id)->get();*/
         //$answerer = Answer::select('user_id')->where('question_id',$id)->distinct()->get();
         $answerer = DB::select("select `answers`.`user_id` as `answeruserid`, `scores`.*,
-         `users`.`name`,`users`.`nim` from `answers` left join `scores` on `answers`.`question_id` = `scores`.`question_id`
+         `users`.`name` from `answers` left join `scores` on `answers`.`question_id` = `scores`.`question_id`
           and `answers`.`user_id`=`scores`.`user_id` inner join `users` on `answers`.`user_id` = `users`.`id`
            where answers.question_id=" . $id . "  group by `answers`.`user_id`");
+        if (is_null($save)) {
 
-        return view('index', ['title' => 'Laporan Mahasiswa yang Sudah Mengerjakan', 'includepage' => 'layouts.questionsanswer', 'content' => 'answererlist', 'answerer' => $answerer, 'questionid' => $id]);
+            return view('index', ['title' => 'Laporan Mahasiswa yang Sudah Mengerjakan', 'includepage' => 'layouts.questionsanswer', 'content' => 'answererlist', 'answerer' => $answerer, 'questionid' => $id]);
+        }
+        $data = [
+            'answerer' => $answerer,
+            'title' => 'Data Siswa Yang Sudah Mengerjakan Quiz',
+
+            'date' => date('m/d/Y')
+
+        ];
+
+
+
+        $pdf = PDF::loadView('myPDF', $data);
+
+
+
+        return $pdf->stream('itsolutionstuff.pdf');
     }
     public function ApiGetQuestions($id)
     {
@@ -252,7 +272,8 @@ class QuestionController extends Controller
         return $scorequestions;
     }
 
-    public function destroy($id){
+    public function destroy($id)
+    {
         $question = Question::findOrFail($id);
         $question->delete();
         return back();
