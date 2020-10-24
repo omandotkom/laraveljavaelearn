@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\UserClass;
 use App\Kelas;
 use App\Question;
-
+use Illuminate\Support\Facades\DB;
 class UserClassController extends Controller
 {
     /**
@@ -20,18 +20,25 @@ class UserClassController extends Controller
         //
         if (Auth::user()->role == "admin") {
             $kelas = Kelas::where('user_id', Auth::user()->id)->first();
-            $userclasses = UserClass::where('class_id', $kelas->id)->get();
-
-            return view('index', ['title' => 'Seluruh Siswa', 'includepage' => 'layouts.students', 'content' => 'profile', 'students' => $userclasses]);
+            //$userclasses = UserClass::where('class_id', $kelas->id)->get();
+            $students = DB::select("select users.name,users.id, users.status, userclasses.created_at, 
+            (select count(scores.id) from scores where scores.user_id=users.id) as answers from userclasses join users 
+            on userclasses.user_id = users.id join scores on scores.user_id=users.id where userclasses.class_id =".$kelas->id." group by id");
+            
+            $totalQuiz = Question::select("id")->where('class_id',$kelas->id)->count();
+            return view('index', ['title' => 'Seluruh Siswa', 'includepage' => 'layouts.students', 'content' => 'profile', 'students' => $students,'totalquiz'=>$totalQuiz]);
         } else { 
             if ($id === null){
                 return abort("Internal error");
             }
             
             $kelas = Kelas::where('user_id', $id)->first();
-            $userclasses = UserClass::where('class_id', $kelas->id)->get();
-
-            return view('index', ['title' => 'Seluruh Siswa', 'includepage' => 'layouts.students', 'content' => 'profile', 'students' => $userclasses]);
+            $totalQuiz = Question::select("id")->where('class_id',$kelas->id)->count();
+            $students = DB::select("select users.name,users.id, users.status, userclasses.created_at, 
+            (select count(scores.id) from scores where scores.user_id=users.id) as answers from userclasses join users 
+            on userclasses.user_id = users.id join scores on scores.user_id=users.id where userclasses.class_id =".$kelas->id." group by id");
+            
+            return view('index', ['title' => 'Seluruh Siswa', 'includepage' => 'layouts.students', 'content' => 'profile', 'students' => $students,'totalquiz'=>$totalQuiz]);
             
         }
     }

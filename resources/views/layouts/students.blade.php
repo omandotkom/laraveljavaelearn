@@ -1,7 +1,7 @@
 <div class="main-content">
     <div class="container-fluid">
         <div class="col-md-12">
-            <div class="card w-75">
+            <div class="card w-100">
                 <div class="card-header d-block">
                     <h3>Daftar Siswa</h3>
                 </div>
@@ -14,15 +14,26 @@
                                     <th>Bergabung Pada</th>
                                     <th>Progress</th>
                                     <th>Status</th>
-                                     </tr>
+                                    <th>Ubah Status</th>
+                                </tr>
                             </thead>
                             <tbody>
                                 @foreach($students as $student)
                                 <tr>
-                                    <td>{{$student->student->name}}</td>
+                                    <td>{{$student->name}}</td>
                                     <td>{{$student->created_at}}</td>
-                                    <td></td>
-                                    <td>{{$student->student->status}}</td>   
+                                    <td>{{$student->answers}} / {{$totalquiz}}</td>
+                                    <td>{{$student->status}}</td>
+                                    <td>
+                                        <div class="btn-group" role="group">
+
+                                            <a href="{{route('changestatus',['id'=>$student->id,'status'=>'active'])}}" type="button" role="button" class="btn btn-success btn-sm">Aktif</a>
+                                            <a href="{{route('changestatus',['id'=>$student->id,'status'=>'pending'])}}" type="button" role="button" class="btn btn-danger btn-sm text-white">Berhenti</a>
+                                            <a href="{{route('changestatus',['id'=>$student->id,'status'=>'graduate'])}}" type="button" role="button" class="btn btn-info btn-sm">Lulus</a>   
+                                        </div>
+
+
+                                    </td>
                                 </tr>
                                 @endforeach
                             </tbody>

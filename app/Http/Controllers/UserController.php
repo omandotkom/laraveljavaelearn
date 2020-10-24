@@ -81,4 +81,10 @@ class UserController extends Controller
         $user->save();
         return back()->with('success','Berhasil memperbarui password.');
     }
+    public function changestatus($id,$status){
+        $user = User::findOrFail($id);
+        $user->status = $status;
+        $user->save();
+        return back();
+    }
 }

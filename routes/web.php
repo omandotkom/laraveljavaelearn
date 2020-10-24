@@ -93,6 +93,7 @@ Route::post('/materials','MaterialController@store')->name('storematerial');
 
 
 Route::get('/students/view/{id?}','UserClassController@index')->name('userclassindex');
+Route::get('/students/changestatus/{id}/{status}','UserController@changestatus')->name('changestatus');
 
 Route::get('/class/{id}/rule','ClassController@ruleindex')->name('ruleindex');
 Route::post('/class/{id}/rule','ClassController@storerule')->name('storerule');
