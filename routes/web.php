@@ -83,6 +83,7 @@ Route::post('/logout/custom','Auth\LoginController@logout')->name("logoutcustom"
 
 Route::post('/instructor/create','UserController@saveInstructor')->name('saveinstructor');
 Route::get('/instructor','UserController@showInstructor')->name('showinstructor');
+Route::get('/instructor/delete/{id}','UserController@deleteInstructor')->name("deleteinstructor");
 
 Route::post('/class','ClassController@store')->name('storeclass');
 Route::get('/class','ClassController@index')->name('indexclass');

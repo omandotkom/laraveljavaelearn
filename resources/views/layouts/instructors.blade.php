@@ -36,7 +36,7 @@
                                         <div class="btn-group">
                                             <a class="btn btn-outline-info m-1" href="{{route('viewuser',$user->id)}}" role="button">Edit</a>
 
-                                            <a class="btn btn-outline-danger m-1" href="#" role="button">Hapus</a>
+                                            <a class="btn btn-outline-danger m-1" href="{{route('deleteinstructor',$user->id)}}" href="#" role="button">Hapus</a>
 
                                         </div>
                                     </td>
