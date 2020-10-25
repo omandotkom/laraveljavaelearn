@@ -168,8 +168,8 @@ class QuestionController extends Controller
                     }
                 }
                 $a = Answer::where('question_detail_id', $u->id)->where('user_id', Auth::user()->id)->first();
-                if (!$a->editable) {
-                    //jika tidak editable maka munculkan pesan soal ini sudah dikerjakan
+                if (!is_null($a) &&!$a->editable) {
+                    //jika sudah dijawab tidak editable maka munculkan pesan soal ini sudah dikerjakan
 
                     $message = "Quiz ini sudah dikerjakan dan sudah di kumpulkan sebelumnya.";
                     return view('index', ['title' => 'Quiz Sudah Dikerjakan', 'includepage' => 'layouts.erroraccess', 'message' => $message, 'link' => url()->previous(), 'q' => $q, 'question' => $question, 'collected' => true]);
