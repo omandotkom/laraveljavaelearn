@@ -102,5 +102,5 @@ Route::post('/class/{id}/rule','ClassController@storerule')->name('storerule');
 Route::get('/profile/instructor','UserController@viewdosen')->name('viewinstructorprofile');
 
 Route::get('/help',function(){
-    return view('index',['title'=>'Bantuan Panduan dalam Menggunakan Website Ini','includepage'=>'layouts.help','content'=>'profile']);
+    return view('index',['title'=>'Petunjuk dalam Menggunakan Website Ini','includepage'=>'layouts.help','content'=>'profile']);
 })->name("help");

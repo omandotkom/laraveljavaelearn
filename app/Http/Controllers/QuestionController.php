@@ -247,7 +247,7 @@ class QuestionController extends Controller
            where answers.question_id=" . $id . "  group by `answers`.`user_id`");
         if (is_null($save)) {
 
-            return view('index', ['title' => 'Laporan Mahasiswa yang Sudah Mengerjakan', 'includepage' => 'layouts.questionsanswer', 'content' => 'answererlist', 'answerer' => $answerer, 'questionid' => $id]);
+            return view('index', ['title' => 'Laporan Siswa yang Sudah Mengerjakan', 'includepage' => 'layouts.questionsanswer', 'content' => 'answererlist', 'answerer' => $answerer, 'questionid' => $id]);
         }
         $data = [
             'answerer' => $answerer,

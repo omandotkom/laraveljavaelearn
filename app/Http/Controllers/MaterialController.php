@@ -30,7 +30,7 @@ class MaterialController extends Controller
                     return abort("Internal Error");
                 }
 
-                $materials = Material::where('user_id', $id)->get();              
+                $materials = Material::where('class_id', $id)->get();              
                     
         }
 
