@@ -16,7 +16,6 @@
                                     @if(Auth::user()->role == "admin")
                                     <th>Ubah Aturan</th>
                                     @endif
-                                    <th>Progress Siswa</th>
                                     @if(Auth::user()->role != "superadmin")
                                     <th>Materi</th>
                                     @endif
@@ -30,7 +29,6 @@
                                     @if(Auth::user()->role == "admin")
                                     <td><a class="btn btn-primary btn-sm" href="{{route('ruleindex',$class->id)}}" role="button">Ubah</a></td>
                                     @endif
-                                    <td><a class="btn btn-primary btn-sm" href="{{route('userclassindex',$class->user->id)}}" role="button">Lihat Progress Siswa</a></td>
                                     @if(Auth::user()->role != "superadmin")
                                     
                                     <td><a class="btn btn-primary btn-sm" href="{{route('indexmaterial',$class->id)}}" role="button">Lihat Materi</a></td>
