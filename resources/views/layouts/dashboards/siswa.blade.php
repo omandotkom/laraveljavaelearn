@@ -9,7 +9,7 @@
                             <img src="{{url('dashboardasset/img/students.png')}}" class="rounded img-fluid mx-auto d-block" alt="...">
                         </div>
                         <div class="d-flex align-items-center flex-row mt-30">
-                            <a href="{{route('userclassindex')}}"  class="btn mx-auto btn-outline-primary"><i class="ik ik-plus"></i> Lihat Seluruh Siswa</a>
+                            <a href="{{route('userclassindex')}}"  class="btn mx-auto btn-outline-primary"><i class="ik ik-plus"></i> Lihat Data Siswa</a>
                         </div>
                     </div>
                 </div>

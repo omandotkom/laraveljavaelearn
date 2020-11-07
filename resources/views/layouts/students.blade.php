@@ -14,7 +14,9 @@
                                     <th>Bergabung Pada</th>
                                     <th>Progress</th>
                                     <th>Status</th>
+                                    @if (Auth::user()->role == "admin")
                                     <th>Ubah Status</th>
+                                    @endif
                                 </tr>
                             </thead>
                             <tbody>
@@ -24,14 +26,16 @@
                                     <td>{{$student->created_at}}</td>
                                     <td>{{$student->answers}} / {{$totalquiz}}</td>
                                     <td>{{$student->status}}</td>
-                                    <td>
+                                   @if(Auth::user()->role == "admin") <td>
                                         <div class="btn-group" role="group">
-
-                                            <a href="{{route('changestatus',['id'=>$student->id,'status'=>'active'])}}" type="button" role="button" class="btn btn-success btn-sm">Aktif</a>
+                                            @if($student->status == "active")
                                             <a href="{{route('changestatus',['id'=>$student->id,'status'=>'pending'])}}" type="button" role="button" class="btn btn-danger btn-sm text-white">Berhenti</a>
+                                            @else
+                                            <a href="{{route('changestatus',['id'=>$student->id,'status'=>'active'])}}" type="button" role="button" class="btn btn-success btn-sm">Aktif</a>
+                                            @endif
                                             <a href="{{route('changestatus',['id'=>$student->id,'status'=>'graduate'])}}" type="button" role="button" class="btn btn-info btn-sm">Lulus</a>   
                                         </div>
-
+                                    @endif
 
                                     </td>
                                 </tr>
