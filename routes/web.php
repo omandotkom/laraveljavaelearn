@@ -16,20 +16,20 @@ use App\UserClass;
 |
 */
 use Illuminate\Support\Facades\Auth;
-Route::get('/daftar','Auth\RegisterController@index')->name('daftar')->middleware('guest');
+
+Route::get('/daftar', 'Auth\RegisterController@index')->name('daftar')->middleware('guest');
 Route::get('/', function () {
     $instructors = null;
     $classes = null;
     $userclass = null;
-    if (Auth::user()->role == "superadmin"){
-        $instructors = User::select('id','name')->where('role','admin')->get();
-    }else if (Auth::user()->role == "admin"){
-        $classes = Kelas::where('user_id',Auth::user()->id)->get();
-    }else if (Auth::user()->role == "student"){
-        $userclass = UserClass::select("class_id")->where('user_id',Auth::user()->id)->first();
-        
+    if (Auth::user()->role == "superadmin") {
+        $instructors = User::select('id', 'name')->where('role', 'admin')->get();
+    } else if (Auth::user()->role == "admin") {
+        $classes = Kelas::where('user_id', Auth::user()->id)->get();
+    } else if (Auth::user()->role == "student") {
+        $userclass = UserClass::select("class_id")->where('user_id', Auth::user()->id)->first();
     }
-    return view('index', ['includepage' => 'layouts.content', 'pagetype' => 'default','instructors' => $instructors,'classes'=>$classes,'userclass'=>$userclass]);
+    return view('index', ['includepage' => 'layouts.content', 'pagetype' => 'default', 'instructors' => $instructors, 'classes' => $classes, 'userclass' => $userclass]);
 })->middleware('auth')->name('index2');
 Route::get('/home/{mode?}', function ($mode = "default") {
     switch ($mode) {
@@ -39,23 +39,23 @@ Route::get('/home/{mode?}', function ($mode = "default") {
         case "create":
             $title = "Buat Soal";
             break;
-        case "score" :
+        case "score":
             $title = "Penilaian";
-        break;
+            break;
         default:
             $title = "Dashboard";
             break;
     }
     return view('index', ['includepage' => 'layouts.content', 'pagetype' => $mode, 'title' => $title]);
 })->middleware('auth')->name('index');
-Route::get('/dosen',function(){
+Route::get('/dosen', function () {
     $dosen = true;
-    return view('auth.register',['dosen'=>$dosen]);
+    return view('auth.register', ['dosen' => $dosen]);
 });
 Route::get('/code', 'CodeController@show')->name('showcode');
 Route::post('/question/save', 'QuestionController@store')->name('addquestion');
 Route::get('/question/view/{id?}/{ischeck?}/{uid?}', 'QuestionController@show')->name('viewquestion');
-Route::get('/question/delete/{id}','QuestionController@destroy')->name('deletequestion');
+Route::get('/question/delete/{id}', 'QuestionController@destroy')->name('deletequestion');
 Route::post('/question/{id?}', 'QuestionController@save')->name('savequestion');
 Route::get('/questions', 'QuestionController@showbyUser')->name('viewallquestions');
 Route::post('/question/update', 'QuestionController@update')->name('updatequestion');
@@ -79,35 +79,33 @@ Route::get('/about', function () {
     return view('index', ['includepage' => 'layouts.about', 'title' => 'Tentang Saya']);
 })->name("about");
 
-Route::post('/logout/custom','Auth\LoginController@logout')->name("logoutcustom");
+Route::post('/logout/custom', 'Auth\LoginController@logout')->name("logoutcustom");
 
-Route::post('/instructor/create','UserController@saveInstructor')->name('saveinstructor');
-Route::get('/instructor','UserController@showInstructor')->name('showinstructor');
-Route::get('/instructor/delete/{id}','UserController@deleteInstructor')->name("deleteinstructor");
+Route::post('/instructor/create', 'UserController@saveInstructor')->name('saveinstructor');
+Route::get('/instructor', 'UserController@showInstructor')->name('showinstructor');
+Route::get('/instructor/delete/{id}', 'UserController@deleteInstructor')->name("deleteinstructor");
 
-Route::post('/class','ClassController@store')->name('storeclass');
-Route::get('/class','ClassController@index')->name('indexclass');
+Route::post('/class', 'ClassController@store')->name('storeclass');
+Route::get('/class', 'ClassController@index')->name('indexclass');
 
-Route::get('/materials/view/{id?}','MaterialController@index')->name('indexmaterial');
-Route::get('/materials/delete/{id}','MaterialController@destroy')->name('deletematerial');
-Route::post('/materials','MaterialController@store')->name('storematerial');
+Route::get('/materials/view/{id?}', 'MaterialController@index')->name('indexmaterial');
+Route::get('/materials/delete/{id}', 'MaterialController@destroy')->name('deletematerial');
+Route::post('/materials', 'MaterialController@store')->name('storematerial');
 
 
-Route::get('/students/view/{id?}','UserClassController@index')->name('userclassindex');
-Route::get('/students/changestatus/{id}/{status}','UserController@changestatus')->name('changestatus');
+Route::get('/students/view/{id?}', 'UserClassController@index')->name('userclassindex');
+Route::get('/students/changestatus/{id}/{status}', 'UserController@changestatus')->name('changestatus');
 
-Route::get('/class/{id}/rule','ClassController@ruleindex')->name('ruleindex');
-Route::post('/class/{id}/rule','ClassController@storerule')->name('storerule');
+Route::get('/class/{id}/rule', 'ClassController@ruleindex')->name('ruleindex');
+Route::post('/class/{id}/rule', 'ClassController@storerule')->name('storerule');
 
-Route::get('/profile/instructor','UserController@viewdosen')->name('viewinstructorprofile');
+Route::get('/profile/instructor', 'UserController@viewdosen')->name('viewinstructorprofile');
 
-Route::get('/help',function(){
-if (Auth::user()->role == "admin"){
-$title = "Petunjuk Mengajar Kelas Online";
-echo "Petunjuk Mengajar Kelas Online";
-}elseif (Auth::user()->role == "student"){
-$title = "Petunjuk Mengikuti Kelas Online";
-echo "Petunjuk Mengikuti Kelas Online";
-}
-return view('index',['title'=>'Petunjuk Mengikuti Kelas Online','includepage'=>'layouts.help','content'=>'profile']);
+Route::get('/help', function () {
+    if (Auth::user()->role == "admin") {
+        $title = "Petunjuk Mengajar Kelas Online";
+    } elseif (Auth::user()->role == "student") {
+        $title = "Petunjuk Mengikuti Kelas Online";
+    }
+    return view('index', ['title' => $title, 'includepage' => 'layouts.help', 'content' => 'profile']);
 })->name("help");
