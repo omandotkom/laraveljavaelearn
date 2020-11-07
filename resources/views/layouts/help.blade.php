@@ -7,13 +7,13 @@
                 
             </ol>
             @elseif(Auth::user()->role == "student")
-
             <ol>
-                <li>Siswa diharuskan mengunduh dan membaca materi terlebih dahulu.</li>
-                <li>Setelah membaca materi, siswa dipersilahkan untuk belajar koding di menu latihan koding.</li>
-                <li>Siswa mengerjakan kuis/tugas di setiap minggunya.</li>
-                <li>Siswa dapat melihat hasil nilai di setiap minggunya di dalam menu evaluasi nilai.</li>
-                <li>Siswa diharuskan menaati dan memahami peraturan yang ada.</li>
+                <li>Siswa login terlebih dahulu menggunakan e-mail dan password yang telah terdaftar.</li>
+                <li>Siswa mengakses menu materi untuk melihat dan mengunduh materi.</li>
+                <li>Siswa mengakses menu latihan koding untuk latihan terlebih dahulu sebelum mengisi quiz</li>
+                <li>Siswa mengakses menu soal untuk mengerjakan quiz yang tersedia</li>
+                <li>Siswa mengakses menu evaluasi nilai untuk melihat hasil nilai yang didapat</li>
+                <li>Siswa mengakses menu manajemen kelas untuk melihat tata tertib kelas yang sudah ditentukan oleh Instruktur.</li>
             </ol>
             @endif
         </div>

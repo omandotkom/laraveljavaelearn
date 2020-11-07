@@ -102,5 +102,12 @@ Route::post('/class/{id}/rule','ClassController@storerule')->name('storerule');
 Route::get('/profile/instructor','UserController@viewdosen')->name('viewinstructorprofile');
 
 Route::get('/help',function(){
-    return view('index',['title'=>'Petunjuk dalam Menggunakan Website Ini','includepage'=>'layouts.help','content'=>'profile']);
+if (Auth::user()->role == "admin"){
+$title = "Petunjuk Mengajar Kelas Online";
+echo "Petunjuk Mengajar Kelas Online";
+}elseif (Auth::user()->role == "student"){
+$title = "Petunjuk Mengikuti Kelas Online";
+echo "Petunjuk Mengikuti Kelas Online";
+}
+return view('index',['title'=>'Petunjuk Mengikuti Kelas Online','includepage'=>'layouts.help','content'=>'profile']);
 })->name("help");
