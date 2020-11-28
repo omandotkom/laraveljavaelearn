@@ -17,7 +17,7 @@
                                     <th>Ubah Aturan</th>
                                     @endif
                                     @if(Auth::user()->role != "superadmin")
-                                    <th>Materi</th>
+                                    <!-- <th>Materi</th> -->
                                     @endif
                                 </tr>
                             </thead>
@@ -31,7 +31,7 @@
                                     @endif
                                     @if(Auth::user()->role != "superadmin")
                                     
-                                    <td><a class="btn btn-primary btn-sm" href="{{route('indexmaterial',$class->id)}}" role="button">Lihat Materi</a></td>
+                                    <!-- <td><a class="btn btn-primary btn-sm" href="{{route('indexmaterial',$class->id)}}" role="button">Lihat Materi</a></td> -->
                                     @endif
                                 </tr>
                                 @endforeach
