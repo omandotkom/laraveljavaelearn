@@ -23,7 +23,7 @@ class UserClassController extends Controller
             //$userclasses = UserClass::where('class_id', $kelas->id)->get();
             $students = DB::select("select users.name,users.id, users.status, userclasses.created_at, 
             (select count(scores.id) from scores where scores.user_id=users.id) as answers from userclasses join users 
-            on userclasses.user_id = users.id join scores on scores.user_id=users.id where userclasses.class_id =".$kelas->id." group by id");
+            on userclasses.user_id = users.id left join scores on scores.user_id=users.id where userclasses.class_id =".$kelas->id." group by id");
             
             $totalQuiz = Question::select("id")->where('class_id',$kelas->id)->count();
             return view('index', ['title' => 'Seluruh Siswa', 'includepage' => 'layouts.students', 'content' => 'profile', 'students' => $students,'totalquiz'=>$totalQuiz]);
@@ -36,7 +36,7 @@ class UserClassController extends Controller
             $totalQuiz = Question::select("id")->where('class_id',$kelas->id)->count();
             $students = DB::select("select users.name,users.id, users.status, userclasses.created_at, 
             (select count(scores.id) from scores where scores.user_id=users.id) as answers from userclasses join users 
-            on userclasses.user_id = users.id join scores on scores.user_id=users.id where userclasses.class_id =".$kelas->id." group by id");
+            on userclasses.user_id = users.id left join scores on scores.user_id=users.id where userclasses.class_id =".$kelas->id." group by id");
             
             return view('index', ['title' => 'Seluruh Siswa', 'includepage' => 'layouts.students', 'content' => 'profile', 'students' => $students,'totalquiz'=>$totalQuiz]);
             
