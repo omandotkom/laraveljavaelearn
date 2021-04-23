@@ -4,7 +4,7 @@
         <div class="modal-content">
             <form class="forms-sample" method="post" action="{{route('saveinstructor')}}" enctype="multipart/form-data">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="addakuntitle">Buat Akun Instruktor Baru</h5>
+                    <h5 class="modal-title" id="addakuntitle">Buat Akun Instruktur Baru</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
